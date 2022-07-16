@@ -1,0 +1,63 @@
+.root {
+  /* Dimensions */
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+
+  @media (--viewportMedium) {
+    padding-top: 2px;
+  }
+}
+
+.bluetip {
+  color: var(--matterColorBlue);
+  font-size: 16px;
+  line-height: 18px;
+  margin-top: 0px;
+  @media (--viewportMedium) {
+    font-size: 16px;
+    line-height: 18px;
+    margin-top: 0px;
+    width: 80%;
+    }
+}
+
+.error {
+  color: var(--failColor);
+}
+
+.priceInput {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.submitButton {
+  margin-top: auto;
+  margin-bottom: 24px;
+
+  @media (--viewportLarge) {
+    display: inline-block;
+    width: 241px;
+    margin-top: 70px;
+  }
+}
+.steps {
+  display: flex;
+  flex-direction: column;
+  @media (--viewportMedium) {
+    flex-direction: row;
+  }
+}
+
+.step {
+    margin-left: 0px;
+    margin-right: 0px;
+    @media (--viewportMedium) {
+    width: 330px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

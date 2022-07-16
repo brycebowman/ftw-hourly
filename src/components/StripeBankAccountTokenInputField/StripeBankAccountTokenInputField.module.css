@@ -1,0 +1,52 @@
+.unsupportedCountryError {
+  color: var(--failColor);
+}
+
+.root {
+  /* Parent component should not shrink this field */
+  flex-shrink: 0;
+
+  /* This component uses flexbox layout too */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.input {
+  /* Parent component should not shrink this field */
+  flex-shrink: 0;
+  border-bottom-color: var(--attentionColor);
+  margin-bottom: 24px;
+  width: 80%;
+  padding: 5px;
+  border-radius: 10px;
+  @media (--viewportSmall) {
+  width: 80%;
+}
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.longForm {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+@media (--viewportSmall) {
+  .longForm {
+    width: calc(50% - 9px);
+  }
+}
+
+.inputSuccess {
+  border-color: var(--successColor);
+}
+
+.inputError {
+  border-color: var(--failColor);
+}
+
+.error {
+  color: var(--failColor);
+}

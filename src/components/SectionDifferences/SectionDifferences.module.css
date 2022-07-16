@@ -1,0 +1,159 @@
+@import '../../styles/propertySets.css';
+
+.HowItWorks {
+  display: block;
+  @media (--viewportMedium) {
+  display: block;
+  }
+}
+
+.title {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  letter-spacing: 0.05em;
+  color: var(--matterColorRed);
+  font-style: italic;
+  text-align: center;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 36px;
+  margin-top: 15px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 5px;
+  @media (--viewportMedium) {
+  line-height: 45px;
+  font-size: 60px;
+  font-weight: 400;
+  margin-top: 0px;
+  }
+  @media (--viewportLarge) {
+  font-size: 60px;
+  }
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  @media (--viewportMedium) {
+    flex-direction: row;
+  }
+}
+.stepsButton {
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+    flex-direction: row;
+  }
+}
+
+.stepButton {
+
+  @media (--viewportMedium) {
+    width: 324px;
+    margin-right: 40px;
+  }
+}
+.stepButtonRight {
+display: none;
+  @media (--viewportMedium) {
+    display: block;
+    width: 324px;
+    margin-right: 40px;
+  }
+}
+.stepButtonMiddle {
+display: block;
+width: 30%;
+  @media (--viewportMedium) {
+    display: none;
+    width: 324px;
+    margin-right: 40px;
+  }
+}
+
+.step {
+  @media (--viewportMedium) {
+    width: 324px;
+    margin-right: 40px;
+  }
+}
+
+.stepText {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 22px;
+  }
+
+.step:last-of-type {
+  @media (--viewportMedium) {
+    margin-right: 0;
+  }
+}
+
+.stepTitle {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorBlue);
+  margin-top: 1px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-size: 30px;
+  @media (--viewportMedium) {
+  font-size: 34px;
+  margin-top: 5px;
+    margin-bottom: 18px;
+  }
+}
+
+.createListingLink {
+  margin-top: 18px;
+  @media (--viewportMedium) {
+    margin-top: 24px;
+  }
+}
+.iconImage {
+  width: 100%;
+  height: 150px;
+  border-radius: 4px;
+  object-fit: contain;
+  margin: 10px 0 10px;
+  @media (--viewportMedium) {
+    margin: 32px 0 10px;
+    width: 100%;
+    height: 150px;
+  }
+}
+
+/* Shared animation rules */
+.animation {
+  animation-name: animationTitle;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+
+  visibility: hidden;
+  opacity: 1;
+  position: relative;
+}
+
+.howitworksButton {
+  @apply --marketplaceButtonStyles;
+  font-size: 24px;
+  line-height: 26px;
+  padding: 7px 0 7px 0;
+  font-family: "architects daughter";
+  border-radius: 15px;
+  margin: auto;
+  width: 150px;
+  height: 65px;
+  margin-bottom: 20px;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 160px;
+    margin-bottom: 20px;
+  }
+}

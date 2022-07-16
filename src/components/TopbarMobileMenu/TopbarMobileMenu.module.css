@@ -1,0 +1,166 @@
+@import '../../styles/propertySets.css';
+
+.root {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: auto;
+}
+
+.greetingtext {
+  color: var(--matterColorBlue);
+  font-size: 24px;
+  font-family: "Architects Daughter";
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.content {
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* 113 for footer and an extra 67 to get scrolling work in mobile safari */
+  margin-bottom: 180px;
+}
+.steps {
+  display: flex;
+  flex-direction: row;
+  vertical-align: top;
+  margin-top: 40px;
+}
+
+.step {
+  @media (--viewportMedium) {
+    width: 50%;
+    vertical-align: middle;
+  }
+}
+.stepleft {
+  @media (--viewportMedium) {
+    width: 70%;
+    vertical-align: top;
+  }
+}
+.stepright {
+  @media (--viewportMedium) {
+    width: 30%;
+    vertical-align: middle;
+  }
+}
+
+.iconImage {
+  width: 80%;
+  align-items: center;
+  border-radius: 4px;
+  object-fit: contain;
+  margin-left: 20px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: 24px;
+  background-color: var(--matterColorLight);
+  box-shadow: var(--boxShadowTop);
+}
+
+.avatar {
+  /* Layout */
+  flex-shrink: 0;
+  margin: var(--TopbarMobileMenu_topMargin) 0 0 0;
+}
+
+.greeting {
+  /* Font */
+  @apply --marketplaceH1FontStyles;
+  margin-bottom: 1px;
+  margin-top: 16px;
+}
+
+.logoutButton {
+  @apply --marketplaceLinkStyles;
+  /* Logout font is smaller and gray since the action is not recommended. */
+  @apply --marketplaceH3FontStyles;
+  color: var(--matterColorAnti);
+
+  /* Position component */
+  width: initial;
+  margin: 4px 0 6px 0;
+  padding: 0;
+}
+
+.inbox {
+  /* Font */
+  @apply --marketplaceH2FontStyles;
+  color: var(--marketplaceColor);
+  position: relative;
+
+  margin-top: auto;
+  margin-bottom: 13px;
+}
+
+.navigationLink {
+  /* Font */
+  @apply --marketplaceH2FontStyles;
+  color: var(--marketplaceColor);
+
+  /* Layout */
+  margin-top: 0;
+  margin-bottom: 11px;
+}
+.currentPageLink {
+  color: var(--marketplaceColorDark);
+}
+
+.notificationBadge {
+  position: absolute;
+  top: 4px;
+  right: -26px;
+
+  /* This is inside a link - remove underline */
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.createNewListingLink {
+  @apply --marketplaceButtonStyles;
+}
+
+.authenticationGreeting {
+  /* Font */
+  @apply --marketplaceH1FontStyles;
+  font-size: 36px;
+  line-height: 38px;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}
+.authenticationLinks {
+  white-space: nowrap;
+}
+
+.signupLink {
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--marketplaceColor);
+}
+.loginLink {
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--marketplaceColor);
+}
+
+.currentPage {
+  color: var(--matterColorDark);
+
+  /* black left border */
+  border-left: 5px solid black;
+  margin-left: -24px;
+  padding-left: 19px;
+}

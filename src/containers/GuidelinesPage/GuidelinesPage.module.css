@@ -1,0 +1,39 @@
+@import '../../styles/propertySets.css';
+
+.heading {
+  margin: 5px 0 18px 0;
+
+  @media (--viewportMedium) {
+    margin: 8px 0 24px 0;
+  }
+}
+
+.content {
+  @media (--viewportMedium) {
+    max-width: 563px;
+  @media (--viewportLarge) {
+    max-width: 563px;
+  }
+}
+}
+.title {
+  @apply --marketplaceH1FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorRed);
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 42px;
+  margin-top: 0px;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  @media (--viewportMedium) {
+  margin-bottom: 40px;
+  font-size: 50px;
+  line-height: 56px
+  }
+  @media (--viewportLarge) {
+  font-size: 60px;
+  }
+}

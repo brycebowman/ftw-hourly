@@ -1,0 +1,111 @@
+@import '../../styles/propertySets.css';
+
+.title {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorRed);
+  font-style: italic;
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 42px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-family: 'Arial';
+  color: var(--matterColorBlue);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 18px;
+  text-align: center;
+  margin-bottom: -10px;
+  @media (--viewportMedium) {
+  font-size: 22px;
+  }
+  @media (--viewportLarge) {
+  font-size: 22px;
+  }
+}
+
+.steps {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--matterColorBlue);
+  padding-top: 10px;
+  padding-left: 20px;
+  border-radius: 15px;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  @media (--viewportMedium) {
+    flex-direction: row;
+  }
+}
+
+.step {
+    width: 90%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+.list {
+  list-style-type: disc;
+  margin-left: 5px;
+  margin-right: -5px;
+}
+
+.stepText {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  color: var(--matterColorLight);
+}
+
+.stepTitle {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorBlue);
+  margin-top: 0px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 34px;
+  @media (--viewportMedium) {
+  font-size: 46px;
+  margin-top: 5px;
+    margin-bottom: 18px;
+  }
+}
+
+.createListingLink {
+  margin-top: 18px;
+  @media (--viewportMedium) {
+    margin-top: 24px;
+  }
+}
+.ImageContainer {
+  width: 220px;
+  height: 190px;
+  margin-top: 25px;
+  padding-left: 20px;
+  border-radius: 25px;
+  margin-bottom: 45px;
+}
+.iconImage {
+  width: 45%;
+  object-fit: contain;
+  border-radius: 15px;
+  vertical-align: bottom;
+  @media (--viewportMedium) {
+}}
+
+.TextContainer {
+  background-color: var(--matterColorBlue);
+  width: 300px;
+  margin-top: 25px;
+  margin-left: 10px;
+  border-radius: 25px;
+  margin-bottom: 45px;
+}

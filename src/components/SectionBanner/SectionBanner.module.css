@@ -1,0 +1,71 @@
+@import '../../styles/propertySets.css';
+
+@keyframes animationTitle {
+  0% {
+    visibility: hidden;
+    opacity: 1;
+    margin-top: -40px;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    top: 0;
+    margin-top: 0px;
+  }
+}
+
+/* Shared animation rules */
+.animation {
+  animation-name: animationTitle;
+  animation-delay: 0s;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+
+  visibility: hidden;
+  opacity: 1;
+  position: relative;
+}
+
+.title {
+  color: #000;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  background-color: var(--attentionColorLight);
+  margin-top: -70px;
+  padding: 7px 7px 7px 7px;
+  border-bottom: solid 1px #000;
+  margin-bottom: 0px;
+  composes: animation;
+  animation-delay: 5.0s;
+  @media (--viewportMedium) {
+  text-align: center;
+  line-height: 26px;
+  margin-bottom: 0px;
+  margin-top: -40px;
+  composes: animation;
+  animation-delay: 5.0s;
+  }
+}
+.link {
+  /* Font */
+  line-height: 21px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--matterColorBlue);
+  transition: var(--transitionStyleButton);
+
+  margin-top: 0;
+  margin-bottom: 12px;
+
+  &:hover {
+    color: var(--marketplaceColor);
+    text-decoration: none;
+  }
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

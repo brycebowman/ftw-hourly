@@ -1,0 +1,254 @@
+@import '../../styles/propertySets.css';
+
+.HowItWorks {
+  display: block;
+  @media (--viewportMedium) {
+  display: block;
+  }
+}
+
+.title {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  letter-spacing: 0.05em;
+  color: var(--matterColorRed);
+  font-style: italic;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 45px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 10px;
+  @media (--viewportMedium) {
+  font-size: 60px;
+  margin-top: 30px;
+  }
+  @media (--viewportLarge) {
+  font-size: 60px;
+  }
+}
+.subtitle {
+  color: var(--matterColorRed);
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: -5px;
+  margin-bottom: -10px;
+
+  @media (--viewportMedium) {
+  font-size: 20px;
+  margin-top: -15px;
+  margin-bottom: -15px;
+  }
+}
+.subtitleGreen {
+  color: var(--successColor);
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: -5px;
+  margin-bottom: -10px;
+
+  @media (--viewportMedium) {
+  font-size: 20px;
+  margin-top: -15px;
+  margin-bottom: -15px;
+  }
+}
+
+.mainImage {
+  display: block;
+  background-image: url(./images/rocket-launch-mobile.gif);
+  min-height: 500px;
+  width: 100%;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 130px;
+  background-position: right;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  @media (--viewportMedium) {
+  background-image: url(./images/rocket-launch.gif);
+  background-position: center;
+  padding-bottom: 160px;
+  margin-top: -30px;
+  margin-left: -10px;
+  }
+}
+.mainTitle {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  letter-spacing: 0.05em;
+  color: var(--matterColorLight);
+  font-style: italic;
+  text-align: left;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 45px;
+  margin-left: 2px;
+  margin-right: 10px;
+  @media (--viewportMedium) {
+  text-align: left;
+  font-size: 60px;
+  margin-top: 30px;
+  margin-left: 20px;
+  }
+  @media (--viewportLarge) {
+  font-size: 60px;
+  }
+}
+.mainText {
+  color: var(--matterColorLight);
+  width: 65%;
+  font-size: 20px;
+  line-height: 23px;
+  margin-bottom: 15px;
+  @media (--viewportMedium) {
+  margin-bottom: 0px;
+  width: 68%;
+  }
+}
+.mainTextDesktop {
+  display: none;
+  font-size: 20px;
+  @media (--viewportMedium) {
+  display: block;
+  color: var(--matterColorLight);
+  width: 60%;
+  font-size: 20px;
+  line-height: 23px;
+  width: 68%;
+  }
+}
+.mainSubtitle {
+  color: var(--matterColorLight);
+  width: 65%;
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: 600;
+  @media (--viewportMedium) {
+  }
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  @media (--viewportMedium) {
+    flex-direction: row;
+    margin-top: -15px;
+  }
+}
+
+.step {
+  @media (--viewportMedium) {
+    width: 50%;
+    margin-right: 40px;
+  }
+}
+.stepRight {
+  @media (--viewportMedium) {
+    width: 50%;
+  }
+}
+
+.stepText {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  }
+
+
+.stepTitle {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorBlue);
+  margin-top: 1px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-size: 40px;
+  @media (--viewportMedium) {
+  font-size: 34px;
+  margin-top: 5px;
+    margin-bottom: 18px;
+  }
+}
+
+.createListingLink {
+  margin-top: 18px;
+  @media (--viewportMedium) {
+    margin-top: 24px;
+  }
+}
+.iconImage {
+  width: 100%;
+  border-radius: 4px;
+  object-fit: contain;
+  vertical-align: bottom;
+  margin: 32px 0 10px;
+}
+
+.list {
+  color: var(--matterColorBlue);
+  font-size: 18px;
+  font-weight: bold;
+  list-style-type: disc;
+  margin-left: 15px;
+  margin-right: -5px;
+  margin-bottom: 15px;
+  @media (--viewportMedium) {
+  }
+}
+
+.listCities {
+  color: var(--matterColorDark);
+  font-style: italic;
+  font-weight: normal;
+  list-style-type: "- ";
+  margin-left: 15px;
+  margin-right: -5px;
+  margin-bottom: 15px;
+  @media (--viewportMedium) {
+  }
+}
+
+
+.listMain {
+  list-style-type: disc;
+  margin-left: 25px;
+  color: var(--matterColorLight);
+  margin-top: -10px;
+}
+
+/* Shared animation rules */
+.animation {
+  animation-name: animationTitle;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+
+  visibility: hidden;
+  opacity: 1;
+  position: relative;
+}
+
+.howitworksButton {
+  @apply --marketplaceButtonStyles;
+  font-size: 24px;
+  line-height: 26px;
+  padding: 7px 0 7px 0;
+  font-family: "architects daughter";
+  border-radius: 15px;
+  margin: auto;
+  width: 150px;
+  height: 65px;
+  margin-bottom: 30px;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 160px;
+    margin-bottom: 20px;
+  }
+}

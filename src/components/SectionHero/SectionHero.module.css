@@ -1,0 +1,210 @@
+@import '../../styles/propertySets.css';
+
+/* Animation for the hero elements */
+
+@keyframes animationTitle {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    top: -20px;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    top: 0;
+  }
+}
+
+/* Shared animation rules */
+.animation {
+  animation-name: animationTitle;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+
+  visibility: hidden;
+  opacity: 1;
+  position: relative;
+}
+
+.root {
+  @apply --backgroundImageMobile;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  @media (--viewportMedium) {
+  @apply --backgroundImage;
+  }
+
+  /* Text positioning is done with paddings */
+}
+
+.heroContent {
+  margin: 0 24px 0 24px;
+  @media (--viewportMedium) {
+    margin: 0 7.5vw 0 7.5vw;
+  }
+
+  /* Special viewport for adjusting the heroContent's placement */
+
+  @media only screen and (min-width: 1025px) and (max-width: 1366px) {
+    padding: 0 36px 0 36px;
+  }
+
+  @media only screen and (min-width: 1367px) {
+    margin: 0 auto;
+    max-width: calc(1052px + 36px + 36px);
+    width: 100%;
+    padding: 0 36px 0 36px;
+  }
+}
+
+.heroMainTitle {
+  @apply --marketplaceHeroTitleFontStyles;
+  font-size: 40px;
+  line-height: 42px;
+  margin: 40px auto 5px auto;
+  color: var(--matterColorRed);
+  animation-delay: 0.5s;
+
+  @media (--viewportMedium) {
+    max-width: var(--SectionHero_desktopTitleMaxWidth);
+    font-size: 76px;
+    line-height: 76px;
+    font-weight: 400;
+    margin: 55px 0px 20px 0px;
+    color: var(--matterColorRed);
+  }
+}
+
+.heroMainTitle2 {
+  @apply --marketplaceHeroTitleFontStyles;
+  margin-top: 0px;
+  font-weight: 400;
+  color: var(--matterColorGreen);
+  animation-delay: 0.5s;
+
+  @media (--viewportMedium) {
+    max-width: var(--SectionHero_desktopTitleMaxWidth);
+  }
+}
+
+.heroSubTitle {
+  @apply --marketplaceH2FontStyles;
+    color: var(--matterColorDark);
+  margin: 0 20px 22px 0;
+  font-size: 22px;
+  animation-delay: 0.65s;
+
+  @media (--viewportMedium) {
+    max-width: var(--SectionHero_desktopTitleMaxWidth);
+    margin: 0 200px 20px 0;
+    font-size: 26px;
+  }
+}
+
+.searchFormHero {
+  max-width: 400px;
+  padding-left: 10px;
+  margin: 0px auto 40px 0px;
+  font-size: 18px;
+  background-color: var(--matterColorLight);
+  border-width: 0px;
+  border-radius: 15px;
+  box-shadow: var(--boxShadowHeroSearch);
+
+  @media (--viewportMedium) {
+    margin-top: 24px;
+    padding-left: 10px;
+    max-width: 500px;
+    font-size: 20px;
+  }
+}
+.howitworksButton {
+  @apply --marketplaceButtonStyles;
+  font-size: 24px;
+  line-height: 26px;
+  padding: 7px 0 7px 0;
+  font-family: "architects daughter";
+  border-radius: 15px;
+  width: 150px;
+  height: 65px;
+  margin-bottom: 100px;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 160px;
+    margin-bottom: 160px;
+  }
+}
+
+.heroButton {
+  @apply --marketplaceHeroButtonStyles;
+  font-family: "Architects Daughter";
+  background-color: #fff;
+  color: var(--matterColorBlue);
+  border-color: var(--matterColorBlue);
+  font-size: 24px;
+  line-height: 26px;
+  margin-bottom: 100px;
+  width: 150px;
+  height: 65px;
+
+  animation-delay: 0.8s;
+
+  @media (--viewportMedium) {
+    display: block;
+    margin-bottom: 160px;
+  }
+}
+
+.searchForm {
+  max-width: 408px;
+  margin: 62px auto 0 auto;
+
+  background-color: var(--matterColorLight);
+  border-bottom: 4px solid var(--marketplaceColor);
+  box-shadow: var(--boxShadowNotFoundPageSearch);
+
+  @media (--viewportMedium) {
+    margin-top: 64px;
+  }
+}
+.sharecontainer {
+  display: none;
+  @media (--viewportMedium) {
+  width: 99%;
+  margin-top: 90px;
+  margin-bottom: -110px;
+  display: block;
+  align-items: right;
+  }
+}
+
+.sharebutton {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+}
+
+.Demo__some-network {
+  vertical-align: top;
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.Demo__some-network__share-button {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.Demo__some-network__share-button:hover:not(:active) {
+  opacity: 0.75;
+}
+
+.customicon {
+  width:32px;
+  height:32px;
+}

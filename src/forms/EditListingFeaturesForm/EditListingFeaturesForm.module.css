@@ -1,0 +1,93 @@
+@import '../../styles/propertySets.css';
+.root {
+  /* Expand to available space */
+  flex-grow: 1;
+
+  /* Dimensions */
+  width: 100%;
+  height: auto;
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+
+  @media (--viewportMedium) {
+    padding-top: 1px;
+  }
+}
+.tipBlue {
+  @apply --marketplaceDefaultFontStyles;
+  color: var(--matterColorBlue);
+  font-size: 16px;
+  line-height: 18px;
+  margin-top: 2px;
+  margin-bottom: 12px;
+  padding-top: 5px;
+  padding-bottom: 1px;
+
+  @media (--viewportMedium) {
+    margin-top: 2px;
+    margin-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 4px;
+  }
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  @media (--viewportMedium) {
+    flex-direction: row;
+  }
+}
+.step {
+    margin-left: 0px;
+    margin-right: 0px;
+    @media (--viewportMedium) {
+    width: 50%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+.features {
+  margin-bottom: 10px;
+
+  @media (--viewportMedium) {
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+}
+
+.formMargins {
+  margin-bottom: 24px;
+
+  @media (--viewportMedium) {
+    margin-bottom: 32px;
+  }
+}
+
+.RestaurantNameExp {
+  composes: formMargins;
+  flex-shrink: 0;
+  @media (--viewportMedium) {
+  width: 60%;
+  margin-bottom: 0px;
+}
+}
+
+.error {
+  color: var(--failColor);
+}
+
+.submitButton {
+  margin-top: auto;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+
+  @media (--viewportLarge) {
+    display: inline-block;
+    width: 241px;
+    margin-top: 30px;
+  }
+}

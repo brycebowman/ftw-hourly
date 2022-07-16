@@ -1,0 +1,162 @@
+@import '../../styles/propertySets.css';
+
+.root {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+
+  /* Remove link's hover effect */
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.iconImage {
+  height: 30px;
+  object-fit: contain;
+  pointer-events: none;
+  margin-top: 0px;
+  margin-left: 10px;
+  @media (--viewportMedium) {
+    margin-top: 0px;
+}}
+.iconImageLeft {
+  height: 30px;
+  object-fit: contain;
+  pointer-events: none;
+  margin-top: 0px;
+  margin-left: 20px;
+  @media (--viewportMedium) {
+    margin-top: 0px;
+}}
+.threeToTwoWrapper {
+  /* Layout */
+  display: block;
+  width: 100%;
+  position: relative;
+  transition: var(--transitionStyleButton);
+}
+
+/* Firefox doesn't support image aspect ratio inside flexbox */
+.aspectWrapper {
+  padding-bottom: 85%; /* 3:2 Aspect Ratio */
+}
+
+.rootForImage {
+  /* Layout - image will take space defined by aspect ratio wrapper */
+  width: 85%;
+  margin: auto;
+  border-radius: 10%;
+  border: solid 4px var(--matterColorBlue);
+
+&:hover {
+  transform: scale(1.02);
+  border-color: var(--matterColorRed);
+  box-shadow: var(--boxShadowListingCard);
+  border-width: 4px;
+  }
+}
+
+.info {
+  /* Layout */
+  display: flex;
+  flex-direction: row;
+  padding: 16px 0 2px 0;
+}
+
+.price {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  margin-right: 18px;
+}
+
+.priceValue {
+  /* Font */
+  @apply --marketplaceH3FontStyles;
+
+  /* Remove default margins from font */
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.perUnit {
+  /* Font */
+  @apply --marketplaceTinyFontStyles;
+  color: var(--matterColorRed);
+  font-weight: 500;
+
+  /* Remove default margins from font */
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.hint {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+}
+
+.title {
+  /* Font */
+  @apply --marketplaceH3FontStyles;
+  color: var(--matterColorBlue);
+  font-family: "Architects Daughter";
+  font-size: 24px;
+  letter-spacing: 0em;
+  margin-left: -10px;
+  line-height: 25px;
+  font-weight: 400;
+  flex-direction: row;
+
+  /* Remove default margins from font */
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 34px;
+    line-height: 35px;
+  }
+}
+
+.certificateInfo {
+  /* Font */
+  @apply --marketplaceTinyFontStyles;
+  color: var(--matterColor);
+
+  /* Remove default margins from font */
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.longWord {
+  /* fallback option */
+  word-break: break-all;
+  /* use break-word if available */
+  word-break: break-word;
+  hyphens: auto;
+}

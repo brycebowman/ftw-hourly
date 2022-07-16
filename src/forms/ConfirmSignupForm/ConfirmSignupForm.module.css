@@ -1,0 +1,100 @@
+@import '../../styles/propertySets.css';
+
+.root {
+  @apply --marketplaceModalFormRootStyles;
+
+  justify-content: flex-start;
+
+  @media (--viewportMedium) {
+    justify-content: space-between;
+  }
+}
+
+.role {
+  font-size: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+  flex-direction: row;
+  }
+}
+
+.role {
+  font-size: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+  flex-direction: row;
+  }
+}
+.subtitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+  flex-direction: row;
+  }
+}
+
+.left {
+  width: 70%;
+  @media (--viewportMedium) {
+  width: 70%;
+  }
+}
+.right {
+  width: 30%;
+  align: center;
+  @media (--viewportMedium) {
+    width: 30%;
+  }
+}
+
+
+.name {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+
+  @media (--viewportMedium) {
+    margin-top: 32px;
+  }
+}
+
+.firstNameRoot {
+  width: calc(34% - 9px);
+}
+
+.lastNameRoot {
+  width: calc(66% - 9px);
+}
+
+.password {
+  @apply --marketplaceModalPasswordMargins;
+}
+
+.bottomWrapper {
+  @apply --marketplaceModalBottomWrapper;
+  align-content:center;
+}
+
+.bottomWrapperText {
+  @apply --marketplaceModalBottomWrapperText;
+}
+
+.termsText {
+  @apply --marketplaceModalHelperText;
+}
+
+.termsLink {
+  @apply --marketplaceModalHelperLink;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

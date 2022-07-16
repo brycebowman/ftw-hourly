@@ -1,0 +1,221 @@
+@import '../../styles/propertySets.css';
+
+.title {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorRed);
+  font-style: italic;
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 42px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  @media (--viewportMedium) {
+  font-size: 60px;
+  }
+  @media (--viewportLarge) {
+  font-size: 60px;
+  }
+}
+
+.subtitle {
+  font-family: 'Arial';
+  color: var(--matterColorBlue);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 18px;
+  text-align: center;
+  margin-bottom: -10px;
+  @media (--viewportMedium) {
+  font-size: 22px;
+  }
+  @media (--viewportLarge) {
+  font-size: 22px;
+  }
+}
+
+.subtitleLast {
+  font-family: 'Arial';
+  color: var(--matterColorBlue);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 18px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  @media (--viewportMedium) {
+  font-size: 22px;
+  }
+  @media (--viewportLarge) {
+  font-size: 22px;
+  }
+}
+
+.steps {
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+    flex-direction: row;
+  }
+}
+
+.step {
+    width: 350px;
+    margin-left: 0px;
+    margin-right: 0px;
+    @media (--viewportMedium) {
+    width: 455px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+.stepMiddle {
+  width: 35%;
+  padding-top: 10px;
+  @media (--viewportMedium) {
+  width: 50px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  }
+}
+
+.stepMiddleText {
+
+}
+
+.steplast {
+  @media (--viewportMedium) {
+    width: 455px;
+    margin-left: 0px;
+  }
+}
+
+.stepText {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 20px;
+  @media (--viewportMedium) {
+    font-family: "Poppins";
+    font-size: 17px;
+  }
+}
+
+.stepTextRight {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: 7px;
+  @media (--viewportMedium) {
+    font-family: "Poppins";
+    font-size: 17px;
+  }
+}
+  .stepTextLast {
+    font-family: 'Poppins';
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 30px;
+    padding-left: 3px;
+    }
+
+.step:last-of-type {
+  @media (--viewportMedium) {
+    margin-right: 0;
+    font-size: 22px;
+    border-left: 5px;
+    border-color: #000;
+  }
+}
+
+.stepTitle {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorBlue);
+  margin-top: 0px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 34px;
+  @media (--viewportMedium) {
+  font-size: 46px;
+  margin-top: 5px;
+    margin-bottom: 18px;
+  }
+}
+
+.createListingLink {
+  margin-top: 18px;
+  @media (--viewportMedium) {
+    margin-top: 24px;
+  }
+}
+.iconImage {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  vertical-align: bottom;
+  @media (--viewportMedium) {
+    margin-top: 25px;
+}}
+.numberImage {
+  font-family: "Architects Daughter";
+  font-size: 40px;
+  font-style: italic;
+  color: var(--matterColorRed);
+  object-fit: contain;
+  margin: auto;
+  margin-bottom: 5px;
+  @media (--viewportMedium) {
+    margin-bottom: 40px;
+}}
+
+.arrow {
+  width: 90%;
+  padding-top: 5px;
+  margin: auto;
+  height: 55px;
+  object-fit: contain;
+  margin-bottom: 5px;
+  @media (--viewportMedium) {
+  margin-bottom: 10px;
+  margin-right: 0px;
+}
+  }
+
+/* Shared animation rules */
+.animation {
+  animation-name: animationTitle;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+
+  visibility: hidden;
+  opacity: 1;
+  position: relative;
+}
+
+.howitworksButton {
+  @apply --marketplaceHeroButtonStyles;
+  color: var(--matterColorLight);
+  background-color: var(--matterColorRed);
+  font-size: 24px;
+  line-height: 24px;
+  font-family: "architects daughter";
+  border-radius: 15px;
+  margin: auto;
+  width: 150px;
+  height: 65px;
+  margin-bottom: 30px;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 160px;
+    margin-bottom: 20px;
+  }
+}

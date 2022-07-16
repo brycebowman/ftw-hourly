@@ -1,0 +1,24 @@
+.root {
+  flex-grow: 1;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 11px 24px 0 24px;
+}
+
+.form {
+  flex-grow: 1;
+}
+
+.title {
+  color: #860910;
+  margin-bottom: 19px;
+  font-size: 32px;
+  @media (--viewportLarge) {
+    font-size: 42px;
+    margin-bottom: 38px;
+    padding: 1px 0 7px 0;
+
+  }
+}

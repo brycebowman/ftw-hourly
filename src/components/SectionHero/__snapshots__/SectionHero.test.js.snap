@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionHero matches snapshot 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="heroContent"
+  >
+    <h1
+      className="heroMainTitle"
+    >
+      <span>
+        SectionHero.title
+    </h1>
+        <h1
+      className="heroMainTitle2"
+        SectionHero.title2
+      </span>
+    </h1>
+    <h2
+      className="heroSubTitle"
+    >
+      <span>
+        SectionHero.subTitle
+      </span>
+    </h2>
+    <a
+      className="heroButton"
+      href="/I/new"
+      onClick={[Function]}
+      onMouseOver={[Function]}
+      onTouchStart={[Function]}
+      style={Object {}}
+      title={null}
+    >
+      <span>
+        SectionHero.browseButton
+      </span>
+    </a>
+  </div>
+</div>
+`;

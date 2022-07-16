@@ -1,0 +1,55 @@
+@import '../../styles/propertySets.css';
+
+.HowItWorks {
+  display: block;
+  @media (--viewportMedium) {
+  display: block;
+  }
+}
+
+.title {
+  @apply --marketplaceH2FontStyles;
+  color: var(--matterColorDark);
+  text-align: left;
+  @media (--viewportMedium) {
+  margin-top: -20px;
+  }
+  @media (--viewportLarge) {
+  }
+}
+
+.steps {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  @media (--viewportMedium) {
+    align-items: baseline;
+    align-content: left;
+    flex-direction: row;
+  }
+}
+
+.step {
+  width: 50%;
+  margin-top: -5px;
+  margin-bottom: -10px;
+  border-bottom: 1px solid;
+  @media (--viewportMedium) {
+    border-bottom: 0px;
+    margin-bottom: -50px;
+    width: 30%;
+  }
+}
+
+.iconImage {
+  width: 80%;
+  object-fit: contain;
+  margin-bottom: 17px;
+  @media (--viewportMedium) {
+    margin: 0px 0 0px;
+    width: 200px;
+  }
+}
