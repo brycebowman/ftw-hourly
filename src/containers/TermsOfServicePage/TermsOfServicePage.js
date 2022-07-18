@@ -24,14 +24,14 @@ const TermsOfServicePageComponent = props => {
 
   const tabs = [
     {
-      text: intl.formatMessage({ id: 'TermsOfServicePage.privacyTabTitle' }),
+      text: intl.formatMessage({ id: 'HelpPage.privacyTabTitle' }),
       selected: false,
       linkProps: {
         name: 'PrivacyPolicyPage',
       },
     },
     {
-      text: intl.formatMessage({ id: 'TermsOfServicePage.tosTabTitle' }),
+      text: intl.formatMessage({ id: 'HelpPage.tosTabTitle' }),
       selected: true,
       linkProps: {
         name: 'TermsOfServicePage',
@@ -54,7 +54,7 @@ const TermsOfServicePageComponent = props => {
         <LayoutWrapperSideNav tabs={tabs} />
         <LayoutWrapperMain>
           <div className={css.content}>
-            <h1 className={css.heading}>
+            <h1 className={css.title}>
               <FormattedMessage id="TermsOfServicePage.heading" />
             </h1>
             <TermsOfService />

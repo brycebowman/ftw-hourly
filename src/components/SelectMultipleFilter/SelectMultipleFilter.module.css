@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   position: relative;
@@ -6,8 +6,8 @@
 }
 
 .label {
-  composes: button marketplaceSearchFilterLabelFontStyles buttonText buttonBordersSecondary buttonColorsSecondary from global;
-  letter-spacing: 0.2px;
+  @apply --marketplaceButtonStylesSecondary;
+  @apply --marketplaceSearchFilterLabelFontStyles;
 
   padding: var(--marketplaceButtonSmallDesktopPadding);
   width: auto;
@@ -25,8 +25,8 @@
 }
 
 .labelSelected {
-  composes: button marketplaceSearchFilterLabelFontStyles buttonText buttonBorders buttonColors from global;
-  letter-spacing: 0.2px;
+  @apply --marketplaceButtonStyles;
+  @apply --marketplaceSearchFilterLabelFontStyles;
   font-weight: var(--fontWeightSemiBold);
 
   padding: var(--marketplaceButtonSmallDesktopPadding);

@@ -5,8 +5,15 @@ import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import * as validators from '../../util/validators';
-import { Form, PrimaryButton, FieldTextInput } from '../../components';
+import {
+  Form,
+  IDPButton,
+  FieldTextInputOval,
+  FieldRadioButton,
+  FieldPhoneNumberInputOval,
+} from '../../components';
 
+import workerImage from './images/workers.png';
 import css from './ConfirmSignupForm.module.css';
 
 const KEY_CODE_ENTER = 13;
@@ -26,6 +33,7 @@ const ConfirmSignupFormComponent = props => (
         onOpenTermsOfService,
         authInfo,
         idp,
+        pristine,
       } = formRenderProps;
 
       // email
@@ -68,6 +76,18 @@ const ConfirmSignupFormComponent = props => (
       });
       const lastNameRequired = validators.required(lastNameRequiredMessage);
 
+      // role
+      const roleRequiredMessage = intl.formatMessage({
+        id: 'SignupForm.roleRequired',
+      });
+      const roleRequired = validators.required(roleRequiredMessage);
+
+      const phonePlaceholder = intl.formatMessage({
+        id: 'ContactDetailsForm.phonePlaceholder',
+      });
+      const phoneLabel = intl.formatMessage({ id: 'ContactDetailsForm.phoneLabel' });
+      const phoneRequired = validators.required(intl.formatMessage({ id: 'SignupForm.phoneRequired' }))
+
       const classes = classNames(rootClassName || css.root, className);
       const submitInProgress = inProgress;
       const submitDisabled = invalid || submitInProgress;
@@ -91,17 +111,46 @@ const ConfirmSignupFormComponent = props => (
       );
 
       // If authInfo is not available we should not show the ConfirmForm
-      if (!authInfo) {
-        return;
-      }
+      // if (!authInfo) {
+      //   return;
+      // }
 
       // Initial values from idp provider
-      const { email, firstName, lastName } = authInfo;
+      const { email, firstName, lastName } = authInfo || {};
 
       return (
         <Form className={classes} onSubmit={handleSubmit}>
           <div>
-            <FieldTextInput
+            <div className={css.role}>
+              <div className={css.left}>
+                <div className={css.subtitle}>
+                  <FormattedMessage id="SignupForm.ChooseRoleText" />
+                </div>
+                <FieldRadioButton
+                  id={`${formId}.seller`}
+                  name="role"
+                  label={intl.formatMessage({ id: 'SignupForm.roleSeller' })}
+                  value="seller"
+                  validate={roleRequired}
+                  showAsRequired={pristine}
+                />
+                <FieldRadioButton
+                  id={`${formId}.buyer`}
+                  name="role"
+                  label={intl.formatMessage({ id: 'SignupForm.roleBuyer' })}
+                  value="buyer"
+                  showAsRequired={pristine}
+                />
+              </div>
+              <div className={css.right}>
+                <img
+                  className={css.iconImage}
+                  src={workerImage}
+                  alt="Cafe Icon"
+                />
+              </div>
+            </div>
+            <FieldTextInputOval
               type="email"
               id={formId ? `${formId}.email` : 'email'}
               name="email"
@@ -111,8 +160,16 @@ const ConfirmSignupFormComponent = props => (
               initialValue={email}
               validate={validators.composeValidators(emailRequired, emailValid)}
             />
+            <FieldPhoneNumberInputOval
+              className={css.phone}
+              name="phoneNumber"
+              id={formId ? `${formId}.phoneNumber`: 'phoneNumber'}
+              label={phoneLabel}
+              placeholder={phonePlaceholder}
+              validate={phoneRequired}
+            />
             <div className={css.name}>
-              <FieldTextInput
+              <FieldTextInputOval
                 className={css.firstNameRoot}
                 type="text"
                 id={formId ? `${formId}.firstName` : 'firstName'}
@@ -123,7 +180,7 @@ const ConfirmSignupFormComponent = props => (
                 initialValue={firstName}
                 validate={firstNameRequired}
               />
-              <FieldTextInput
+              <FieldTextInputOval
                 className={css.lastNameRoot}
                 type="text"
                 id={formId ? `${formId}.lastName` : 'lastName'}
@@ -137,7 +194,7 @@ const ConfirmSignupFormComponent = props => (
             </div>
           </div>
 
-          <div className={css.bottomWrapper}>
+          <div className={css.bottomWrapper} align="middle">
             <p className={css.bottomWrapperText}>
               <span className={css.termsText}>
                 <FormattedMessage
@@ -146,9 +203,16 @@ const ConfirmSignupFormComponent = props => (
                 />
               </span>
             </p>
-            <PrimaryButton type="submit" inProgress={submitInProgress} disabled={submitDisabled}>
-              <FormattedMessage id="ConfirmSignupForm.signUp" values={{ idp: idp }} />
-            </PrimaryButton>
+            <IDPButton
+              type="submit"
+              inProgress={submitInProgress}
+              disabled={submitDisabled}
+            >
+              <FormattedMessage
+                id="ConfirmSignupForm.signUp"
+                values={{ lineBreak: <br />, idp: idp }}
+              />
+            </IDPButton>
           </div>
         </Form>
       );

@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   display: flex;
@@ -7,7 +7,7 @@
 }
 
 .card {
-  composes: marketplaceInputStyles from global;
+  @apply --marketplaceInputStyles;
 
   /* Layout */
   padding: 8px 0 6px 0;
@@ -117,8 +117,7 @@
 }
 
 .infoText {
-  composes: h5 from global;
-
+  @apply --marketplaceH5FontStyles;
   color: var(--matterColorAnti);
   padding: 0;
   margin: 14px 0 0 0;

@@ -1,15 +1,15 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 /* Booking form inside modalContainer needs special handling */
 /* since "inMobile" breakpoint is actually --viewportLarge */
 .modalContainer {
-  composes: marketplaceModalInMobileBaseStyles from global;
+  @apply --marketplaceModalInMobileBaseStyles;
 
   height: 100vh;
 
   @media (--viewportMedium) {
     flex-basis: 576px;
-    height: unset;
+    height: 100%;
     padding: var(--modalPaddingMedium);
     background-color: var(--matterColorLight);
     margin-top: 12.5vh;
@@ -40,6 +40,7 @@
 
 .title {
   /* Font */
+  @apply --marketplaceH1FontStyles;
   color: var(--matterColor);
 
   /* Layout */
@@ -54,7 +55,7 @@
 
 .author {
   width: 100%;
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   margin-top: 7px;
   margin-bottom: 0;
 
@@ -69,6 +70,7 @@
   display: none;
 
   @media (--viewportLarge) {
+    color: var(--matterColorBlue);
     display: block;
     margin-bottom: 30px;
   }
@@ -89,7 +91,7 @@
 
 .desktopPriceValue {
   /* Font */
-  composes: h2 from global;
+  @apply --marketplaceH2FontStyles;
   color: var(--marketplaceColor);
 
   @media (--viewportMedium) {
@@ -100,7 +102,7 @@
 
 .desktopPerUnit {
   /* Font */
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   color: var(--matterColor);
 
   @media (--viewportMedium) {
@@ -112,7 +114,7 @@
 
 .bookingTitle {
   /* Font */
-  composes: h3 from global;
+  @apply --marketplaceH3FontStyles;
   color: var(--matterColor);
 
   margin-top: 0;
@@ -120,8 +122,8 @@
 }
 
 .bookingHelp {
-  composes: h5 from global;
   display: none;
+  @apply --marketplaceH5FontStyles;
 
   @media (--viewportMedium) {
     color: var(--matterColor);
@@ -129,15 +131,22 @@
     margin-top: 0;
   }
 }
+.link {
+  margin-top: 5px;
+  font-size: 16px;
+}
 
 .bookingForm {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 0;
+  /* Mobile phones introduce bottom-bar, which takes 102px vertical space.
+     In addition to that we have fixed button that takes 84px vertical space.
+  */
+  margin: 0 0 186px 0;
 
   @media (--viewportMedium) {
-    padding: 0;
+    margin: 0;
     min-height: 400px;
   }
 
@@ -153,6 +162,7 @@
   width: 100%;
   position: fixed;
   bottom: 0;
+  color: var(--matterColorLight);
   background-color: var(--matterColorLight);
 
   @media (--viewportMedium) {
@@ -201,7 +211,7 @@
 
 .priceValue {
   /* Font */
-  composes: h2 from global;
+  @apply --marketplaceH2FontStyles;
   color: var(--matterColor);
 
   margin-top: 0;
@@ -214,7 +224,7 @@
 
 .perUnit {
   /* Font */
-  composes: marketplaceTinyFontStyles from global;
+  @apply --marketplaceTinyFontStyles;
   color: var(--matterColor);
 
   margin-top: 0;
@@ -226,10 +236,18 @@
 }
 
 .bookButton {
-  composes: button buttonFont buttonText buttonBorders buttonColorsPrimary from global;
+  @apply --marketplaceButtonStylesPrimary;
 
   /* Clear padding that is set for link elements looking like buttons */
   padding: 0;
+  margin-right: 70px;
+  margin-left: -10px;
+  @media (--viewportMedium) {
+    margin-left: 0px;
+    margin-right: 0px;
+    color: var(--matterColorWhite);
+
+  }
 }
 
 .closedListingButton {

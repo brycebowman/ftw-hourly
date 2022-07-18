@@ -1,7 +1,7 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
-  composes: marketplaceModalFormRootStyles from global;
+  @apply --marketplaceModalFormRootStyles;
 
   justify-content: flex-start;
 
@@ -11,22 +11,23 @@
 }
 
 .password {
-  composes: marketplaceModalPasswordMargins from global;
+  @apply --marketplaceModalPasswordMargins;
+  width: 70%;
 }
 
 .bottomWrapper {
-  composes: marketplaceModalBottomWrapper from global;
+  @apply --marketplaceModalBottomWrapper;
 }
 
 /* Adjust the bottomWrapper's margin to match modals without the helper text */
 .bottomWrapperText {
-  composes: marketplaceModalBottomWrapperText from global;
+  @apply --marketplaceModalBottomWrapperText;
 }
 
 .recoveryLink {
-  composes: marketplaceModalHelperLink from global;
+  @apply --marketplaceModalHelperLink;
 }
 
 .recoveryLinkInfo {
-  composes: marketplaceModalHelperText from global;
+  @apply --marketplaceModalHelperText;
 }

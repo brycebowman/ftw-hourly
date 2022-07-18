@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   /* Size from content */
@@ -30,7 +30,7 @@
   position: relative;
 
   /* Font */
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightSemiBold);
   margin-top: 0;
   margin-bottom: 0;

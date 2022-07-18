@@ -1,5 +1,3 @@
-@import '../../styles/customMediaQueries.css';
-
 .root {
   /* Layout */
   display: flex;
@@ -33,10 +31,16 @@
   overflow-x: auto;
   min-height: 48px;
   padding-top: 2px;
+  font-family: "Poppins";
+  font-size: 24px;
 
   @media (--viewportMedium) {
+    font-family: "Architects Daughter";
+    letter-spacing: 0.05em;
+    font-size: 30px;
     min-height: 56px;
     padding-top: 10px;
+    padding-left: 20px;
   }
 
   @media (--viewportLarge) {
@@ -52,6 +56,7 @@
   align-items: flex-end;
   height: 100%;
   margin-left: 16px;
+
 
   &:first-child {
     margin-left: 0;

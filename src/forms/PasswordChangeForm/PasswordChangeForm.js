@@ -9,7 +9,7 @@ import { propTypes } from '../../util/types';
 import * as validators from '../../util/validators';
 import { ensureCurrentUser } from '../../util/data';
 import { isChangePasswordWrongPassword } from '../../util/errors';
-import { Form, PrimaryButton, FieldTextInput } from '../../components';
+import { Form, PrimaryButton, FieldTextInput, FieldTextInputOval } from '../../components';
 
 import css from './PasswordChangeForm.module.css';
 
@@ -179,7 +179,7 @@ class PasswordChangeFormComponent extends Component {
               }}
             >
               <div className={css.newPasswordSection}>
-                <FieldTextInput
+                <FieldTextInputOval
                   type="password"
                   id={formId ? `${formId}.newPassword` : 'newPassword'}
                   name="newPassword"
@@ -207,7 +207,7 @@ class PasswordChangeFormComponent extends Component {
                   />
                 </p>
 
-                <FieldTextInput
+                <FieldTextInputOval
                   className={css.password}
                   type="password"
                   id="currentPassword"

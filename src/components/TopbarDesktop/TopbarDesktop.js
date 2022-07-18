@@ -29,6 +29,7 @@ const TopbarDesktop = props => {
     currentUserHasListings,
     currentUserListing,
     currentUserListingFetched,
+    currentUserRole,
     notificationCount,
     intl,
     isAuthenticated,
@@ -83,31 +84,38 @@ const TopbarDesktop = props => {
         <Avatar className={css.avatar} user={currentUser} disableProfileLink />
       </MenuLabel>
       <MenuContent className={css.profileMenuContent}>
-        <MenuItem key="EditListingPage">
-          <OwnListingLink
-            listing={currentUserListing}
-            listingFetched={currentUserListingFetched}
-            className={css.yourListingsLink}
-          >
-            <div>
-              <span className={css.menuItemBorder} />
-              {currentUserListing ? (
-                <FormattedMessage id="TopbarDesktop.editYourListingLink" />
-              ) : (
-                <FormattedMessage id="TopbarDesktop.addYourListingLink" />
+        {currentUserRole === 'seller' && (
+          <MenuItem key="EditListingPage">
+            <OwnListingLink
+              listing={currentUserListing}
+              listingFetched={currentUserListingFetched}
+              className={css.yourListingsLink}
+            >
+              <div>
+                <span className={css.menuItemBorder} />
+                {currentUserListing ? (
+                  <FormattedMessage id="TopbarDesktop.editYourListingLink" />
+                ) : (
+                  <FormattedMessage id="TopbarDesktop.addYourListingLink" />
+                )}
+              </div>
+            </OwnListingLink>
+          </MenuItem>
+        )}
+        {currentUserRole === 'buyer' && (
+          <MenuItem key="ProfileSettingsPage">
+            <NamedLink
+              className={classNames(
+                css.profileSettingsLink,
+                currentPageClass('ProfileSettingsPage')
               )}
-            </div>
-          </OwnListingLink>
-        </MenuItem>
-        <MenuItem key="ProfileSettingsPage">
-          <NamedLink
-            className={classNames(css.profileSettingsLink, currentPageClass('ProfileSettingsPage'))}
-            name="ProfileSettingsPage"
-          >
-            <span className={css.menuItemBorder} />
-            <FormattedMessage id="TopbarDesktop.profileSettingsLink" />
-          </NamedLink>
-        </MenuItem>
+              name="ProfileSettingsPage"
+            >
+              <span className={css.menuItemBorder} />
+              <FormattedMessage id="TopbarDesktop.profileSettingsLink" />
+            </NamedLink>
+          </MenuItem>
+        )}
         <MenuItem key="AccountSettingsPage">
           <NamedLink
             className={classNames(css.yourListingsLink, currentPageClass('AccountSettingsPage'))}
@@ -157,7 +165,9 @@ const TopbarDesktop = props => {
     ) : null;
 
   const createListingLink =
-    isAuthenticatedOrJustHydrated && !(currentUserListingFetched && !currentUserListing) ? null : (
+    currentUserRole === 'buyer' ||
+    (isAuthenticatedOrJustHydrated &&
+      !(currentUserListingFetched && !currentUserListing)) ? null : (
       <NamedLink className={css.createListingLink} name="NewListingPage">
         <span className={css.createListing}>
           <FormattedMessage id="TopbarDesktop.createListing" />
@@ -193,6 +203,7 @@ TopbarDesktop.defaultProps = {
   notificationCount: 0,
   initialSearchFormValues: {},
   currentUserListing: null,
+  currentUserRole: null,
   currentUserListingFetched: false,
 };
 
@@ -202,6 +213,7 @@ TopbarDesktop.propTypes = {
   currentUserHasListings: bool.isRequired,
   currentUserListing: propTypes.ownListing,
   currentUserListingFetched: bool,
+  currentUserRole: string,
   currentUser: propTypes.currentUser,
   currentPage: string,
   isAuthenticated: bool.isRequired,

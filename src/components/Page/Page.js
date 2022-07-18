@@ -10,8 +10,8 @@ import { metaTagProps } from '../../util/seo';
 import { canonicalRoutePath } from '../../util/routes';
 import { CookieConsent } from '../../components';
 
-import facebookImage from '../../assets/yogatimeFacebook-1200x630.jpg';
-import twitterImage from '../../assets/yogatimeTwitter-600x314.jpg';
+import facebookImage from '../../assets/CafeTempsFacebook.gif';
+import twitterImage from '../../assets/CafeTempsTwitter.gif';
 import css from './Page.module.css';
 
 const preventDefault = e => {

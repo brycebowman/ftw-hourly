@@ -8,10 +8,6 @@ const data = 'data:';
 const blob = 'blob:';
 const devImagesMaybe = dev ? ['*.localhost:8000'] : [];
 const baseUrl = process.env.REACT_APP_SHARETRIBE_SDK_BASE_URL || 'https://flex-api.sharetribe.com';
-// Asset Delivery API is using a different domain than other Flex APIs
-// cdn.st-api.com
-// If assetCdnBaseUrl is used to initialize SDK (for proxy purposes), then that URL needs to be in CSP
-const assetCdnBaseUrl = process.env.REACT_APP_SHARETRIBE_SDK_ASSET_CDN_BASE_URL;
 
 // Default CSP whitelist.
 //
@@ -24,23 +20,24 @@ const defaultDirectives = {
   connectSrc: [
     self,
     baseUrl,
-    assetCdnBaseUrl,
-    '*.st-api.com',
     'maps.googleapis.com',
     '*.tiles.mapbox.com',
     'api.mapbox.com',
     'events.mapbox.com',
 
     // Google Analytics
-    'www.googletagmanager.com',
     'www.google-analytics.com',
     'stats.g.doubleclick.net',
 
     'sentry.io',
     '*.stripe.com',
+    '*.tawk.to',
+    'va.tawk.to',
+    'vsb49.tawk.to',
+    'vsb63.ta'
   ],
-  fontSrc: [self, data, 'assets-sharetribecom.sharetribe.com', 'fonts.gstatic.com'],
-  frameSrc: [self, '*.stripe.com'],
+  fontSrc: [self, data, 'assets-sharetribecom.sharetribe.com', 'fonts.gstatic.com', 'cdnjs.cloudflare.com', 'static-v.tawk.to', '*.tawk.to'],
+  frameSrc: [self, '*.stripe.com', 'va.tawk.to', '*.facebook.com' ],
   imgSrc: [
     self,
     data,
@@ -60,12 +57,15 @@ const defaultDirectives = {
     '*.ggpht.com',
 
     // Google Analytics
-    'www.googletagmanager.com',
     'www.google.com',
     'www.google-analytics.com',
     'stats.g.doubleclick.net',
 
     '*.stripe.com',
+    'cdn.jsdelivr.net',
+    'static-v.tawk.to',
+    'www.facebook.com',
+    '*.facebook.com',
   ],
   scriptSrc: [
     self,
@@ -74,11 +74,16 @@ const defaultDirectives = {
     data,
     'maps.googleapis.com',
     'api.mapbox.com',
-    'www.googletagmanager.com',
     '*.google-analytics.com',
     'js.stripe.com',
+    'embed.tawk.to',
+    'static-v.tawk.to',
+    '*.tawk.to',
+    'cdn.jsdelivr.net',
+    '*.googletagmanager.com',
+    '*.facebook.net',
   ],
-  styleSrc: [self, unsafeInline, 'fonts.googleapis.com', 'api.mapbox.com'],
+  styleSrc: [self, unsafeInline, 'fonts.googleapis.com', 'api.mapbox.com', 'cdnjs.cloudflare.com', 'cdn.jsdelivr.net', 'embed.tawk.to' ],
 };
 
 /**
@@ -103,10 +108,13 @@ module.exports = (reportUri, enforceSsl, reportOnly) => {
   // Example: extend default img directive with custom domain
   // const { imgSrc = [self] } = defaultDirectives;
   // const exampleImgSrc = imgSrc.concat('my-custom-domain.example.com');
+  const { scriptSrc } = defaultDirectives;
+  const tawkScriptSrc = scriptSrc.concat('*.tawk.to');
 
   const customDirectives = {
     // Example: Add custom directive override
     // imgSrc: exampleImgSrc,
+    scriptSrc: tawkScriptSrc,
   };
 
   // ================ END CUSTOM CSP URLs ================ //

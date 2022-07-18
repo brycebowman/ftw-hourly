@@ -45,15 +45,16 @@ const setPageScrollPosition = location => {
   } else {
     const el = document.querySelector(location.hash);
     if (el) {
-      // Found element from the current page with the given fragment identifier,
-      // scrolling to that element.
+      // Found element with the given fragment identifier, scrolling
+      // to that element.
       //
-      // NOTE: This only works on in-app navigation within the same page.
-      // If smooth scrolling is needed between different pages, one needs to wait
-      //   1. loadData fetch and
-      //   2. code-chunk fetch
-      // before making el.scrollIntoView call.
-
+      // NOTE: This isn't foolproof. It works when navigating within
+      // the application between pages and within a single page. It
+      // also works with the initial page load. However, it doesn't
+      // seem work work properly when refreshing the page, at least
+      // not in Chrome.
+      //
+      // TODO: investigate why the scrolling fails on refresh
       el.scrollIntoView({
         block: 'start',
         behavior: 'smooth',
@@ -64,8 +65,8 @@ const setPageScrollPosition = location => {
 
 const handleLocationChanged = (dispatch, location) => {
   setPageScrollPosition(location);
-  const path = canonicalRoutePath(routeConfiguration(), location);
-  dispatch(locationChanged(location, path));
+  const url = canonicalRoutePath(routeConfiguration(), location);
+  dispatch(locationChanged(location, url));
 };
 
 /**

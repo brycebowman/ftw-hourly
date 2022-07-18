@@ -133,8 +133,9 @@ export const ManageListingCardComponent = props => {
   const isPendingApproval = state === LISTING_STATE_PENDING_APPROVAL;
   const isClosed = state === LISTING_STATE_CLOSED;
   const isDraft = state === LISTING_STATE_DRAFT;
+
   const firstImage =
-    currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
+    currentListing.author && currentListing.author.profileImage && currentListing.author.profileImage;
 
   const menuItemClasses = classNames(css.menuItem, {
     [css.menuItemDisabled]: !!actionsInProgressListingId,

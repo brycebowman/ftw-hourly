@@ -9,9 +9,21 @@ import { ensureCurrentUser } from '../../util/data';
 import { propTypes } from '../../util/types';
 import * as validators from '../../util/validators';
 import { isUploadImageOverLimitError } from '../../util/errors';
-import { Form, Avatar, Button, ImageFromFile, IconSpinner, FieldTextInput } from '../../components';
+import {
+  Form,
+  Avatar,
+  Button,
+  ImageFromFile,
+  IconSpinner,
+  FieldTextInput,
+  FieldTextInputOval,
+  LocationAutocompleteInputField,
+  LocationAutocompleteInputNoiconField,
+} from '../../components';
 
 import css from './ProfileSettingsForm.module.css';
+
+const identity = v => v;
 
 const ACCEPT_IMAGES = 'image/*';
 const UPLOAD_CHANGE_DELAY = 2000; // Show spinner so that browser has time to load img srcset
@@ -51,9 +63,9 @@ class ProfileSettingsFormComponent extends Component {
             handleSubmit,
             intl,
             invalid,
-            onImageUpload,
             pristine,
             profileImage,
+            onImageUpload,
             rootClassName,
             updateInProgress,
             updateProfileError,
@@ -65,37 +77,40 @@ class ProfileSettingsFormComponent extends Component {
 
           const user = ensureCurrentUser(currentUser);
 
-          // First name
-          const firstNameLabel = intl.formatMessage({
-            id: 'ProfileSettingsForm.firstNameLabel',
+          const restaurantNameLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.restaurantNameLabel',
           });
-          const firstNamePlaceholder = intl.formatMessage({
-            id: 'ProfileSettingsForm.firstNamePlaceholder',
+          const restaurantNamePlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.restaurantNamePlaceholder',
           });
-          const firstNameRequiredMessage = intl.formatMessage({
-            id: 'ProfileSettingsForm.firstNameRequired',
+          const restaurantNameRequiredMessage = intl.formatMessage({
+            id: 'ProfileSettingsForm.restaurantNameRequired',
           });
-          const firstNameRequired = validators.required(firstNameRequiredMessage);
+          const restaurantNameRequired = validators.required(restaurantNameRequiredMessage);
 
-          // Last name
-          const lastNameLabel = intl.formatMessage({
-            id: 'ProfileSettingsForm.lastNameLabel',
+          const restaurantAddressLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.restaurantAddressLabel',
           });
-          const lastNamePlaceholder = intl.formatMessage({
-            id: 'ProfileSettingsForm.lastNamePlaceholder',
+          const restaurantAddressPlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.restaurantAddressPlaceholder',
           });
-          const lastNameRequiredMessage = intl.formatMessage({
-            id: 'ProfileSettingsForm.lastNameRequired',
+          const restaurantAddressRequiredMessage = intl.formatMessage({
+            id: 'ProfileSettingsForm.restaurantAddressRequired',
           });
-          const lastNameRequired = validators.required(lastNameRequiredMessage);
+          const restaurantAddressRequired = validators.required(restaurantAddressRequiredMessage);
 
-          // Bio
-          const bioLabel = intl.formatMessage({
-            id: 'ProfileSettingsForm.bioLabel',
+          const restaurantDescriptionLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.restaurantDescriptionLabel',
           });
-          const bioPlaceholder = intl.formatMessage({
-            id: 'ProfileSettingsForm.bioPlaceholder',
+          const restaurantDescriptionPlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.restaurantDescriptionPlaceholder',
           });
+          const restaurantDescriptionRequiredMessage = intl.formatMessage({
+            id: 'ProfileSettingsForm.restaurantDescriptionRequired',
+          });
+          const restaurantDescriptionRequired = validators.required(
+            restaurantDescriptionRequiredMessage
+          );
 
           const uploadingOverlay =
             uploadInProgress || this.state.uploadDelay ? (
@@ -154,7 +169,7 @@ class ProfileSettingsFormComponent extends Component {
             ) : (
               <div className={css.avatarPlaceholder}>
                 <div className={css.avatarPlaceholderText}>
-                  <FormattedMessage id="ProfileSettingsForm.addYourProfilePicture" />
+                  <FormattedMessage id="ProfileSettingsForm.addYourRestaurantPicture" />
                 </div>
                 <div className={css.avatarPlaceholderTextMobile}>
                   <FormattedMessage id="ProfileSettingsForm.addYourProfilePictureMobile" />
@@ -183,9 +198,9 @@ class ProfileSettingsFormComponent extends Component {
                 handleSubmit(e);
               }}
             >
-              <div className={css.sectionContainer}>
+              <div className={classNames(css.sectionContainer, css.lastSection)}>
                 <h3 className={css.sectionTitle}>
-                  <FormattedMessage id="ProfileSettingsForm.yourProfilePicture" />
+                  <FormattedMessage id="ProfileSettingsForm.restaurantInfo" />
                 </h3>
                 <Field
                   accept={ACCEPT_IMAGES}
@@ -245,52 +260,38 @@ class ProfileSettingsFormComponent extends Component {
                     );
                   }}
                 </Field>
-                <div className={css.tip}>
-                  <FormattedMessage id="ProfileSettingsForm.tip" />
-                </div>
-                <div className={css.fileInfo}>
-                  <FormattedMessage id="ProfileSettingsForm.fileInfo" />
-                </div>
-              </div>
-              <div className={css.sectionContainer}>
-                <h3 className={css.sectionTitle}>
-                  <FormattedMessage id="ProfileSettingsForm.yourName" />
-                </h3>
-                <div className={css.nameContainer}>
-                  <FieldTextInput
-                    className={css.firstName}
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    label={firstNameLabel}
-                    placeholder={firstNamePlaceholder}
-                    validate={firstNameRequired}
-                  />
-                  <FieldTextInput
-                    className={css.lastName}
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    label={lastNameLabel}
-                    placeholder={lastNamePlaceholder}
-                    validate={lastNameRequired}
-                  />
-                </div>
-              </div>
-              <div className={classNames(css.sectionContainer, css.lastSection)}>
-                <h3 className={css.sectionTitle}>
-                  <FormattedMessage id="ProfileSettingsForm.bioHeading" />
-                </h3>
-                <FieldTextInput
-                  type="textarea"
-                  id="bio"
-                  name="bio"
-                  label={bioLabel}
-                  placeholder={bioPlaceholder}
+                <FieldTextInputOval
+                  className={css.restaurantName}
+                  type="text"
+                  id="restaurantName"
+                  name="restaurantName"
+                  label={restaurantNameLabel}
+                  placeholder={restaurantNamePlaceholder}
+                  validate={restaurantNameRequired}
                 />
-                <p className={css.bioInfo}>
-                  <FormattedMessage id="ProfileSettingsForm.bioInfo" />
-                </p>
+                <LocationAutocompleteInputNoiconField
+                  className={css.restaurantAddress}
+                  inputClassName={css.locationAutocompleteInput}
+                  iconClassName={css.locationAutocompleteInputIcon}
+                  predictionsClassName={css.predictionsRoot}
+                  validClassName={css.validLocation}
+                  autoFocus
+                  name="restaurantAddress"
+                  label={restaurantAddressLabel}
+                  placeholder={restaurantAddressPlaceholder}
+                  useDefaultPredictions={false}
+                  format={identity}
+                  valueFromForm={values.restaurantAddress}
+                  validate={restaurantAddressRequired}
+                />
+                <FieldTextInputOval
+                  type="textarea"
+                  id="restaurantDescription"
+                  name="restaurantDescription"
+                  label={restaurantDescriptionLabel}
+                  placeholder={restaurantDescriptionPlaceholder}
+                  validate={restaurantDescriptionRequired}
+                />
               </div>
               {submitError}
               <Button

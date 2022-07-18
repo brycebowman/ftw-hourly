@@ -1,11 +1,13 @@
+@import '../../styles/propertySets.css';
+
 .root {
   position: relative;
   display: inline-block;
 }
 
 .label {
-  composes: button marketplaceSearchFilterLabelFontStyles buttonText buttonBordersSecondary buttonColorsSecondary from global;
-  letter-spacing: 0.2px;
+  @apply --marketplaceButtonStylesSecondary;
+  @apply --marketplaceSearchFilterLabelFontStyles;
 
   padding: var(--marketplaceButtonSmallDesktopPadding);
   width: auto;
@@ -23,8 +25,8 @@
 }
 
 .labelSelected {
-  composes: button marketplaceSearchFilterLabelFontStyles buttonText buttonBorders buttonColors from global;
-  letter-spacing: 0.2px;
+  @apply --marketplaceButtonStyles;
+  @apply --marketplaceSearchFilterLabelFontStyles;
   font-weight: var(--fontWeightSemiBold);
 
   padding: var(--marketplaceButtonSmallDesktopPadding);
@@ -49,14 +51,14 @@
 }
 
 .field {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   margin: 0;
   padding: 1px 0 13px 0;
   border: none;
 }
 
 .fieldPlain {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   margin: 0;
   padding: 16px 0 30px 20px;
   border: none;

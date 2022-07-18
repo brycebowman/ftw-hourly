@@ -16,6 +16,10 @@ export const RESET_PASSWORD_REQUEST = 'app/ContactDetailsPage/RESET_PASSWORD_REQ
 export const RESET_PASSWORD_SUCCESS = 'app/ContactDetailsPage/RESET_PASSWORD_SUCCESS';
 export const RESET_PASSWORD_ERROR = 'app/ContactDetailsPage/RESET_PASSWORD_ERROR';
 
+export const UPDATE_PROFILE_REQUEST = 'app/ContactDetailsPage/UPDATE_PROFILE_REQUEST';
+export const UPDATE_PROFILE_SUCCESS = 'app/ContactDetailsPage/UPDATE_PROFILE_SUCCESS';
+export const UPDATE_PROFILE_ERROR = 'app/ContactDetailsPage/UPDATE_PROFILE_ERROR';
+
 // ================ Reducer ================ //
 
 const initialState = {
@@ -62,6 +66,25 @@ export default function reducer(state = initialState, action = {}) {
       console.error(payload); // eslint-disable-line no-console
       return { ...state, resetPasswordInProgress: false, resetPasswordError: payload };
 
+    case UPDATE_PROFILE_REQUEST:
+      return {
+        ...state,
+        saveContactDetailsInProgress: true,
+        updateProfileError: null,
+      };
+    case UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        image: null,
+        saveContactDetailsInProgress: false,
+      };
+    case UPDATE_PROFILE_ERROR:
+      return {
+        ...state,
+        saveContactDetailsInProgress: false,
+        updateProfileError: payload,
+      };
+
     default:
       return state;
   }
@@ -92,6 +115,21 @@ export const resetPasswordError = e => ({
   type: RESET_PASSWORD_ERROR,
   error: true,
   payload: e,
+});
+
+// SDK method: sdk.currentUser.updateProfile
+export const updateProfileRequest = params => ({
+  type: UPDATE_PROFILE_REQUEST,
+  payload: { params },
+});
+export const updateProfileSuccess = result => ({
+  type: UPDATE_PROFILE_SUCCESS,
+  payload: result.data,
+});
+export const updateProfileError = error => ({
+  type: UPDATE_PROFILE_ERROR,
+  payload: error,
+  error: true,
 });
 
 // ================ Thunks ================ //
@@ -223,23 +261,53 @@ const saveEmailAndPhoneNumber = params => (dispatch, getState, sdk) => {
     .catch(e => null);
 };
 
+export const updateProfile = actionPayload => {
+  return (dispatch, getState, sdk) => {
+    dispatch(updateProfileRequest());
+
+    const queryParams = {
+      expand: true,
+      include: ['profileImage'],
+      'fields.image': ['variants.square-small', 'variants.square-small2x'],
+    };
+
+    return sdk.currentUser
+      .updateProfile(actionPayload, queryParams)
+      .then(response => {
+        dispatch(updateProfileSuccess(response));
+
+        const entities = denormalisedResponseEntities(response);
+        if (entities.length !== 1) {
+          throw new Error('Expected a resource in the sdk.currentUser.updateProfile response');
+        }
+        const currentUser = entities[0];
+
+        // Update current user in state.user.currentUser through user.duck.js
+        dispatch(currentUserShowSuccess(currentUser));
+      })
+      .catch(e => dispatch(updateProfileError(storableError(e))));
+  };
+};
+
 /**
  * Update contact details, actions depend on which data has changed
  */
 export const saveContactDetails = params => (dispatch, getState, sdk) => {
   dispatch(saveContactDetailsRequest());
 
-  const { email, currentEmail, phoneNumber, currentPhoneNumber, currentPassword } = params;
+  const { firstName, lastName, email, currentEmail, phoneNumber, currentPhoneNumber, currentPassword } = params;
   const emailChanged = email !== currentEmail;
   const phoneNumberChanged = phoneNumber !== currentPhoneNumber;
 
-  if (emailChanged && phoneNumberChanged) {
-    return dispatch(saveEmailAndPhoneNumber({ email, currentPassword, phoneNumber }));
-  } else if (emailChanged) {
-    return dispatch(saveEmail({ email, currentPassword }));
-  } else if (phoneNumberChanged) {
-    return dispatch(savePhoneNumber({ phoneNumber }));
-  }
+  return dispatch(updateProfile({ firstName, lastName })).then(() => {
+    if (emailChanged && phoneNumberChanged) {
+      return dispatch(saveEmailAndPhoneNumber({ email, currentPassword, phoneNumber }));
+    } else if (emailChanged) {
+      return dispatch(saveEmail({ email, currentPassword }));
+    } else if (phoneNumberChanged) {
+      return dispatch(savePhoneNumber({ phoneNumber }));
+    }
+  })
 };
 
 export const resetPassword = email => (dispatch, getState, sdk) => {

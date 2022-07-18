@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   width: 100%;
@@ -96,7 +96,7 @@
 }
 
 .chooseImage {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   color: var(--matterColor);
   font-weight: var(--fontWeightSemiBold);
 
@@ -111,7 +111,7 @@
 }
 
 .imageTypes {
-  composes: marketplaceTinyFontStyles from global;
+  @apply --marketplaceTinyFontStyles;
   color: var(--matterColorAnti);
 
   margin-top: 0;
@@ -133,8 +133,7 @@
 }
 
 .tip {
-  composes: h5 from global;
-
+  @apply --marketplaceH5FontStyles;
   flex-shrink: 0;
   color: var(--matterColorAnti);
   margin-top: 24px;

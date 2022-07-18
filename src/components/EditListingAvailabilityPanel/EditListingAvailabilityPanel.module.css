@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   flex-grow: 1;
@@ -20,20 +20,37 @@
 }
 
 .sectionTitle {
-  composes: marketplaceSearchFilterSublabelFontStyles from global;
-  color: var(--matterColorAnti);
+  @apply --marketplaceSearchFilterSublabelFontStyles;
+  color: var(--matterColorBlue);
 
-  margin-top: 18px;
+  margin-top: 10px;
   margin-bottom: 18px;
   padding: 3px 0 3px 0;
+  margin-right: 20px;
 }
 
+.bluetip {
+  color: var(--matterColorBlue);
+  font-size: 16px;
+  line-height: 16px;
+  margin-top: -10px;
+  @media (--viewportMedium) {
+    font-size: 16px;
+    line-height: 18px;
+    margin-top: -20px;
+    margin-bottom: 0px;
+    width: 60%;
+    }
+}
 .editPlanButton {
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   margin: 0;
   padding-top: 5px;
 }
 
+.redborder {
+  border: 1px;
+}
 .editPlanIcon {
   margin: 0px 3px 4px 0;
 }
@@ -41,11 +58,12 @@
 .week {
   display: flex;
   flex-direction: column;
-  border-top: solid 1px var(--matterColorNegative);
-  border-right: solid 1px var(--matterColorNegative);
-  border-left: solid 1px var(--matterColorNegative);
-  border-radius: 4px;
+  border: solid 3px var(--matterColorBlue);
+  border-radius: 8px;
   margin-bottom: 23px;
+  @media (--viewportMedium) {
+    width: 60%;
+    }
 
   & > .weekDay {
     border-bottom: solid 1px var(--matterColorNegative);
@@ -53,7 +71,7 @@
 }
 
 .weekDay {
-  composes: marketplaceTabNavHorizontalFontStyles from global;
+  @apply --marketplaceTabNavHorizontalFontStyles;
   display: flex;
   flex-direction: row;
   padding: 24px 24px 23px 24px;
@@ -88,7 +106,7 @@
 }
 
 .noExceptions {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   display: flex;
   align-items: center;
   margin: 0 0 24px 0;
@@ -136,7 +154,7 @@
 }
 
 .exceptionAvailabilityStatus {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   color: var(--matterColor);
   font-weight: var(--fontWeightSemiBold);
   margin: 0;
@@ -144,7 +162,7 @@
 }
 
 .timeRange {
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   margin: -2px 12px 13px 32px;
   color: var(--matterColorAnti);
 }
@@ -168,7 +186,7 @@
 }
 
 .addExceptionButton {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   padding: 1px 0 5px 0;
   margin: 0 0 24px 0;
 }
@@ -180,7 +198,7 @@
 }
 
 .modalContainer {
-  composes: marketplaceModalBaseStyles from global;
+  @apply --marketplaceModalBaseStyles;
   min-height: 100vh;
   height: 100%;
 
@@ -209,9 +227,13 @@
   }
 
   .sectionTitle {
-    margin-top: 21px;
+    margin-top: -5px;
     margin-bottom: 17px;
     padding: 0;
+    font-size: 16px;
+    @media (--viewportMedium) {
+    width: 60%;
+}
   }
 
   .weekDay {
@@ -282,6 +304,6 @@
   .goToNextTabButton {
     display: inline-block;
     width: 241px;
-    margin-top: 62px;
+    margin-top: 30px;
   }
 }

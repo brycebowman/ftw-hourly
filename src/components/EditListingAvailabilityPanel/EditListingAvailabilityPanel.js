@@ -161,19 +161,19 @@ const EditListingAvailabilityPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const isNextButtonDisabled = !currentListing.attributes.availabilityPlan;
+  const defaultAvailability = !currentListing.attributes.availabilityPlan;
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const defaultAvailabilityPlan = {
     type: 'availability-plan/time',
     timezone: defaultTimeZone(),
     entries: [
-      // { dayOfWeek: 'mon', startTime: '09:00', endTime: '17:00', seats: 1 },
-      // { dayOfWeek: 'tue', startTime: '09:00', endTime: '17:00', seats: 1 },
-      // { dayOfWeek: 'wed', startTime: '09:00', endTime: '17:00', seats: 1 },
-      // { dayOfWeek: 'thu', startTime: '09:00', endTime: '17:00', seats: 1 },
-      // { dayOfWeek: 'fri', startTime: '09:00', endTime: '17:00', seats: 1 },
-      // { dayOfWeek: 'sat', startTime: '09:00', endTime: '17:00', seats: 1 },
-      // { dayOfWeek: 'sun', startTime: '09:00', endTime: '17:00', seats: 1 },
+       { dayOfWeek: 'sun', startTime: '00:00', endTime: '24:00', seats: 1 },
+       { dayOfWeek: 'mon', startTime: '00:00', endTime: '24:00', seats: 1 },
+       { dayOfWeek: 'tue', startTime: '00:00', endTime: '24:00', seats: 1 },
+       { dayOfWeek: 'wed', startTime: '00:00', endTime: '24:00', seats: 1 },
+       { dayOfWeek: 'thu', startTime: '00:00', endTime: '24:00', seats: 1 },
+       { dayOfWeek: 'fri', startTime: '00:00', endTime: '24:00', seats: 1 },
+       { dayOfWeek: 'sat', startTime: '00:00', endTime: '24:00', seats: 1 },
     ],
   };
   const availabilityPlan = currentListing.attributes.availabilityPlan || defaultAvailabilityPlan;
@@ -193,6 +193,12 @@ const EditListingAvailabilityPanel = props => {
         // Don't close modal if there was an error
       });
   };
+
+  const handleOnNextClick = () => {
+    handleSubmit(initialValues).then(() => {
+      onNextTab()
+    })
+  }
 
   const exceptionCount = availabilityExceptions ? availabilityExceptions.length : 0;
   const sortedAvailabilityExceptions = availabilityExceptions.sort(sortExceptionsByStartTime);
@@ -239,17 +245,19 @@ const EditListingAvailabilityPanel = props => {
 
       <section className={css.section}>
         <header className={css.sectionHeader}>
-          <h2 className={css.sectionTitle}>
-            <FormattedMessage id="EditListingAvailabilityPanel.defaultScheduleTitle" />
-          </h2>
-          <InlineTextButton
-            className={css.editPlanButton}
-            onClick={() => setIsEditPlanModalOpen(true)}
-          >
-            <IconEdit className={css.editPlanIcon} />{' '}
-            <FormattedMessage id="EditListingAvailabilityPanel.edit" />
-          </InlineTextButton>
+        <p className={css.sectionTitle}>
+          <FormattedMessage id="EditListingAvailabilityPanel.defaultScheduleTitle" values={{ lineBreak: <br />, pageBreak: <p></p> }} />
+        </p>
         </header>
+        <div className={css.redborder}>
+        <InlineTextButton
+          className={css.editPlanButton}
+          onClick={() => setIsEditPlanModalOpen(true)}
+        >
+          <IconEdit className={css.editPlanIcon} />{' '}
+          <FormattedMessage id="EditListingAvailabilityPanel.edit" />
+        </InlineTextButton>
+        </div>
         <div className={css.week}>
           {WEEKDAYS.map(w => (
             <Weekday
@@ -331,11 +339,13 @@ const EditListingAvailabilityPanel = props => {
             disabled={disabled}
             ready={ready}
           >
-            <FormattedMessage id="EditListingAvailabilityPanel.addException" />
+            <FormattedMessage id="EditListingAvailabilityPanel.addException" values={{ lineBreak: <br />, pageBreak: <p></p> }} />
           </InlineTextButton>
         ) : null}
       </section>
-
+      <div className={css.bluetip}>
+      <FormattedMessage id="EditListingAvailabilityPanel.addExceptiontip" values={{ lineBreak: <br />, pageBreak: <p></p> }} />
+      </div>
       {errors.showListingsError ? (
         <p className={css.error}>
           <FormattedMessage id="EditListingAvailabilityPanel.showListingFailed" />
@@ -345,8 +355,7 @@ const EditListingAvailabilityPanel = props => {
       {!isPublished ? (
         <Button
           className={css.goToNextTabButton}
-          onClick={onNextTab}
-          disabled={isNextButtonDisabled}
+          onClick={defaultAvailability ? handleOnNextClick : onNextTab}
         >
           {submitButtonText}
         </Button>

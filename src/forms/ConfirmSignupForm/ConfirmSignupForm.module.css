@@ -1,7 +1,7 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
-  composes: marketplaceModalFormRootStyles from global;
+  @apply --marketplaceModalFormRootStyles;
 
   justify-content: flex-start;
 
@@ -9,6 +9,51 @@
     justify-content: space-between;
   }
 }
+
+.role {
+  font-size: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+  flex-direction: row;
+  }
+}
+
+.role {
+  font-size: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+  flex-direction: row;
+  }
+}
+.subtitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+  flex-direction: row;
+  }
+}
+
+.left {
+  width: 70%;
+  @media (--viewportMedium) {
+  width: 70%;
+  }
+}
+.right {
+  width: 30%;
+  align: center;
+  @media (--viewportMedium) {
+    width: 30%;
+  }
+}
+
 
 .name {
   display: flex;
@@ -29,23 +74,24 @@
 }
 
 .password {
-  composes: marketplaceModalPasswordMargins from global;
+  @apply --marketplaceModalPasswordMargins;
 }
 
 .bottomWrapper {
-  composes: marketplaceModalBottomWrapper from global;
+  @apply --marketplaceModalBottomWrapper;
+  align-content:center;
 }
 
 .bottomWrapperText {
-  composes: marketplaceModalBottomWrapperText from global;
+  @apply --marketplaceModalBottomWrapperText;
 }
 
 .termsText {
-  composes: marketplaceModalHelperText from global;
+  @apply --marketplaceModalHelperText;
 }
 
 .termsLink {
-  composes: marketplaceModalHelperLink from global;
+  @apply --marketplaceModalHelperLink;
 
   &:hover {
     text-decoration: underline;

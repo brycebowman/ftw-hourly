@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   /* Expand to the available space */
@@ -46,7 +46,7 @@
 .logoDesktop {
   display: none;
   width: auto;
-  height: 27px;
+  height: 37px;
 
   @media (--viewportLarge) {
     display: block;
@@ -65,7 +65,7 @@
 }
 
 .number {
-  composes: marketplaceHeroTitleFontStyles from global;
+  @apply --marketplaceHeroTitleFontStyles;
   text-align: center;
   color: var(--marketplaceColor);
   margin: 1px 0 0 0;
@@ -76,7 +76,7 @@
 }
 
 .heading {
-  composes: marketplaceModalTitleStyles from global;
+  @apply --marketplaceModalTitleStyles;
   text-align: center;
   margin-top: 16px;
 

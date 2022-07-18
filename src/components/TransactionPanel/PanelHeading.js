@@ -13,7 +13,7 @@ export const HEADING_REQUESTED = 'requested';
 export const HEADING_ACCEPTED = 'accepted';
 export const HEADING_DECLINED = 'declined';
 export const HEADING_CANCELED = 'canceled';
-export const HEADING_DELIVERED = 'delivered';
+export const HEADING_DELIVERED = 'deliveded';
 
 const createListingLink = (listingId, label, listingDeleted, searchParams = {}, className = '') => {
   if (!listingDeleted) {
@@ -180,7 +180,7 @@ const PanelHeading = props => {
             <p className={css.transactionInfoMessage}>
               <FormattedMessage
                 id="TransactionPanel.orderPreauthorizedInfo"
-                values={{ providerName }}
+                values={{ listingLink }}
               />
             </p>
           ) : null}

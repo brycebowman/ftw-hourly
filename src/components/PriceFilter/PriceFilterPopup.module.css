@@ -1,11 +1,13 @@
+@import '../../styles/propertySets.css';
+
 .root {
   position: relative;
   display: inline-block;
 }
 
 .label {
-  composes: button marketplaceSearchFilterLabelFontStyles buttonText buttonBordersSecondary buttonColorsSecondary from global;
-  letter-spacing: 0.2px;
+  @apply --marketplaceButtonStylesSecondary;
+  @apply --marketplaceSearchFilterLabelFontStyles;
 
   padding: var(--marketplaceButtonSmallDesktopPadding);
   width: auto;
@@ -15,7 +17,7 @@
 
   &:focus {
     outline: none;
-    background-color: var(--matterColorLight);
+    background-color: var(--matterColorBlue);
     border-color: transparent;
     text-decoration: none;
     box-shadow: var(--boxShadowFilterButton);
@@ -23,8 +25,8 @@
 }
 
 .labelSelected {
-  composes: button marketplaceSearchFilterLabelFontStyles buttonText buttonBorders buttonColors from global;
-  letter-spacing: 0.2px;
+  @apply --marketplaceButtonStyles;
+  @apply --marketplaceSearchFilterLabelFontStyles;
   font-weight: var(--fontWeightSemiBold);
 
   padding: var(--marketplaceButtonSmallDesktopPadding);

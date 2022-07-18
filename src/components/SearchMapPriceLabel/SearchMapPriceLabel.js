@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
-import { formatMoney } from '../../util/currency';
+import { formatMoney } from '../../util/currencymap';
 import { ensureListing } from '../../util/data';
 import config from '../../config';
 

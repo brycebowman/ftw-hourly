@@ -1,0 +1,184 @@
+@import '../../styles/propertySets.css';
+
+.heading {
+  margin: 5px 0 18px 0;
+
+  @media (--viewportMedium) {
+    margin: 8px 0 24px 0;
+  }
+}
+
+.content {
+  @media (--viewportLarge) {
+    max-width: 563px;
+  }
+}
+
+
+.FAQ {
+  display: block;
+}
+.mainWrapper {
+  width: calc(100% - 48px);
+  max-width: 720px;
+  margin: 24px auto;
+
+  @media (--viewportMedium) {
+    max-width: 950px;
+    width: calc(100% - 72px);
+    margin: 42px auto 36px auto;
+  }
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  @media (--viewportMedium) {
+    flex-direction: row;
+  }
+}
+
+.step {
+    margin-left: 0px;
+    margin-right: 0px;
+    @media (--viewportMedium) {
+    width: calc(100% - 10px);
+    margin-left: 0px;
+    margin-right: 15px;
+  }
+}
+.stepright {
+    margin-left: 0px;
+    margin-right: 0px;
+    @media (--viewportMedium) {
+    width: calc(100% - 10px);
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.title {
+  @apply --marketplaceH1FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorRed);
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 42px;
+  margin-top: 0px;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  @media (--viewportMedium) {
+  margin-bottom: 40px;
+  font-size: 50px;
+  line-height: 56px
+  }
+  @media (--viewportLarge) {
+  font-size: 60px;
+  }
+}
+
+.stepTitle {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  letter-spacing: 0.05em;
+  color: var(--matterColorBlue);
+  margin-top: 40px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 28px;
+  @media (--viewportMedium) {
+  font-size: 32px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  }
+}
+
+.stepText {
+  font-family: 'Arial';
+  font-size: 19px;
+  line-height: 20px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  }
+
+.subtitle {
+  font-family: 'Arial';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: -10px;
+  @media (--viewportMedium) {
+  font-size: 26px;
+  }
+  @media (--viewportLarge) {
+  font-size: 26px;
+  }
+}
+
+.steplast {
+  @media (--viewportMedium) {
+    width: 455px;
+    border-left: 15px solid #000;
+    margin-left: 15px;
+  }
+}
+
+  .stepTextLast {
+    font-family: 'Arial';
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 30px;
+    }
+
+.step:last-of-type {
+  @media (--viewportMedium) {
+    margin-right: 0;
+    font-size: 22px;
+    border-left: 5px;
+    border-color: #000;
+  }
+}
+
+.createListingLink {
+  margin-top: 18px;
+  @media (--viewportMedium) {
+    margin-top: 24px;
+  }
+}
+
+/* Shared animation rules */
+.animation {
+  animation-name: animationTitle;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+
+  visibility: hidden;
+  opacity: 1;
+  position: relative;
+}
+
+.howitworksButton {
+  @apply --marketplaceButtonStyles;
+  font-size: 24px;
+  line-height: 26px;
+  padding: 7px 0 7px 0;
+  font-family: "architects daughter";
+  border-radius: 15px;
+  margin: auto;
+  width: 150px;
+  height: 65px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 160px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}

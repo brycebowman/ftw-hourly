@@ -1,8 +1,8 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   /* Font */
-  composes: h6 from global;
+  @apply --marketplaceH6FontStyles;
   color: var(--matterColorLight);
   text-align: center;
 

@@ -9,8 +9,9 @@ import {
   autocompleteSearchRequired,
   autocompletePlaceSelected,
   composeValidators,
+  required,
 } from '../../util/validators';
-import { Form, LocationAutocompleteInputField, Button, FieldTextInput } from '../../components';
+import { Form, LocationAutocompleteInputField, Button, FieldTextInput, FieldTextInputOval, FieldRadioButton } from '../../components';
 
 import css from './EditListingLocationForm.module.css';
 
@@ -58,6 +59,9 @@ export const EditListingLocationFormComponent = props => (
         id: 'EditListingLocationForm.buildingPlaceholder',
       });
 
+      const willingToTravelLabel = intl.formatMessage({ id: 'EditListingLocationForm.willingToTravelLabel' });
+      const willingToTravelRequired = required(intl.formatMessage({ id: 'EditListingLocationForm.willingToTravelRequired' }));
+
       const { updateListingError, showListingsError } = fetchErrors || {};
       const errorMessage = updateListingError ? (
         <p className={css.error}>
@@ -99,7 +103,7 @@ export const EditListingLocationFormComponent = props => (
             )}
           />
 
-          <FieldTextInput
+          <FieldTextInputOval
             className={css.building}
             type="text"
             name="building"
@@ -107,7 +111,25 @@ export const EditListingLocationFormComponent = props => (
             label={buildingMessage}
             placeholder={buildingPlaceholderMessage}
           />
-
+          <h3>{willingToTravelLabel}</h3>
+          {[
+            'miles2',
+            'miles5',
+            'miles10',
+            'miles20',
+            'miles30'
+          ].map(value => (
+              <FieldRadioButton
+                id={value}
+                name="willingToTravel"
+                label={intl.formatMessage({ id: `EditListingLocationForm.${value}` })}
+                value={value}
+                validate={willingToTravelRequired}
+                showAsRequired={pristine}
+                key={value}
+              />
+            ))
+          }
           <Button
             className={css.submitButton}
             type="submit"

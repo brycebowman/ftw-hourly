@@ -1,7 +1,7 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   margin-top: 6px;
   margin-bottom: 12px;
   color: var(--failColor);

@@ -7,6 +7,7 @@ import { ListingLink } from '../../components';
 import { EditListingPricingForm } from '../../forms';
 import { ensureOwnListing } from '../../util/data';
 import { types as sdkTypes } from '../../util/sdkLoader';
+import { pricingMoneyFromOption, pricingOptionFromMoney } from '../../util/listing';
 import config from '../../config';
 
 import css from './EditListingPricingPanel.module.css';
@@ -30,7 +31,8 @@ const EditListingPricingPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const { price } = currentListing.attributes;
+  const { price, publicData } = currentListing.attributes;
+  const minimumDuration = publicData && publicData.minimumDuration;
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
@@ -52,8 +54,16 @@ const EditListingPricingPanel = props => {
   const form = priceCurrencyValid ? (
     <EditListingPricingForm
       className={css.form}
-      initialValues={{ price }}
-      onSubmit={onSubmit}
+      initialValues={{ price: pricingOptionFromMoney(price), minimumDuration }}
+      onSubmit={values => {
+        const { price, minimumDuration } = values;
+
+        const updatedValues = {
+          price: pricingMoneyFromOption(price),
+          publicData: { minimumDuration },
+        };
+        onSubmit(updatedValues);
+      }}
       onChange={onChange}
       saveActionMsg={submitButtonText}
       disabled={disabled}

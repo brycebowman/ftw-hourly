@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   flex-shrink: 0;
@@ -6,6 +6,15 @@
   flex-direction: column;
   min-height: 100vh;
   height: auto;
+}
+
+.greetingtext {
+  color: var(--matterColorBlue);
+  font-size: 24px;
+  font-family: "Architects Daughter";
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
 }
 
 .content {
@@ -16,6 +25,39 @@
   align-items: flex-start;
   /* 113 for footer and an extra 67 to get scrolling work in mobile safari */
   margin-bottom: 180px;
+}
+.steps {
+  display: flex;
+  flex-direction: row;
+  vertical-align: top;
+  margin-top: 40px;
+}
+
+.step {
+  @media (--viewportMedium) {
+    width: 50%;
+    vertical-align: middle;
+  }
+}
+.stepleft {
+  @media (--viewportMedium) {
+    width: 70%;
+    vertical-align: top;
+  }
+}
+.stepright {
+  @media (--viewportMedium) {
+    width: 30%;
+    vertical-align: middle;
+  }
+}
+
+.iconImage {
+  width: 80%;
+  align-items: center;
+  border-radius: 4px;
+  object-fit: contain;
+  margin-left: 20px;
 }
 
 .footer {
@@ -36,48 +78,26 @@
 
 .greeting {
   /* Font */
-  composes: h1 from global;
+  @apply --marketplaceH1FontStyles;
   margin-bottom: 1px;
   margin-top: 16px;
 }
 
 .logoutButton {
-  /* Position and dimensions */
-  display: inline;
-
-  /* Borders */
-  border: none;
-
-  /* Text size should be inherited */
-  text-decoration: none;
-
+  @apply --marketplaceLinkStyles;
   /* Logout font is smaller and gray since the action is not recommended. */
-  font-weight: var(--fontWeightSemiBold);
-  font-size: 18px;
-  line-height: 24px;
-
+  @apply --marketplaceH3FontStyles;
   color: var(--matterColorAnti);
 
   /* Position component */
   width: initial;
   margin: 4px 0 6px 0;
   padding: 0;
-
-  &:hover {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-
-  @media (--viewportMedium) {
-    /* margin-top + n * line-height + margin-bottom => x * 8px */
-    margin-top: 16px;
-    margin-bottom: 16px;
-  }
 }
 
 .inbox {
   /* Font */
-  composes: h2 from global;
+  @apply --marketplaceH2FontStyles;
   color: var(--marketplaceColor);
   position: relative;
 
@@ -87,7 +107,7 @@
 
 .navigationLink {
   /* Font */
-  composes: h2 from global;
+  @apply --marketplaceH2FontStyles;
   color: var(--marketplaceColor);
 
   /* Layout */
@@ -110,15 +130,16 @@
 }
 
 .createNewListingLink {
-  composes: button buttonFont buttonText marketplaceButtonBorders buttonColors from global;
+  @apply --marketplaceButtonStyles;
 }
 
 .authenticationGreeting {
   /* Font */
-  composes: h1 from global;
-
+  @apply --marketplaceH1FontStyles;
+  font-size: 36px;
+  line-height: 38px;
+  letter-spacing: 0.05em;
   margin-bottom: 24px;
-  margin-top: var(--TopbarMobileMenu_topMargin);
 }
 .authenticationLinks {
   white-space: nowrap;

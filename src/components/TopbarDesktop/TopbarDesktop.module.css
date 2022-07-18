@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 /* Desktop */
 .root {
@@ -26,35 +26,48 @@
 
 /* logo */
 .logoLink {
-  border-bottom: 0px solid;
-  transition: var(--transitionStyleButton);
-
+  @apply --TopbarDesktop_linkHover;
   flex-shrink: 0;
-  padding: 21px 24px 21px 24px;
+  padding: 15px 12px 25px 12px;
   height: 100%;
 
   @media (--viewportLarge) {
-    padding: 21px 36px 21px 36px;
+    padding: 15px 24px 21px 36px;
   }
-}
-.logoLink:hover {
-  border-bottom: 4px solid var(--marketplaceColor);
-  border-radius: 0;
-  text-decoration: none;
 }
 
 .logo {
   /* If height is increased, change link paddings accordingly */
-  height: 27px;
+  height: 67px;
 
   /* Good aspect ratio should be less than 160/27 (width/height) */
   /* NOTE: extremely wide logos, need special handling. */
   width: auto;
-  max-width: 220px;
+  max-width: 320px;
   object-fit: contain;
   object-position: left center;
 }
+.logoLandingLink {
+  flex-shrink: 0;
+  padding: 15px 12px 25px 12px;
+  height: 100%;
 
+  @media (--viewportLarge) {
+    padding: 15px 24px 21px 36px;
+  }
+}
+
+.logoLanding {
+  /* If height is increased, change link paddings accordingly */
+  height: 67px;
+
+  /* Good aspect ratio should be less than 160/27 (width/height) */
+  /* NOTE: extremely wide logos, need special handling. */
+  width: auto;
+  max-width: 493px;
+  object-fit: contain;
+  object-position: left center;
+}
 /* Search */
 .searchLink {
   flex-grow: 1;
@@ -69,20 +82,22 @@
   }
 }
 
-.search {
-  font-weight: var(--fontWeightMedium);
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 0;
-  color: var(--matterColor);
+.spacer {
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 400px;
+  margin-left: 0px;
+  margin-right: 0px;
 
-  display: inline-block;
-  margin: 28px 0;
-  text-decoration: inherit;
-
-  @media (--viewportMedium) {
-    font-weight: var(--fontWeightMedium);
+  @media (--viewportLarge) {
+    padding-left: 0;
   }
+}
+
+.search {
+  @apply --marketplaceH4FontStyles;
+  @apply --TopbarDesktop_label;
+  color: var(--matterColor);
 }
 
 .topbarSearchWithLeftPadding {
@@ -96,59 +111,34 @@
 
 /* Create listing (CTA for providers) */
 .createListingLink {
-  border-bottom: 0px solid;
-  transition: var(--transitionStyleButton);
-
-  font-weight: var(--fontWeightMedium);
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0;
+  @apply --TopbarDesktop_linkHover;
+  @apply --marketplaceH5FontStyles;
 
   flex-shrink: 0;
   height: 100%;
+  max-width: 180px;
   padding: 0 12px 0 12px;
   color: var(--marketplaceColor);
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-left: 75px;
 
   &:hover {
     color: var(--marketplaceColorDark);
-    border-bottom: 4px solid var(--marketplaceColor);
-    border-radius: 0;
-    text-decoration: none;
   }
 
   @media (--viewportMedium) {
-    line-height: 16px;
     margin-top: 0;
     margin-bottom: 0;
   }
 }
 
-.topbarDesktopLabel {
-  display: inline-block;
-  margin: 28px 0;
-  text-decoration: inherit;
-
-  @media (--viewportMedium) {
-    margin: 28px 0;
-  }
-}
-
 .createListing {
-  composes: topbarDesktopLabel;
+  @apply --TopbarDesktop_label;
 }
 
 /* Inbox */
 .inboxLink {
-  border-bottom: 0px solid;
-  transition: var(--transitionStyleButton);
-
-  font-weight: var(--fontWeightMedium);
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0;
-
+  @apply --TopbarDesktop_linkHover;
+  @apply --marketplaceH5FontStyles;
   height: 100%;
   padding: 0 12px 0 12px;
   margin-top: 0;
@@ -157,20 +147,16 @@
 
   &:hover {
     color: var(--matterColorDark);
-    border-bottom: 4px solid var(--marketplaceColor);
-    border-radius: 0;
-    text-decoration: none;
   }
 
   @media (--viewportMedium) {
-    line-height: 16px;
     margin-top: 0;
     margin-bottom: 0;
   }
 }
 
 .inbox {
-  composes: topbarDesktopLabel;
+  @apply --TopbarDesktop_label;
   position: relative;
 }
 
@@ -211,21 +197,13 @@
 
 /* Profile menu */
 .profileMenuLabel {
-  border-bottom: 0px solid;
-  transition: var(--transitionStyleButton);
-
+  @apply --TopbarDesktop_linkHover;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   height: 100%;
   margin: 0;
   padding: 0 12px 0 12px;
-
-  &:hover {
-    border-bottom: 4px solid var(--marketplaceColor);
-    border-radius: 0;
-    text-decoration: none;
-  }
 
   &:active {
     border-bottom: 0;
@@ -240,6 +218,8 @@
 
 .avatar {
   margin: 16px 0;
+  width: 60px;
+  height: 60px;
 }
 
 .profileMenuContent {
@@ -249,52 +229,37 @@
 
 /* Authentication */
 .signupLink {
-  border-bottom: 0px solid;
-  transition: var(--transitionStyleButton);
-
+  @apply --TopbarDesktop_linkHover;
   flex-shrink: 0;
   height: 100%;
+  margin-left: 20px;
   padding: 0 12px 0 12px;
 
   color: var(--matterColor);
 
   &:hover {
     color: var(--matterColorDark);
-    border-bottom: 4px solid var(--marketplaceColor);
-    border-radius: 0;
-    text-decoration: none;
   }
 }
 
 .loginLink {
-  border-bottom: 0px solid;
-  transition: var(--transitionStyleButton);
-
+  @apply --TopbarDesktop_linkHover;
   flex-shrink: 0;
   height: 100%;
+  margin-right: 20px;
   padding: 0 12px 0 12px;
 
   color: var(--matterColor);
 
   &:hover {
     color: var(--matterColorDark);
-    border-bottom: 4px solid var(--marketplaceColor);
-    border-radius: 0;
-    text-decoration: none;
   }
 }
 
 .signup,
 .login {
-  composes: h5 from global;
-
-  display: inline-block;
-  margin: 28px 0;
-  text-decoration: inherit;
-
-  @media (--viewportMedium) {
-    margin: 28px 0;
-  }
+  @apply --marketplaceH5FontStyles;
+  @apply --TopbarDesktop_label;
 }
 
 /* left animated "border" like hover element */
@@ -309,7 +274,7 @@
 
 .profileSettingsLink,
 .yourListingsLink {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   position: relative;
   display: block;
 
@@ -339,16 +304,10 @@
 }
 
 .logoutButton {
-  display: inline;
-
-  /* Text size should be inherited */
-  text-decoration: none;
-
+  @apply --marketplaceLinkStyles;
   /* Font is specific to this component */
-  font-weight: var(--fontWeightMedium);
+  @apply --marketplaceH5FontStyles;
   font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0;
 
   /* Dimensions */
   position: relative;
@@ -362,15 +321,11 @@
   text-align: left;
   white-space: nowrap;
   transition: var(--transitionStyleButton);
-
-  /* Borders */
-  border: none;
   border-top-width: 1px;
   border-top-style: solid;
   border-top-color: var(--matterColorNegative);
 
   &:hover {
-    cursor: pointer;
     color: var(--matterColorDark);
     text-decoration: none;
 
@@ -383,7 +338,6 @@
   }
 
   @media (--viewportMedium) {
-    line-height: 16px;
     margin-top: 20px;
     margin-bottom: 0;
   }

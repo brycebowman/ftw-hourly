@@ -1,21 +1,28 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
-  composes: button buttonFont buttonText buttonBorders buttonColors from global;
+  @apply --marketplaceButtonStyles;
 
   /* Clear padding that is set for link elements looking like buttons */
   padding: 0;
 }
 
 .primaryButtonRoot {
-  composes: button buttonFont buttonText buttonBorders buttonColorsPrimary from global;
+  @apply --marketplaceButtonStylesPrimary;
 
   /* Clear padding that is set for link elements looking like buttons */
   padding: 0;
 }
 
+.idpButtonRoot {
+  @apply --marketplaceButtonStylesIDP;
+  align-content: center;
+
+  /* Clear padding that is set for link elements looking like buttons */
+  padding: 0;
+}
 .secondaryButtonRoot {
-  composes: button buttonFont buttonText buttonBordersSecondary buttonColorsSecondary from global;
+  @apply --marketplaceButtonStylesSecondary;
 
   /* We must lift up the text from the center since it looks better with
    the button border. Also clears the top padding set for link
@@ -24,10 +31,13 @@
 }
 
 .inlineTextButtonRoot {
-  composes: a from global;
+  @apply --marketplaceLinkStyles;
 }
 
 .primaryButton {
+  /* Class handle for primary button state styles */
+}
+.idpButton {
   /* Class handle for primary button state styles */
 }
 .secondaryButton {
@@ -110,13 +120,11 @@
 /* Social logins && SSO buttons */
 
 .socialButtonRoot {
-  composes: button buttonFont buttonText from global;
-
+  @apply --marketplaceButtonStyles;
   min-height: 48px;
-
   background-color: var(--matterColorLight);
-  color: var(--matterColorDark);
 
+  color: var(--matterColorDark);
   font-weight: var(--fontWeightMedium);
   font-size: 14px;
 
@@ -136,7 +144,6 @@
   }
   &:disabled {
     background-color: var(--matterColorNegative);
-    color: var(--matterColorLight);
   }
 }
 

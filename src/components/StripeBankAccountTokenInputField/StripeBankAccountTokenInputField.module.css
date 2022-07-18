@@ -1,5 +1,3 @@
-@import '../../styles/customMediaQueries.css';
-
 .unsupportedCountryError {
   color: var(--failColor);
 }
@@ -19,7 +17,12 @@
   flex-shrink: 0;
   border-bottom-color: var(--attentionColor);
   margin-bottom: 24px;
-  width: 100%;
+  width: 80%;
+  padding: 5px;
+  border-radius: 10px;
+  @media (--viewportSmall) {
+  width: 80%;
+}
   &:last-of-type {
     margin-bottom: 0;
   }
@@ -37,11 +40,11 @@
 }
 
 .inputSuccess {
-  border-bottom-color: var(--successColor);
+  border-color: var(--successColor);
 }
 
 .inputError {
-  border-bottom-color: var(--failColor);
+  border-color: var(--failColor);
 }
 
 .error {

@@ -174,6 +174,9 @@ const BookingPanel = props => {
           </div>
         ) : null}
       </div>
+      <div className={css.link}>
+      <a href="https://help.cafetemps.com/article/how-do-i-hire-a-worker" target="_blank">Learn How Bookings Work</a>
+      </div>
     </div>
   );
 };

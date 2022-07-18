@@ -1,3 +1,6 @@
+// DEPRECEATED COMPONENT, NOT USED IN THIS PROJECT
+// consider removing completely later
+
 import React, { Component } from 'react';
 import { array, bool, func, object, string } from 'prop-types';
 import { FormattedMessage } from '../../util/reactIntl';

@@ -139,6 +139,7 @@ class TopbarComponent extends Component {
       currentUserHasListings,
       currentUserListing,
       currentUserListingFetched,
+      currentUserRole,
       currentUserHasOrders,
       currentPage,
       notificationCount,
@@ -169,6 +170,7 @@ class TopbarComponent extends Component {
         currentUserHasListings={currentUserHasListings}
         currentUserListing={currentUserListing}
         currentUserListingFetched={currentUserListingFetched}
+        currentUserRole={currentUserRole}
         currentUser={currentUser}
         onLogout={this.handleLogout}
         notificationCount={notificationCount}
@@ -230,6 +232,7 @@ class TopbarComponent extends Component {
             currentUserHasListings={currentUserHasListings}
             currentUserListing={currentUserListing}
             currentUserListingFetched={currentUserListingFetched}
+            currentUserRole={currentUserRole}
             currentUser={currentUser}
             currentPage={currentPage}
             initialSearchFormValues={initialSearchFormValues}
@@ -312,6 +315,7 @@ TopbarComponent.propTypes = {
   authInProgress: bool.isRequired,
   currentUser: propTypes.currentUser,
   currentUserHasListings: bool.isRequired,
+  currentUserRole: string,
   currentUserHasOrders: bool,
   currentPage: string,
   notificationCount: number,

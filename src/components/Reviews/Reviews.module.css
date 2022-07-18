@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   margin: 0;
@@ -30,14 +30,14 @@
 }
 
 .reviewContent {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   font-style: italic;
   margin: 0;
   white-space: pre-line;
 }
 
 .reviewInfo {
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   margin-top: 10px;
   margin-bottom: 0px;
   color: var(--matterColorAnti);

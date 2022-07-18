@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   position: relative;
@@ -13,7 +13,7 @@
       cursor: pointer;
 
       /* Same as active */
-      background-color: var(--marketplaceColor);
+      background-color: var(--matterColorBlue);
       border-color: var(--marketplaceColor);
       color: var(--matterColorLight);
       box-shadow: var(--boxShadowPopup);
@@ -22,7 +22,6 @@
 }
 
 .priceLabel {
-  composes: h5 from global;
   /**
    * Since caret is absolutely positioned,
    * label must have relative to be included to the same rendering layer
@@ -30,21 +29,22 @@
   position: relative;
 
   /* Font */
+  @apply --marketplaceH5FontStyles;
   font-weight: var(--fontWeightSemiBold);
-  color: var(--matterColor);
+  color: var(--matterColorBlue);
   letter-spacing: 0.1px;
 
   background-color: var(--matterColorLight);
 
   /* Borders */
   border-style: solid;
-  border-color: var(--matterColorNegative);
+  border-color: var(--matterColorBlue);
   border-width: 1px;
   border-radius: 4px;
   box-shadow: var(--boxShadowPopupLight);
 
   /* Dimensions */
-  padding: 6px 10px;
+  padding: 6px 8px;
   margin-top: 0;
   margin-bottom: 0;
   transition: var(--transitionStyleButton);

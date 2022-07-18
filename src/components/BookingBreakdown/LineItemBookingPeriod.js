@@ -52,6 +52,9 @@ const BookingPeriod = props => {
             <FormattedDate value={endDate} {...dateFormatOptions} {...timeZoneMaybe} />
           </div>
         </div>
+        <div className={css.timezone}>
+        All times in {timeZone} timezone
+        </div>
       </div>
     </>
   );

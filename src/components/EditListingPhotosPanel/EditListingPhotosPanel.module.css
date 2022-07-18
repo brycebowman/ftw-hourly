@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   flex-grow: 1;
@@ -31,19 +31,21 @@
 
 /* Title of the modal */
 .modalTitle {
-  composes: marketplaceModalTitleStyles from global;
+  @apply --marketplaceModalTitleStyles;
 }
 
 /* Paragraph for the Modal */
 .modalMessage {
-  composes: marketplaceModalParagraphStyles from global;
+  @apply --marketplaceModalParagraphStyles;
 }
 
 /* This is the title for the Edit Photos component */
 .title {
+  color: #860910;
   margin-bottom: 19px;
-
+  font-size: 32px;
   @media (--viewportLarge) {
+    font-size: 42px;
     margin-bottom: 38px;
     padding: 1px 0 7px 0;
   }

@@ -1,23 +1,26 @@
-/**
- * A text field with phone number formatting. By default uses formatting
- * rules defined in the fiFormatter.js file. To change the formatting
- * provide alternative implementations for the format and parse functions
- * that are passed to the input field.
- */
-import React from 'react';
+ import React from 'react';
+ import { isPossiblePhoneNumber } from 'react-phone-number-input';
+ import PhoneInput from 'react-phone-number-input/input';
+ import { FieldTextInputOval } from '../../components';
+ import css from './FieldPhoneNumberInput.module.css';
+ const PhoneAdapter = ({ input }) => (
+   <PhoneInput
+     country="US"
+     maxLength={14}
+     className={css.phone}
+     rules={{ required: true, validate: isPossiblePhoneNumber }}
+     {...input}
+   />
+ );
 
-import { FieldTextInput } from '../../components';
-import { format, parse } from './fiFormatter';
+ const FieldPhoneNumberInputOval = props => {
+   const inputProps = {
+     type: 'text',
+     component: PhoneAdapter,
+     ...props,
+   };
 
-const FieldPhoneNumberInput = props => {
-  const inputProps = {
-    type: 'text',
-    format: format,
-    parse: parse,
-    ...props,
-  };
+   return <FieldTextInputOval {...inputProps} />;
+ };
 
-  return <FieldTextInput {...inputProps} />;
-};
-
-export default FieldPhoneNumberInput;
+ export default FieldPhoneNumberInputOval;

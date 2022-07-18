@@ -109,6 +109,12 @@ export const PrimaryButton = props => {
 };
 PrimaryButton.displayName = 'PrimaryButton';
 
+export const IDPButton = props => {
+  const classes = classNames(props.rootClassName || css.idpButtonRoot, css.idpButton);
+  return <Button {...props} rootClassName={classes} />;
+};
+IDPButton.displayName = 'IDPButton';
+
 export const SecondaryButton = props => {
   const classes = classNames(props.rootClassName || css.secondaryButtonRoot, css.secondaryButton);
   return <Button {...props} rootClassName={classes} />;

@@ -5,9 +5,11 @@ import { FormattedMessage } from '../../util/reactIntl';
 import { ensureOwnListing } from '../../util/data';
 import { findOptionsForSelectFilter } from '../../util/search';
 import { LISTING_STATE_DRAFT } from '../../util/types';
-import { ListingLink } from '../../components';
+import { ListingLink, SectionHowItWorks } from '../../components';
 import { EditListingDescriptionForm } from '../../forms';
 import config from '../../config';
+
+import workersImage from './images/food-workers-notfancy.gif';
 
 import css from './EditListingDescriptionPanel.module.css';
 
@@ -29,6 +31,7 @@ const EditListingDescriptionPanel = props => {
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
   const { description, title, publicData } = currentListing.attributes;
+  const { certificate, language, twitterhandle } = publicData || {};
 
   const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
   const panelTitle = isPublished ? (
@@ -47,19 +50,32 @@ const EditListingDescriptionPanel = props => {
   );
 
   const certificateOptions = findOptionsForSelectFilter('certificate', config.custom.filters);
+  const languageOptions = findOptionsForSelectFilter('language', config.custom.filters);
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
+      <div className={css.steps}>
+        <div className={css.stepLeft}>
+          <FormattedMessage
+            id="EditListingDescriptionPanel.instructions"
+            values={{ lineBreak: <br />, pageBreak: <p></p> }}
+          />
+        </div>
+        <div className={css.step}>
+          <img className={css.iconImage} src={workersImage} alt="Food Workers" />
+        </div>
+      </div>
+
       <EditListingDescriptionForm
         className={css.form}
-        initialValues={{ title, description, certificate: publicData.certificate }}
+        initialValues={{ title, description, twitterhandle, certificate, language }}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
-          const { title, description, certificate } = values;
+          const { title, description, twitterhandle, certificate, language = [] } = values;
           const updateValues = {
             title: title.trim(),
             description,
-            publicData: { certificate },
+            publicData: { certificate, language, twitterhandle },
           };
 
           onSubmit(updateValues);
@@ -71,6 +87,7 @@ const EditListingDescriptionPanel = props => {
         updateInProgress={updateInProgress}
         fetchErrors={errors}
         certificateOptions={certificateOptions}
+        languageOptions={languageOptions}
       />
     </div>
   );

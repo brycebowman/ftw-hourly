@@ -57,7 +57,7 @@ exports[`ProfilePage matches snapshot 1`] = `
         <h1
           className="mobileHeading"
         >
-          <MemoizedFormattedMessage
+          <FormattedMessage
             id="ProfilePage.mobileHeading"
             values={
               Object {
@@ -76,7 +76,7 @@ exports[`ProfilePage matches snapshot 1`] = `
         <h1
           className="desktopHeading"
         >
-          <MemoizedFormattedMessage
+          <FormattedMessage
             id="ProfilePage.desktopHeading"
             values={
               Object {
@@ -102,7 +102,7 @@ exports[`ProfilePage matches snapshot 1`] = `
                   "text": <h3
                     className="desktopReviewsTitle"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="ProfilePage.reviewsOfProviderTitle"
                       values={
                         Object {
@@ -118,7 +118,7 @@ exports[`ProfilePage matches snapshot 1`] = `
                   "text": <h3
                     className="desktopReviewsTitle"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="ProfilePage.reviewsOfCustomerTitle"
                       values={
                         Object {

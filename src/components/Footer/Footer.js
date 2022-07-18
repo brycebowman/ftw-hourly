@@ -4,6 +4,7 @@ import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { twitterPageURL } from '../../util/urlHelpers';
 import config from '../../config';
+import footerLogo from '../Logo/cafe-temps-footer-logo-400px.png'
 import {
   IconSocialMediaFacebook,
   IconSocialMediaInstagram,
@@ -67,7 +68,7 @@ const Footer = props => {
             <div className={css.organization} id="organization">
               <NamedLink name="LandingPage" className={css.logoLink}>
                 <span className={css.logo}>
-                  <Logo format="desktop" />
+                  <img src={footerLogo} />
                 </span>
               </NamedLink>
               <div className={css.organizationInfo}>
@@ -89,52 +90,48 @@ const Footer = props => {
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink name="AboutPage" className={css.link}>
-                    <FormattedMessage id="Footer.toAboutPage" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink name="LandingPage" className={css.link}>
+                  <NamedLink name="FAQPageTab" className={css.link}>
                     <FormattedMessage id="Footer.toFAQPage" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink name="LandingPage" className={css.link}>
-                    <FormattedMessage id="Footer.toHelpPage" />
+                  <NamedLink name="FeesPage" className={css.link}>
+                    <FormattedMessage id="Footer.toFeesPage" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink name="AboutPage" to={{ hash: '#contact' }} className={css.link}>
-                    <FormattedMessage id="Footer.toContactPage" />
+                  <NamedLink name="GuidelinesPage" className={css.link}>
+                    <FormattedMessage id="Footer.toGuidelinesPage" />
                   </NamedLink>
                 </li>
+                <li className={css.listItem}>
+                <div className={css.helpdesk}>
+                <a href="https://help.cafetemps.com" target="_blank" className={css.helpdesk} >
+                    Help Center
+                  </a>
+                  </div>
+                </li>
+
               </ul>
             </div>
             <div className={css.searches}>
               <ul className={css.list}>
+              <li className={css.listItem}>
+              <NamedLink name="MarketsPage" className={css.link}>
+                <FormattedMessage id="Footer.toLaunchPage" />
+              </NamedLink>
+              </li>
                 <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=New%20York%20City%2C%20New%20York%2C%20USA&bounds=40.917576401307%2C-73.7008392055224%2C40.477399%2C-74.2590879797556',
+                <NamedLink
+                  name="SearchPage"
+                  to={{
+                    search:
+                    '?address=New%20York%20City%2C%20New%20York%2C%20USA&bounds=40.917576401307%2C-73.7008392055224%2C40.477399%2C-74.2590879797556',
                     }}
                     className={css.link}
-                  >
+                    >
                     <FormattedMessage id="Footer.searchNewYork" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Los%20Angeles%2C%20California%2C%20USA&bounds=34.161440999758%2C-118.121305008073%2C33.9018913203336%2C-118.521456965901',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchLosAngeles" />
-                  </NamedLink>
+                    </NamedLink>
                 </li>
                 <li className={css.listItem}>
                   <NamedLink
@@ -148,96 +145,9 @@ const Footer = props => {
                     <FormattedMessage id="Footer.searchSanFrancisco" />
                   </NamedLink>
                 </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Seattle%2C%20Washington%2C%20USA&bounds=47.7779392908564%2C-122.216605992108%2C47.3403950185547%2C-122.441233019046',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchSeattle" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Portland%2C%20Oregon%2C%20USA&bounds=45.858099013046%2C-122.441059986416%2C45.3794799927623%2C-122.929215816001',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchPortland" />
-                  </NamedLink>
-                </li>
-              </ul>
+             </ul>
             </div>
-            <div className={css.searchesExtra}>
-              <ul className={css.list}>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Denver%2C%20Colorado%2C%20United%20States%20of%20America&bounds=39.94623402%2C-104.600299056%2C39.62371698%2C-105.193616003506',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchDenver" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Philadelphia%2C%20Pennsylvania%2C%20United%20States%20of%20America&bounds=40.1379937851305%2C-74.9557749984862%2C39.8557310196928%2C-75.2946589071447',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchPhiladelphia" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Boston%2C%20Massachusetts%2C%20United%20States%20of%20America&bounds=42.3974009328397%2C-70.9860500028801%2C42.3196059806256%2C-71.1255750165112',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchBoston" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=San%20Diego%2C%20California%2C%20United%20States%20of%20America&bounds=33.0722089336828%2C-116.853118984%2C32.534171982%2C-117.266223298428',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchSanDiego" />
-                  </NamedLink>
-                </li>
-                <li className={css.listItem}>
-                  <NamedLink
-                    name="SearchPage"
-                    to={{
-                      search:
-                        '?address=Boulder%2C%20Colorado%2C%20United%20States%20of%20America&bounds=40.1593785009969%2C-105.108872052936%2C39.9139839802231%2C-105.525489934809',
-                    }}
-                    className={css.link}
-                  >
-                    <FormattedMessage id="Footer.searchBoulder" />
-                  </NamedLink>
-                </li>
-              </ul>
-            </div>
+
             <div className={css.extraLinks}>
               <div className={css.someLinks}>{socialMediaLinks}</div>
               <div className={css.legalMatters}>

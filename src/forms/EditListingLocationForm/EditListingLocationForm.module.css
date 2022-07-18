@@ -1,5 +1,3 @@
-@import '../../styles/customMediaQueries.css';
-
 .root {
   /* Dimensions */
   width: 100%;
@@ -23,13 +21,14 @@
   flex-grow: 1;
   height: 36px;
   line-height: unset;
-  padding-left: 0;
+  padding-left: 5px;
   margin: 0;
-  border-bottom: 2px solid var(--attentionColor);
+  border: 1px solid var(--matterColorBlue);
+  border-radius: 10px;
 
   &:hover,
   &:focus {
-    border-bottom-color: var(--matterColorDark);
+    border-color: var(--matterColorBlue);
     outline: none;
   }
 
@@ -65,16 +64,25 @@
 }
 
 .validLocation {
-  border-bottom-color: var(--successColor);
+  border-color: var(--successColor);
 }
 
-.locationAddress,
+.locationAddress {
+    flex-shrink: 0;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    @media (--viewportMedium) {
+      margin-bottom: 32px;
+    }
+  }
+
 .building {
   flex-shrink: 0;
   margin-bottom: 24px;
 
   @media (--viewportMedium) {
     margin-bottom: 32px;
+    width: 35%;
   }
 }
 
@@ -85,6 +93,6 @@
   @media (--viewportLarge) {
     display: inline-block;
     width: 241px;
-    margin-top: 100px;
+    margin-top: 50px;
   }
 }

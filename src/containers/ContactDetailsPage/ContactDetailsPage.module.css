@@ -21,6 +21,7 @@
   margin-bottom: 19px;
 
   @media (--viewportMedium) {
+    margin-top: -20px;
     margin-bottom: 36px;
   }
 }

@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
-import { Form, PrimaryButton, FieldTextInput } from '../../components';
+import { Form, PrimaryButton, FieldTextInput, FieldTextInputOval } from '../../components';
 import * as validators from '../../util/validators';
 
 import css from './PasswordResetForm.module.css';
@@ -66,7 +66,7 @@ const PasswordResetFormComponent = props => (
 
       return (
         <Form className={classes} onSubmit={handleSubmit}>
-          <FieldTextInput
+          <FieldTextInputOval
             className={css.password}
             type="password"
             id={formId ? `${formId}.password` : 'password'}

@@ -54,6 +54,7 @@ export const EditListingPageComponent = props => {
     currentUser,
     currentUserListing,
     currentUserListingFetched,
+    currentUserRole,
     createStripeAccountError,
     fetchInProgress,
     fetchStripeAccountError,
@@ -83,6 +84,8 @@ export const EditListingPageComponent = props => {
     stripeAccount,
     updateStripeAccountError,
   } = props;
+
+  if ( currentUserRole === 'buyer' ) { return <NamedRedirect name="LandingPage" />; }
 
   const { id, type, returnURLType } = params;
   const isNewURI = type === LISTING_PAGE_PARAM_TYPE_NEW;
@@ -341,7 +344,7 @@ const mapStateToProps = state => {
     stripeAccountFetched,
   } = state.stripeConnectAccount;
 
-  const { currentUser, currentUserListing, currentUserListingFetched } = state.user;
+  const { currentUser, currentUserListing, currentUserListingFetched, currentUserRole } = state.user;
 
   const fetchInProgress = createStripeAccountInProgress;
 
@@ -361,6 +364,7 @@ const mapStateToProps = state => {
     currentUser,
     currentUserListing,
     currentUserListingFetched,
+    currentUserRole,
     fetchInProgress,
     getOwnListing,
     page,

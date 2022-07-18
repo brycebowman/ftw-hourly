@@ -4,7 +4,7 @@ import { bool, object, string } from 'prop-types';
 import config from '../../config';
 import * as validators from '../../util/validators';
 import getCountryCodes from '../../translations/countryCodes';
-import { FieldTextInput, FieldSelect } from '../../components';
+import { FieldTextInput, FieldTextInputOval, FieldSelect } from '../../components';
 
 import css from './StripePaymentAddress.module.css';
 
@@ -80,7 +80,7 @@ const StripePaymentAddress = props => {
   return (
     <div className={className ? className : css.root}>
       <div className={css.formRow}>
-        <FieldTextInput
+        <FieldTextInputOval
           id={`${fieldId}.addressLine1`}
           name="addressLine1"
           disabled={disabled}
@@ -93,7 +93,7 @@ const StripePaymentAddress = props => {
           onUnmount={() => form.change('addressLine1', undefined)}
         />
 
-        <FieldTextInput
+        <FieldTextInputOval
           id={`${fieldId}.addressLine2`}
           name="addressLine2"
           disabled={disabled}
@@ -106,7 +106,7 @@ const StripePaymentAddress = props => {
         />
       </div>
       <div className={css.formRow}>
-        <FieldTextInput
+        <FieldTextInputOval
           id={`${fieldId}.postalCode`}
           name="postal"
           disabled={disabled}
@@ -120,7 +120,7 @@ const StripePaymentAddress = props => {
           onChange={event => handleOnChange(event)}
         />
 
-        <FieldTextInput
+        <FieldTextInputOval
           id={`${fieldId}.city`}
           name="city"
           disabled={disabled}
@@ -134,7 +134,7 @@ const StripePaymentAddress = props => {
         />
       </div>
       <div className={css.formRow}>
-        <FieldTextInput
+        <FieldTextInputOval
           id={`${fieldId}.state`}
           name="state"
           disabled={disabled}

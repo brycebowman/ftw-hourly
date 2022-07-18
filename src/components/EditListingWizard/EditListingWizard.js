@@ -14,6 +14,7 @@ import {
   LISTING_PAGE_PARAM_TYPES,
 } from '../../util/urlHelpers';
 import { ensureCurrentUser, ensureListing } from '../../util/data';
+import workersImage from './images/food-workers-fancy.gif';
 
 import { Modal, NamedRedirect, Tabs, StripeConnectAccountStatusBox } from '../../components';
 import { StripeConnectAccountForm } from '../../forms';
@@ -22,10 +23,10 @@ import EditListingWizardTab, {
   AVAILABILITY,
   DESCRIPTION,
   FEATURES,
+  SKILLS,
   POLICY,
   LOCATION,
   PRICING,
-  PHOTOS,
 } from './EditListingWizardTab';
 import css from './EditListingWizard.module.css';
 
@@ -41,11 +42,11 @@ const availabilityMaybe = config.enableAvailability ? [AVAILABILITY] : [];
 export const TABS = [
   DESCRIPTION,
   FEATURES,
+  SKILLS,
   //POLICY,
   LOCATION,
   PRICING,
   ...availabilityMaybe,
-  PHOTOS,
 ];
 
 // Tabs are horizontal in small screens
@@ -60,6 +61,8 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelDescription';
   } else if (tab === FEATURES) {
     key = 'EditListingWizard.tabLabelFeatures';
+  } else if (tab === SKILLS) {
+    key = 'EditListingWizard.tabLabelSkills';
   } else if (tab === POLICY) {
     key = 'EditListingWizard.tabLabelPolicy';
   } else if (tab === LOCATION) {
@@ -99,6 +102,8 @@ const tabCompleted = (tab, listing) => {
       return !!(description && title);
     case FEATURES:
       return !!(publicData && publicData.yogaStyles);
+    case SKILLS:
+      return !!(publicData && publicData.skills);
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
     case LOCATION:
@@ -417,7 +422,9 @@ class EditListingWizard extends Component {
               <FormattedMessage id="EditListingWizard.payoutModalTitleOneMoreThing" />
               <br />
               <FormattedMessage id="EditListingWizard.payoutModalTitlePayoutPreferences" />
+              <img className={css.image} src={workersImage} align="center" alt="Food Service Workers" />
             </h1>
+
             {!currentUserLoaded ? (
               <FormattedMessage id="StripePayoutPage.loadingData" />
             ) : returnedAbnormallyFromStripe && !stripeAccountLinkError ? (
@@ -428,6 +435,12 @@ class EditListingWizard extends Component {
               <>
                 <p className={css.modalMessage}>
                   <FormattedMessage id="EditListingWizard.payoutModalInfo" />
+                  </p>
+                  <p className={css.modalsmall}>
+                  <FormattedMessage id="EditListingWizard.payoutDisclaimer" />
+                  <a href="https://www.stripe.com" target="_blank">
+                  <FormattedMessage id="EditListingWizard.payoutDisclaimer2" />
+                  </a>
                 </p>
                 <StripeConnectAccountForm
                   disabled={formDisabled}

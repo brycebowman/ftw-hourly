@@ -1,10 +1,10 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
 }
 
 .savedPaymentMethodTitle {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   font-weight: bold;
   cursor: pointer;
 }
@@ -40,7 +40,7 @@
 }
 
 .closeIcon {
-  composes: marketplaceModalCloseIcon from global;
+  @apply --marketplaceModalCloseIcon;
   margin-left: 0;
   margin-right: 5px;
 }
@@ -67,7 +67,7 @@
 }
 
 .cardExpiredText {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   color: var(--failColor);
   font-weight: var(--fontWeightSemiBold);
   margin-top: 13px;
@@ -146,7 +146,7 @@
 
 .menuText,
 .menuTextReplaceCard {
-  composes: marketplaceMessageFontStyles from global;
+  @apply --marketplaceMessageFontStyles;
   padding: 12px 8px;
   color: var(--matterColor);
   text-align: left;
@@ -171,7 +171,7 @@
 }
 
 .menuDivider {
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   color: var(--matterColorAnti);
   padding: 14px 24px 2px 24px;
   margin: 0;
@@ -188,7 +188,7 @@
 }
 
 .savedPaymentMethodDelete {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   color: var(--matterColorAnti);
   cursor: pointer;
   margin-top: 14px;
@@ -213,13 +213,13 @@
 
 /* Title of the modal */
 .modalTitle {
-  composes: marketplaceModalTitleStyles from global;
+  @apply --marketplaceModalTitleStyles;
   padding-top: 36px;
 }
 
 /* Paragraph for the Modal */
 .modalMessage {
-  composes: marketplaceModalParagraphStyles from global;
+  @apply --marketplaceModalParagraphStyles;
   min-height: 200px;
 }
 

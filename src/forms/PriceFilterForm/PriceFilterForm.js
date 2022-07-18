@@ -13,7 +13,7 @@ const DEBOUNCE_WAIT_TIME = 400;
 // Helper function to parse value for min handle
 // Value needs to be between slider's minimum value and current maximum value
 const parseMin = (min, currentMax) => value => {
-  const parsedValue = Number.parseInt(value, 10);
+  const parsedValue = Number.parseInt(value, 20);
   if (isNaN(parsedValue)) {
     return '';
   }
@@ -23,7 +23,7 @@ const parseMin = (min, currentMax) => value => {
 // Helper function to parse value for max handle
 // Value needs to be between slider's max value and current minimum value
 const parseMax = (max, currentMin) => value => {
-  const parsedValue = Number.parseInt(value, 10);
+  const parsedValue = Number.parseInt(value, 20);
   if (isNaN(parsedValue)) {
     return '';
   }

@@ -1,0 +1,204 @@
+@import '../../styles/propertySets.css';
+
+.title {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorRed);
+  font-style: italic;
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 42px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  @media (--viewportMedium) {
+  font-size: 60px;
+  }
+  @media (--viewportLarge) {
+  font-size: 60px;
+  }
+}
+
+.subtitle {
+  font-family: 'Arial';
+  color: var(--matterColorBlue);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  margin-bottom: -10px;
+  @media (--viewportMedium) {
+  font-size: 22px;
+  }
+  @media (--viewportLarge) {
+  font-size: 22px;
+  }
+}
+
+.steps {
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+    margin: auto;
+    flex-direction: row;
+  }
+}
+
+.step {
+    width: 350px;
+    margin-left: 5px;
+    margin-right: 5px;
+    @media (--viewportMedium) {
+    width: 45%;
+    margin: auto;
+  }
+}
+
+.stepMiddle {
+  width: 40%;
+  padding-top: 15px;
+  @media (--viewportMedium) {
+  width: 40px;
+  margin-bottom: 0px;
+  margin-right: 35px;
+  margin-left: -5px;
+  }
+}
+
+.stepMiddleText {
+
+}
+
+.steplast {
+  @media (--viewportMedium) {
+    width: 455px;
+    margin-left: 15px;
+  }
+}
+
+.stepText {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 20px;
+  @media (--viewportMedium) {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: "Poppins";
+    font-size: 18px;
+  }
+}
+  .stepTextLast {
+    font-family: 'Poppins';
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 30px;
+    @media (--viewportMedium) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    }
+
+.step:last-of-type {
+  @media (--viewportMedium) {
+    margin-right: 0;
+    font-size: 22px;
+    border-left: 5px;
+    border-color: #000;
+  }
+}
+
+.stepTitle {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorBlue);
+  margin-top: 1px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 28px;
+  @media (--viewportMedium) {
+  font-size: 46px;
+  margin-top: 5px;
+    margin-bottom: 18px;
+  }
+}
+
+.createListingLink {
+  margin-top: 18px;
+  @media (--viewportMedium) {
+    margin-top: 24px;
+  }
+}
+.iconImage {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  margin-top: 10px;
+  vertical-align: bottom;
+  @media (--viewportMedium) {
+    margin-top: 25px;
+}}
+.numberImage {
+  width: 100%;
+  height: 50px;
+  font-size: 60px;
+  font-style: italic;
+  font-family: "Architects Daughter";
+  color: var(--matterColorRed);
+  text-align: right;
+  object-fit: contain;
+  margin: auto;
+  padding-left: 10px;
+  margin-bottom: 15px;
+  @media (--viewportMedium) {
+    margin-bottom: 65px;
+    font-size: 50px;
+    @media (--viewportLarge) {
+      font-size: 50px;
+}}}
+
+.arrow {
+  width: 100%;
+  padding-top: 10px;
+  margin: auto;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 35px;
+  margin-right: 10px;
+  @media (--viewportMedium) {
+  margin-bottom: 10px;
+  margin-right: 0px;
+}
+  }
+
+/* Shared animation rules */
+.animation {
+  animation-name: animationTitle;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+
+  visibility: hidden;
+  opacity: 1;
+  position: relative;
+}
+
+.howitworksButton {
+  @apply --marketplaceButtonStyles;
+  font-size: 24px;
+  line-height: 26px;
+  padding: 7px 0 7px 0;
+  font-family: "architects daughter";
+  border-radius: 15px;
+  margin: auto;
+  width: 150px;
+  height: 65px;
+  margin-bottom: 30px;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 160px;
+    margin-bottom: 20px;
+  }
+}

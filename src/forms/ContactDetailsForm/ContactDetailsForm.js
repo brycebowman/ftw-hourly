@@ -13,7 +13,14 @@ import {
   isChangeEmailWrongPassword,
   isTooManyEmailVerificationRequestsError,
 } from '../../util/errors';
-import { FieldPhoneNumberInput, Form, PrimaryButton, FieldTextInput } from '../../components';
+import {
+  FieldPhoneNumberInput,
+  FieldPhoneNumberInputOval,
+  Form,
+  PrimaryButton,
+  FieldTextInput,
+  FieldTextInputOval,
+} from '../../components';
 
 import css from './ContactDetailsForm.module.css';
 
@@ -62,6 +69,7 @@ class ContactDetailsFormComponent extends Component {
             savePhoneNumberError,
             currentUser,
             formId,
+            pristine,
             handleSubmit,
             inProgress,
             intl,
@@ -80,6 +88,30 @@ class ContactDetailsFormComponent extends Component {
           }
 
           const { email: currentEmail, emailVerified, pendingEmail, profile } = user.attributes;
+
+          // First name
+          const firstNameLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.firstNameLabel',
+          });
+          const firstNamePlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.firstNamePlaceholder',
+          });
+          const firstNameRequiredMessage = intl.formatMessage({
+            id: 'ProfileSettingsForm.firstNameRequired',
+          });
+          const firstNameRequired = validators.required(firstNameRequiredMessage);
+
+          // Last name
+          const lastNameLabel = intl.formatMessage({
+            id: 'ProfileSettingsForm.lastNameLabel',
+          });
+          const lastNamePlaceholder = intl.formatMessage({
+            id: 'ProfileSettingsForm.lastNamePlaceholder',
+          });
+          const lastNameRequiredMessage = intl.formatMessage({
+            id: 'ProfileSettingsForm.lastNameRequired',
+          });
+          const lastNameRequired = validators.required(lastNameRequiredMessage);
 
           // email
 
@@ -292,11 +324,7 @@ class ContactDetailsFormComponent extends Component {
           const classes = classNames(rootClassName || css.root, className);
           const submittedOnce = Object.keys(this.submittedValues).length > 0;
           const pristineSinceLastSubmit = submittedOnce && isEqual(values, this.submittedValues);
-          const submitDisabled =
-            invalid ||
-            pristineSinceLastSubmit ||
-            inProgress ||
-            !(emailChanged || phoneNumberChanged);
+          const submitDisabled = invalid || pristine || inProgress
 
           return (
             <Form
@@ -306,8 +334,42 @@ class ContactDetailsFormComponent extends Component {
                 handleSubmit(e);
               }}
             >
+              <div className={css.sectionContainer}>
+                <div className={css.nameContainer}>
+                  <FieldTextInputOval
+                    className={css.firstName}
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    label={firstNameLabel}
+                    placeholder={firstNamePlaceholder}
+                    validate={firstNameRequired}
+                  />
+                  <FieldTextInputOval
+                    className={css.lastName}
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    label={lastNameLabel}
+                    placeholder={lastNamePlaceholder}
+                    validate={lastNameRequired}
+                  />
+                </div>
+              </div>
+              <div className={css.label}>
+              {phoneLabel}
+              </div>
+              <div className={css.phone}>
+              <FieldPhoneNumberInputOval
+                className={css.phone}
+                name="phoneNumber"
+                id={formId ? `${formId}.phoneNumber` : 'phoneNumber'}
+                label={phoneLabel}
+                placeholder={phonePlaceholder}
+              />
+              </div>
               <div className={css.contactDetailsSection}>
-                <FieldTextInput
+                <FieldTextInputOval
                   type="email"
                   name="email"
                   id={formId ? `${formId}.email` : 'email'}
@@ -317,40 +379,36 @@ class ContactDetailsFormComponent extends Component {
                   customErrorText={emailTouched ? null : emailTakenErrorText}
                 />
                 {emailVerifiedInfo}
-                <FieldPhoneNumberInput
-                  className={css.phone}
-                  name="phoneNumber"
-                  id={formId ? `${formId}.phoneNumber` : 'phoneNumber'}
-                  label={phoneLabel}
-                  placeholder={phonePlaceholder}
-                />
               </div>
 
-              <div className={confirmClasses}>
-                <h3 className={css.confirmChangesTitle}>
-                  <FormattedMessage id="ContactDetailsForm.confirmChangesTitle" />
-                </h3>
-                <p className={css.confirmChangesInfo}>
-                  <FormattedMessage id="ContactDetailsForm.confirmChangesInfo" />
-                  <br />
-                  <FormattedMessage
-                    id="ContactDetailsForm.resetPasswordInfo"
-                    values={{ resetPasswordLink }}
+              {emailChanged && (
+                <div className={confirmClasses}>
+                  <h3 className={css.confirmChangesTitle}>
+                    <FormattedMessage id="ContactDetailsForm.confirmChangesTitle" />
+                  </h3>
+                  <p className={css.confirmChangesInfo}>
+                    <FormattedMessage id="ContactDetailsForm.confirmChangesInfo" />
+                    <br />
+                    <FormattedMessage
+                      id="ContactDetailsForm.resetPasswordInfo"
+                      values={{ resetPasswordLink }}
+                    />
+                  </p>
+
+                  <FieldTextInputOval
+                    className={css.password}
+                    type="password"
+                    name="currentPassword"
+                    id={formId ? `${formId}.currentPassword` : 'currentPassword'}
+                    autoComplete="current-password"
+                    label={passwordLabel}
+                    placeholder={passwordPlaceholder}
+                    validate={passwordValidators}
+                    customErrorText={passwordTouched ? null : passwordErrorText}
                   />
-                </p>
+                </div>
+              )}
 
-                <FieldTextInput
-                  className={css.password}
-                  type="password"
-                  name="currentPassword"
-                  id={formId ? `${formId}.currentPassword` : 'currentPassword'}
-                  autoComplete="current-password"
-                  label={passwordLabel}
-                  placeholder={passwordPlaceholder}
-                  validate={passwordValidators}
-                  customErrorText={passwordTouched ? null : passwordErrorText}
-                />
-              </div>
               <div className={css.bottomWrapper}>
                 {genericError}
                 <PrimaryButton

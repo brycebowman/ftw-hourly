@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
-import { Form, PrimaryButton, FieldTextInput, NamedLink } from '../../components';
+import { Form, PrimaryButton, FieldTextInputOval, NamedLink } from '../../components';
 import * as validators from '../../util/validators';
 
 import css from './LoginForm.module.css';
@@ -64,7 +64,7 @@ const LoginFormComponent = props => (
       return (
         <Form className={classes} onSubmit={handleSubmit}>
           <div>
-            <FieldTextInput
+            <FieldTextInputOval
               type="email"
               id={formId ? `${formId}.email` : 'email'}
               name="email"
@@ -73,7 +73,7 @@ const LoginFormComponent = props => (
               placeholder={emailPlaceholder}
               validate={validators.composeValidators(emailRequired, emailValid)}
             />
-            <FieldTextInput
+            <FieldTextInputOval
               className={css.password}
               type="password"
               id={formId ? `${formId}.password` : 'password'}

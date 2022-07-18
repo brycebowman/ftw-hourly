@@ -16,6 +16,7 @@ import {
   NotificationBadge,
   OwnListingLink,
 } from '../../components';
+import chefImage from './images/chef.png';
 
 import css from './TopbarMobileMenu.module.css';
 
@@ -26,6 +27,7 @@ const TopbarMobileMenu = props => {
     currentUserHasListings,
     currentUserListing,
     currentUserListingFetched,
+    currentUserRole,
     currentUser,
     notificationCount,
     onLogout,
@@ -54,13 +56,34 @@ const TopbarMobileMenu = props => {
     return (
       <div className={css.root}>
         <div className={css.content}>
+          <div className={css.steps}>
+          <div className={css.stepleft} vertical-align="top" >
           <div className={css.authenticationGreeting}>
-            <FormattedMessage
-              id="TopbarMobileMenu.unauthorizedGreeting"
-              values={{ lineBreak: <br />, signupOrLogin }}
-            />
+          <FormattedMessage
+            id="TopbarMobileMenu.unauthorizedGreeting1"
+            values={{ lineBreak: <br />, signup, login, signupOrLogin }}
+          />
           </div>
-        </div>
+          <p> </p>
+          <div className={css.greetingtext}>
+          <FormattedMessage
+            id="TopbarMobileMenu.unauthorizedGreeting2"
+            values={{ lineBreak: <br />, signup, login, signupOrLogin }}
+          />
+          <p>  </p>
+          <br />
+          <p> </p>
+          <FormattedMessage
+            id="TopbarMobileMenu.unauthorizedGreeting3"
+            values={{ lineBreak: <br />, signup, login, signupOrLogin }}
+          />
+          </div>
+          </div>
+          <div className={css.stepright}>
+          <img className={css.iconImage} src={chefImage} align="center" alt="Cafe Icon" />
+            </div>
+            </div>
+          </div>
         <div className={css.footer}>
           <NamedLink className={css.createNewListingLink} name="NewListingPage">
             <FormattedMessage id="TopbarMobileMenu.newListingLink" />
@@ -100,17 +123,21 @@ const TopbarMobileMenu = props => {
           <FormattedMessage id="TopbarMobileMenu.inboxLink" />
           {notificationCountBadge}
         </NamedLink>
-        <OwnListingLink
-          listing={currentUserListing}
-          listingFetched={currentUserListingFetched}
-          className={css.navigationLink}
-        />
-        <NamedLink
-          className={classNames(css.navigationLink, currentPageClass('ProfileSettingsPage'))}
-          name="ProfileSettingsPage"
-        >
-          <FormattedMessage id="TopbarMobileMenu.profileSettingsLink" />
-        </NamedLink>
+        { currentUserRole === 'seller' &&
+          <OwnListingLink
+            listing={currentUserListing}
+            listingFetched={currentUserListingFetched}
+            className={css.navigationLink}
+          />
+        }
+        { currentUserRole === 'buyer' &&
+          <NamedLink
+            className={classNames(css.navigationLink, currentPageClass('ProfileSettingsPage'))}
+            name="ProfileSettingsPage"
+          >
+            <FormattedMessage id="TopbarMobileMenu.profileSettingsLink" />
+          </NamedLink>
+        }
         <NamedLink
           className={classNames(css.navigationLink, currentPageClass('AccountSettingsPage'))}
           name="AccountSettingsPage"
@@ -118,11 +145,13 @@ const TopbarMobileMenu = props => {
           <FormattedMessage id="TopbarMobileMenu.accountSettingsLink" />
         </NamedLink>
       </div>
-      <div className={css.footer}>
-        <NamedLink className={css.createNewListingLink} name="NewListingPage">
-          <FormattedMessage id="TopbarMobileMenu.newListingLink" />
-        </NamedLink>
-      </div>
+      { currentUserRole === 'seller' &&
+        <div className={css.footer}>
+          <NamedLink className={css.createNewListingLink} name="NewListingPage">
+            <FormattedMessage id="TopbarMobileMenu.newListingLink" />
+          </NamedLink>
+        </div>
+      }
     </div>
   );
 };

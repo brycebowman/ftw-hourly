@@ -1,0 +1,1 @@
+{{transaction.provider.display-name}} Accepted Your Café Temps Booking Request!

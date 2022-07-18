@@ -14,8 +14,8 @@ import {
   EditListingAvailabilityPanel,
   EditListingDescriptionPanel,
   EditListingFeaturesPanel,
+  EditListingSkillsPanel,
   EditListingLocationPanel,
-  EditListingPhotosPanel,
   EditListingPoliciesPanel,
   EditListingPricingPanel,
 } from '../../components';
@@ -25,20 +25,20 @@ import css from './EditListingWizard.module.css';
 export const AVAILABILITY = 'availability';
 export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
+export const SKILLS = 'skills';
 export const POLICY = 'policy';
 export const LOCATION = 'location';
 export const PRICING = 'pricing';
-export const PHOTOS = 'photos';
 
 // EditListingWizardTab component supports these tabs
 export const SUPPORTED_TABS = [
   DESCRIPTION,
   FEATURES,
+  SKILLS,
   POLICY,
   LOCATION,
   PRICING,
   AVAILABILITY,
-  PHOTOS,
 ];
 
 const pathParamsToNextTab = (params, tab, marketplaceTabs) => {
@@ -195,6 +195,20 @@ const EditListingWizardTab = props => {
         />
       );
     }
+    case SKILLS: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewSkills'
+        : 'EditListingWizard.saveEditSkills';
+      return (
+        <EditListingSkillsPanel
+          {...panelProps(SKILLS)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
     case POLICY: {
       const submitButtonTranslationKey = isNewListingFlow
         ? 'EditListingWizard.saveNewPolicies'
@@ -255,27 +269,8 @@ const EditListingWizardTab = props => {
             return onCompleteEditListingWizardTab(tab, values, true);
           }}
           onNextTab={() =>
-            redirectAfterDraftUpdate(listing.id.uuid, params, tab, marketplaceTabs, history)
+            handlePublishListing(currentListing.id)
           }
-        />
-      );
-    }
-    case PHOTOS: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewPhotos'
-        : 'EditListingWizard.saveEditPhotos';
-
-      return (
-        <EditListingPhotosPanel
-          {...panelProps(PHOTOS)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          images={images}
-          onImageUpload={onImageUpload}
-          onRemoveImage={onRemoveImage}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-          onUpdateImageOrder={onUpdateImageOrder}
         />
       );
     }

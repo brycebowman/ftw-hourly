@@ -9,19 +9,26 @@ import { propTypes } from '../../util/types';
 import config from '../../config';
 import {
   Page,
+  SectionBanner,
+  SectionDifferences,
   SectionHero,
+  SectionEndorsements,
   SectionHowItWorks,
-  SectionLocations,
-  LayoutSingleColumn,
+  SectionWithCarousel,
+  SectionHowItWorksNew,
+  SectionHowItWorksMobile,
+  SectionWhyusMobile,
+  SectionFAQLanding,
+    LayoutSingleColumn,
   LayoutWrapperTopbar,
   LayoutWrapperMain,
   LayoutWrapperFooter,
   Footer,
 } from '../../components';
-import { TopbarContainer } from '../../containers';
+import { TopbarLandingContainer } from '../../containers';
 
-import facebookImage from '../../assets/yogatimeFacebook-1200x630.jpg';
-import twitterImage from '../../assets/yogatimeTwitter-600x314.jpg';
+import facebookImage from '../../assets/CafeTempsFacebook.gif';
+import twitterImage from '../../assets/CafeTempsTwitter.gif';
 import css from './LandingPage.module.css';
 
 export const LandingPageComponent = props => {
@@ -63,24 +70,46 @@ export const LandingPageComponent = props => {
     >
       <LayoutSingleColumn>
         <LayoutWrapperTopbar>
-          <TopbarContainer />
+        <SectionBanner />
+          <TopbarLandingContainer />
         </LayoutWrapperTopbar>
         <LayoutWrapperMain>
           <div className={css.heroContainer}>
             <SectionHero className={css.hero} history={history} location={location} />
           </div>
           <ul className={css.sections}>
+          <li className={css.section}>
+            <div className={css.sectionContent}>
+              <div className={css.LogoCarousel}>
+              <SectionEndorsements />
+                </div>
+            </div>
+          </li>
             <li className={css.section}>
-              <div className={css.sectionContentFirstChild}>
-                <SectionLocations />
+              <div className={css.sectionContent}>
+                <SectionHowItWorks
+                />
               </div>
             </li>
             <li className={css.section}>
               <div className={css.sectionContent}>
-                <SectionHowItWorks
-                  currentUserListing={currentUserListing}
-                  currentUserListingFetched={currentUserListingFetched}
-                />
+                <SectionWithCarousel />
+              </div>
+            </li>
+            <li className={css.section}>
+              <div className={css.sectionContent}>
+                <SectionDifferences />
+              </div>
+            </li>
+            <li className={css.section}>
+              <div className={css.sectionContentFirstChild}>
+                <div className={css.HowItWorksNew}>
+                <SectionHowItWorksNew />
+                </div>
+                <div className={css.HowItWorksMobile}>
+                <SectionHowItWorksMobile />
+                </div>
+                <SectionFAQLanding />
               </div>
             </li>
           </ul>

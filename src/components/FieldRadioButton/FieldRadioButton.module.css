@@ -1,3 +1,5 @@
+@import '../../styles/propertySets.css';
+
 .root {
   position: relative;
 }
@@ -76,7 +78,7 @@
 }
 
 .text {
-  composes: marketplaceListingAttributeFontStyles from global;
+  @apply --marketplaceListingAttributeFontStyles;
   color: var(--matterColor);
   margin-top: -1px;
   margin-bottom: 1px;

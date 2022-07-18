@@ -34,9 +34,9 @@ const FeedSection = props => {
 
   return showFeed ? (
     <div className={classes}>
-      <h3 className={css.feedHeading}>
+      <h2 className={css.subTitle}>
         <FormattedMessage id="TransactionPanel.activityHeading" />
-      </h3>
+      </h2>
       {initialMessageFailed ? (
         <p className={css.messageError}>
           <FormattedMessage id="TransactionPanel.initialMessageFailed" />

@@ -69,6 +69,7 @@ export class AuthenticationPageComponent extends Component {
     const {
       authInProgress,
       currentUser,
+      currentUserRole,
       intl,
       isAuthenticated,
       location,
@@ -101,12 +102,13 @@ export class AuthenticationPageComponent extends Component {
     // (i.e. `from` is present). We must also check the `emailVerified`
     // flag only when the current user is fully loaded.
     const showEmailVerification = !isLogin && currentUserLoaded && !user.attributes.emailVerified;
+    const verifyCloseLinkName = currentUserRole === 'buyer' ? 'ProfileSettingsPage' : 'NewListingPage';
 
     // Already authenticated, redirect away from auth page
     if (isAuthenticated && from) {
       return <Redirect to={from} />;
     } else if (isAuthenticated && currentUserLoaded && !showEmailVerification) {
-      return <NamedRedirect name="LandingPage" />;
+      return <NamedRedirect name={verifyCloseLinkName} />;
     }
 
     const loginErrorMessage = (
@@ -275,11 +277,13 @@ export class AuthenticationPageComponent extends Component {
     );
     const socialLoginButtonsMaybe = showSocialLogins ? (
       <div className={css.idpButtons}>
-        <div className={css.socialButtonsOr}>
-          <span className={css.socialButtonsOrText}>
-            <FormattedMessage id="AuthenticationPage.or" />
-          </span>
-        </div>
+        {isLogin && (
+          <div className={css.socialButtonsOr}>
+            <span className={css.socialButtonsOrText}>
+              <FormattedMessage id="AuthenticationPage.or" />
+            </span>
+          </div>
+        )}
 
         {showFacebookLogin ? (
           <div className={css.socialButtonWrapper}>
@@ -298,6 +302,14 @@ export class AuthenticationPageComponent extends Component {
             </SocialLoginButton>
           </div>
         ) : null}
+
+        {!isLogin && (
+          <div className={css.socialButtonsOr}>
+            <span className={css.socialButtonsOrText}>
+              <FormattedMessage id="AuthenticationPage.or" />
+            </span>
+          </div>
+        )}
       </div>
     ) : null;
 
@@ -314,11 +326,12 @@ export class AuthenticationPageComponent extends Component {
             className={css.signupForm}
             onSubmit={handleSubmitSignup}
             inProgress={authInProgress}
+            socialLoginButtonsMaybe={socialLoginButtonsMaybe}
             onOpenTermsOfService={() => this.setState({ tosModalOpen: true })}
           />
         )}
 
-        {socialLoginButtonsMaybe}
+        {isLogin && socialLoginButtonsMaybe}
       </div>
     );
 
@@ -351,7 +364,7 @@ export class AuthenticationPageComponent extends Component {
 
     const emailVerificationContent = (
       <div className={css.content}>
-        <NamedLink className={css.verifyClose} name="ProfileSettingsPage">
+        <NamedLink className={css.verifyClose} name={verifyCloseLinkName}>
           <span className={css.closeText}>
             <FormattedMessage id="AuthenticationPage.verifyEmailClose" />
           </span>
@@ -471,10 +484,11 @@ AuthenticationPageComponent.propTypes = {
 
 const mapStateToProps = state => {
   const { isAuthenticated, loginError, signupError, confirmError } = state.Auth;
-  const { currentUser, sendVerificationEmailInProgress, sendVerificationEmailError } = state.user;
+  const { currentUser, currentUserRole, sendVerificationEmailInProgress, sendVerificationEmailError } = state.user;
   return {
     authInProgress: authenticationInProgress(state),
     currentUser,
+    currentUserRole,
     isAuthenticated,
     loginError,
     scrollingDisabled: isScrollingDisabled(state),

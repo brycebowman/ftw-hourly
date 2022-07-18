@@ -35,6 +35,7 @@ import {
   AvatarMedium,
   BookingBreakdown,
   Logo,
+  LogoLanding,
   NamedLink,
   NamedRedirect,
   Page,
@@ -215,6 +216,8 @@ export class CheckoutPageComponent extends Component {
       pageData,
       speculatedTransaction,
       message,
+      specialInstructions,
+      dressCode,
       paymentIntent,
       selectedPaymentMethod,
       saveAfterOnetimePayment,
@@ -278,8 +281,9 @@ export class CheckoutPageComponent extends Component {
       const { stripe, card, billingDetails, paymentIntent } = handlePaymentParams;
       const stripeElementMaybe = selectedPaymentFlow !== USE_SAVED_CARD ? { card } : {};
 
-      // Note: For basic USE_SAVED_CARD scenario, we have set it already on API side, when PaymentIntent was created.
-      // However, the payment_method is save here for USE_SAVED_CARD flow if customer first attempted onetime payment
+      // Note: payment_method could be set here for USE_SAVED_CARD flow.
+      // { payment_method: stripePaymentMethodId }
+      // However, we have set it already on API side, when PaymentIntent was created.
       const paymentParams =
         selectedPaymentFlow !== USE_SAVED_CARD
           ? {
@@ -288,7 +292,7 @@ export class CheckoutPageComponent extends Component {
                 card: card,
               },
             }
-          : { payment_method: stripePaymentMethodId };
+          : {};
 
       const params = {
         stripePaymentIntentClientSecret,
@@ -317,6 +321,11 @@ export class CheckoutPageComponent extends Component {
     // Step 4: send initial message
     const fnSendMessage = fnParams => {
       return onSendMessage({ ...fnParams, message });
+    };
+
+    const fnSendInstructions = fnParams => {
+      const msg = `Special Instructions: ${specialInstructions}`;
+      return onSendMessage({ id: fnParams.orderId, message: msg });
     };
 
     // Step 5: optionally save card as defaultPaymentMethod
@@ -352,6 +361,7 @@ export class CheckoutPageComponent extends Component {
       fnConfirmCardPayment,
       fnConfirmPayment,
       fnSendMessage,
+      fnSendInstructions,
       fnSavePaymentMethod
     );
 
@@ -374,6 +384,8 @@ export class CheckoutPageComponent extends Component {
       listingId: pageData.listing.id,
       bookingStart: tx.booking.attributes.start,
       bookingEnd: tx.booking.attributes.end,
+      specialInstructions,
+      dressCode,
       quantity: pageData.bookingData ? pageData.bookingData.quantity : null,
       ...optionalPaymentParams,
     };
@@ -398,6 +410,8 @@ export class CheckoutPageComponent extends Component {
       state,
       country,
       saveAfterOnetimePayment,
+      specialInstructions,
+      dressCode,
     } = formValues;
 
     // Billing address is recommended.
@@ -431,6 +445,8 @@ export class CheckoutPageComponent extends Component {
       billingDetails,
       message,
       paymentIntent,
+      specialInstructions,
+      dressCode,
       selectedPaymentMethod: paymentMethod,
       saveAfterOnetimePayment: !!saveAfterOnetimePayment,
     };
@@ -533,7 +549,7 @@ export class CheckoutPageComponent extends Component {
             title={intl.formatMessage({ id: 'CheckoutPage.goToLandingPage' })}
             format="mobile"
           />
-          <Logo
+          <LogoLanding
             className={css.logoDesktop}
             alt={intl.formatMessage({ id: 'CheckoutPage.goToLandingPage' })}
             format="desktop"
@@ -615,7 +631,7 @@ export class CheckoutPageComponent extends Component {
     );
 
     const firstImage =
-      currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
+      currentListing.author && currentListing.author.profileImage && currentListing.author.profileImage;
 
     const listingLink = (
       <NamedLink
@@ -732,6 +748,10 @@ export class CheckoutPageComponent extends Component {
       existingTransaction && existingTransaction.attributes.lastTransition === TRANSITION_ENQUIRE
     );
 
+    const showSpecialInstructionInputs = !(
+      existingTransaction && existingTransaction.attributes.lastTransition === TRANSITION_ENQUIRE
+    );
+
     // Get first and last name of the current user and use it in the StripePaymentForm to autofill the name field
     const userName =
       currentUser && currentUser.attributes
@@ -794,6 +814,7 @@ export class CheckoutPageComponent extends Component {
                   paymentInfo={intl.formatMessage({ id: 'CheckoutPage.paymentInfo' })}
                   authorDisplayName={currentAuthor.attributes.profile.displayName}
                   showInitialMessageInput={showInitialMessageInput}
+                  showSpecialInstructionInputs={showSpecialInstructionInputs}
                   initialValues={initalValuesForStripePayment}
                   initiateOrderError={initiateOrderError}
                   confirmCardPaymentError={confirmCardPaymentError}
@@ -826,9 +847,6 @@ export class CheckoutPageComponent extends Component {
                 image={firstImage}
                 variants={['landscape-crop', 'landscape-crop2x']}
               />
-            </div>
-            <div className={css.avatarWrapper}>
-              <AvatarMedium user={currentAuthor} disableProfileLink />
             </div>
             <div className={css.detailsHeadings}>
               <h2 className={css.detailsTitle}>{listingTitle}</h2>

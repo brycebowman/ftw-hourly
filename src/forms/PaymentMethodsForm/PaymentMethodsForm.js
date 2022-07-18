@@ -9,7 +9,7 @@ import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import config from '../../config';
-import { Form, PrimaryButton, FieldTextInput, StripePaymentAddress } from '../../components';
+import { Form, PrimaryButton, FieldTextInput, FieldTextInputOval, StripePaymentAddress } from '../../components';
 import css from './PaymentMethodsForm.module.css';
 
 /**
@@ -60,14 +60,10 @@ const stripeElementsOptions = {
   ],
 };
 
-// card (being a Stripe Elements component), can have own styling passed to it.
-// However, its internal width-calculation seems to break if font-size is too big
-// compared to component's own width.
-const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 const cardStyles = {
   base: {
     fontFamily: '"poppins", Helvetica, Arial, sans-serif',
-    fontSize: isMobile ? '14px' : '18px',
+    fontSize: '18px',
     fontSmoothing: 'antialiased',
     lineHeight: '24px',
     letterSpacing: '-0.1px',
@@ -118,10 +114,10 @@ class PaymentMethodsForm extends Component {
       this.card.addEventListener('change', this.handleCardValueChange);
       // EventListener is the only way to simulate breakpoints with Stripe.
       window.addEventListener('resize', () => {
-        if (window.innerWidth < 768) {
-          this.card.update({ style: { base: { fontSize: '14px', lineHeight: '24px' } } });
-        } else {
+        if (window.innerWidth < 1024) {
           this.card.update({ style: { base: { fontSize: '18px', lineHeight: '24px' } } });
+        } else {
+          this.card.update({ style: { base: { fontSize: '20px', lineHeight: '32px' } } });
         }
       });
     }
@@ -241,7 +237,7 @@ class PaymentMethodsForm extends Component {
             <FormattedMessage id="PaymentMethodsForm.billingDetails" />
           </h3>
 
-          <FieldTextInput
+          <FieldTextInputOval
             className={css.field}
             type="text"
             id="name"

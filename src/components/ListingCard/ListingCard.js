@@ -4,13 +4,16 @@ import { FormattedMessage, intlShape, injectIntl } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { lazyLoadWithDimensions } from '../../util/contextHelpers';
 import { LINE_ITEM_DAY, LINE_ITEM_NIGHT, propTypes } from '../../util/types';
-import { formatMoney } from '../../util/currency';
+import { formatMoney } from '../../util/currencymap';
 import { ensureListing } from '../../util/data';
 import { richText } from '../../util/richText';
 import { findOptionsForSelectFilter } from '../../util/search';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
 import { NamedLink, ResponsiveImage } from '../../components';
+import idImage from './images/badge-id.png';
+import charterImage from './images/badge-charter.png';
+import ReactTooltip from 'react-tooltip';
 
 import css from './ListingCard.module.css';
 
@@ -61,8 +64,8 @@ export const ListingCardComponent = props => {
   const id = currentListing.id.uuid;
   const { title = '', price, publicData } = currentListing.attributes;
   const slug = createSlug(title);
-  const firstImage =
-    currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
+  const profileImage =
+    currentListing.author && currentListing.author.profileImage ? currentListing.author.profileImage : null;
 
   const certificateOptions = findOptionsForSelectFilter('certificate', filtersConfig);
   const certificate = publicData
@@ -87,12 +90,12 @@ export const ListingCardComponent = props => {
         onMouseEnter={() => setActiveListing(currentListing.id)}
         onMouseLeave={() => setActiveListing(null)}
       >
-        <div className={css.aspectWrapper}>
+        <div className={css.aspectWrapper} align="center" >
           <LazyImage
             rootClassName={css.rootForImage}
             alt={title}
-            image={firstImage}
-            variants={['landscape-crop', 'landscape-crop2x']}
+            image={profileImage}
+            variants={['square-small', 'square-small2x']}
             sizes={renderSizes}
           />
         </div>
@@ -107,17 +110,24 @@ export const ListingCardComponent = props => {
           </div>
         </div>
         <div className={css.mainInfo}>
+        <ReactTooltip />
           <div className={css.title}>
             {richText(title, {
               longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS,
               longWordClass: css.longWord,
             })}
-          </div>
+            </div>
+            <div data-tip="ID Verified" data-class="tooltip" data-delay-show="500" data-text-color="white" data-background-color="#098686" data-border="true" data-border-color="red" data-margin="0" >
+            <img className={css.iconImageLeft} src={idImage} alt="ID Verified" rel="nofollow" />
+            </div>
+            <div data-tip="Founding Member" data-class="tooltip" data-delay-show="500" data-html="true" data-text-color="white" data-background-color="#098686" data-border="true" data-border-color="red" data-margin="0" >
+            <img className={css.iconImage} src={charterImage} alt="Charter Member" />
+            </div>
+            </div>
           <div className={css.certificateInfo}>
             {certificate && !certificate.hideFromListingInfo ? (
               <span>{certificate.label}</span>
             ) : null}
-          </div>
         </div>
       </div>
     </NamedLink>

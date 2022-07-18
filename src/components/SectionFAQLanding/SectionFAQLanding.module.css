@@ -1,0 +1,228 @@
+@import '../../styles/propertySets.css';
+
+.FAQ {
+  width: 900px;
+  @media (--viewportMedium) {
+  }
+}
+
+.heading {
+  @apply --marketplaceH2FontStyles;
+  color: var(--matterColorBlue);
+  font-size: 18px;
+  font-family: "Poppins";
+}
+.link {
+  /* Font */
+  @apply --marketplaceH5FontStyles;
+  line-height: 18px;
+  color: var(--matterColorBlue);
+  transition: var(--transitionStyleButton);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 12px;
+  margin: auto;
+  font-weight: 600;
+  &:hover {
+    color: var(--marketplaceColor);
+    text-decoration: none;
+  }
+}
+.title {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorRed);
+  font-style: italic;
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 42px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  @media (--viewportMedium) {
+  font-size: 60px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  }
+  @media (--viewportLarge) {
+  font-size: 60px;
+  }
+}
+
+.subtitle {
+  color: var(--matterColorBlue);
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  @media (--viewportMedium) {
+  font-size: 24px;
+  margin-bottom: 20px;
+  }
+}
+.linktext {
+  font-family: "Poppins";
+  font-size: 18px;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  @media (--viewportMedium) {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  }
+}
+.howitworksButton {
+  @apply --marketplaceButtonStyles;
+  font-size: 24px;
+  line-height: 26px;
+  padding: 7px 0 7px 0;
+  font-family: "architects daughter";
+  border-radius: 15px;
+  margin: auto;
+  width: 150px;
+  height: 65px;
+  margin-bottom: 30px;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 160px;
+    margin-bottom: 20px;
+  }
+}
+
+.FAQsteps {
+  @media (--viewportMedium) {
+    width: 500px;
+    margin: auto;
+  }
+}
+
+.FAQstep {
+    width: 324px;
+  margin-bottom: 50px;
+  @media (--viewportMedium) {
+    width: 324px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+  }
+}
+.accordion {
+    border: 3px solid var(--matterColorBlue);
+    border-radius: 2px;
+}
+
+.accordion__item + .accordion__item {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.accordion__button {
+    background-color: #f4f4f4;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    line-height: 22px;
+    border: none;
+}
+.accordion__button_top {
+    background-color: #f4f4f4;
+    color: var(--matterColorBlue);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    line-height: 22px;
+    border: none;
+    border-radius: 10px 10px 0px 0px;
+    @media (--viewportMedium) {
+}
+}
+.accordion__button_top:hover {
+    background-color: #098686;
+    color: #fff;
+}
+
+.accordion__button:hover {
+    background-color: #ddd;
+}
+
+.accordion__button_top:before {
+    display: inline-block;
+    content: '';
+    height: 10px;
+    width: 10px;
+    line-height: 22px;
+    margin-right: 12px;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(-45deg);
+}
+
+.accordion__button_top[aria-expanded='true']::before,
+.accordion__button_top[aria-selected='true']::before {
+    transform: rotate(45deg);
+}
+.accordion__button_bottom {
+    background-color: #f4f4f4;
+    color: var(--matterColorBlue);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 0px 0px 10px 10px;
+    @media (--viewportMedium) {
+}
+}
+.accordion__button_bottom:hover {
+    background-color: #098686;
+    color: #fff;
+}
+
+.accordion__button:hover {
+    background-color: #ddd;
+}
+
+.accordion__button_bottom:before {
+    display: inline-block;
+    content: '';
+    height: 10px;
+    width: 10px;
+    margin-right: 12px;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(-45deg);
+}
+
+.accordion__button_bottom[aria-expanded='true']::before,
+.accordion__button_bottom[aria-selected='true']::before {
+    transform: rotate(45deg);
+}
+
+[hidden] {
+    display: none;
+}
+
+.accordion__panel {
+    padding: 20px;
+    animation: fadein 0.35s ease-in;
+}
+
+/* -------------------------------------------------- */
+/* ---------------- Animation part ------------------ */
+/* -------------------------------------------------- */
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

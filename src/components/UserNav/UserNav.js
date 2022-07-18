@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { ACCOUNT_SETTINGS_PAGES } from '../../routeConfiguration';
@@ -42,21 +43,10 @@ const listingTab = (listing, selectedPageName) => {
 };
 
 const UserNav = props => {
-  const { className, rootClassName, selectedPageName, listing } = props;
+  const { className, rootClassName, selectedPageName, listing, currentUserRole } = props;
   const classes = classNames(rootClassName || css.root, className);
 
   const tabs = [
-    {
-      ...listingTab(listing, selectedPageName),
-    },
-    {
-      text: <FormattedMessage id="UserNav.profileSettingsPage" />,
-      selected: selectedPageName === 'ProfileSettingsPage',
-      disabled: false,
-      linkProps: {
-        name: 'ProfileSettingsPage',
-      },
-    },
     {
       text: <FormattedMessage id="UserNav.contactDetailsPage" />,
       selected: ACCOUNT_SETTINGS_PAGES.includes(selectedPageName),
@@ -66,6 +56,21 @@ const UserNav = props => {
       },
     },
   ];
+
+  if (currentUserRole === 'seller') {
+    tabs.unshift({
+      ...listingTab(listing, selectedPageName, currentUserRole),
+    })
+  } else if ( currentUserRole === 'buyer' ) {
+    tabs.unshift({
+      text: <FormattedMessage id="UserNav.profileSettingsPage" />,
+      selected: selectedPageName === 'ProfileSettingsPage',
+      disabled: false,
+      linkProps: {
+        name: 'ProfileSettingsPage',
+      },
+    },)
+  }
 
   return (
     <LinkTabNavHorizontal className={classes} tabRootClassName={css.tab} tabs={tabs} skin="dark" />
@@ -85,4 +90,16 @@ UserNav.propTypes = {
   selectedPageName: string.isRequired,
 };
 
-export default UserNav;
+const mapStateToProps = state => {
+  const {
+    currentUserRole,
+  } = state.user;
+
+  return {
+    currentUserRole,
+  };
+};
+
+const UserNavContainer = connect(mapStateToProps)(UserNav);
+
+export default UserNavContainer;

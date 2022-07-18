@@ -55,8 +55,9 @@ exports[`AuthenticationPageComponent matches snapshot 1`] = `
                   "text": <h1
                     className="tab"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="AuthenticationPage.signupLinkText"
+                      values={Object {}}
                     />
                   </h1>,
                 },
@@ -73,8 +74,9 @@ exports[`AuthenticationPageComponent matches snapshot 1`] = `
                   "text": <h1
                     className="tab"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="AuthenticationPage.loginLinkText"
+                      values={Object {}}
                     />
                   </h1>,
                 },
@@ -101,8 +103,9 @@ exports[`AuthenticationPageComponent matches snapshot 1`] = `
           <h2
             className="termsHeading"
           >
-            <MemoizedFormattedMessage
+            <FormattedMessage
               id="AuthenticationPage.termsHeading"
+              values={Object {}}
             />
           </h2>
           <TermsOfService
@@ -177,8 +180,9 @@ exports[`AuthenticationPageComponent with Facebook login matches snapshot 1`] = 
                   "text": <h1
                     className="tab"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="AuthenticationPage.signupLinkText"
+                      values={Object {}}
                     />
                   </h1>,
                 },
@@ -195,8 +199,9 @@ exports[`AuthenticationPageComponent with Facebook login matches snapshot 1`] = 
                   "text": <h1
                     className="tab"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="AuthenticationPage.loginLinkText"
+                      values={Object {}}
                     />
                   </h1>,
                 },
@@ -217,8 +222,9 @@ exports[`AuthenticationPageComponent with Facebook login matches snapshot 1`] = 
               <span
                 className="socialButtonsOrText"
               >
-                <MemoizedFormattedMessage
+                <FormattedMessage
                   id="AuthenticationPage.or"
+                  values={Object {}}
                 />
               </span>
             </div>
@@ -243,8 +249,9 @@ exports[`AuthenticationPageComponent with Facebook login matches snapshot 1`] = 
                     />
                   </svg>
                 </span>
-                <MemoizedFormattedMessage
+                <FormattedMessage
                   id="AuthenticationPage.loginWithFacebook"
+                  values={Object {}}
                 />
               </SocialLoginButton>
             </div>
@@ -264,8 +271,9 @@ exports[`AuthenticationPageComponent with Facebook login matches snapshot 1`] = 
           <h2
             className="termsHeading"
           >
-            <MemoizedFormattedMessage
+            <FormattedMessage
               id="AuthenticationPage.termsHeading"
+              values={Object {}}
             />
           </h2>
           <TermsOfService
@@ -340,8 +348,9 @@ exports[`AuthenticationPageComponent with Google and Facebook login matches snap
                   "text": <h1
                     className="tab"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="AuthenticationPage.signupLinkText"
+                      values={Object {}}
                     />
                   </h1>,
                 },
@@ -358,8 +367,9 @@ exports[`AuthenticationPageComponent with Google and Facebook login matches snap
                   "text": <h1
                     className="tab"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="AuthenticationPage.loginLinkText"
+                      values={Object {}}
                     />
                   </h1>,
                 },
@@ -380,8 +390,9 @@ exports[`AuthenticationPageComponent with Google and Facebook login matches snap
               <span
                 className="socialButtonsOrText"
               >
-                <MemoizedFormattedMessage
+                <FormattedMessage
                   id="AuthenticationPage.or"
+                  values={Object {}}
                 />
               </span>
             </div>
@@ -406,8 +417,9 @@ exports[`AuthenticationPageComponent with Google and Facebook login matches snap
                     />
                   </svg>
                 </span>
-                <MemoizedFormattedMessage
+                <FormattedMessage
                   id="AuthenticationPage.loginWithFacebook"
+                  values={Object {}}
                 />
               </SocialLoginButton>
             </div>
@@ -451,8 +463,9 @@ exports[`AuthenticationPageComponent with Google and Facebook login matches snap
                     </g>
                   </svg>
                 </span>
-                <MemoizedFormattedMessage
+                <FormattedMessage
                   id="AuthenticationPage.loginWithGoogle"
+                  values={Object {}}
                 />
               </SocialLoginButton>
             </div>
@@ -472,8 +485,9 @@ exports[`AuthenticationPageComponent with Google and Facebook login matches snap
           <h2
             className="termsHeading"
           >
-            <MemoizedFormattedMessage
+            <FormattedMessage
               id="AuthenticationPage.termsHeading"
+              values={Object {}}
             />
           </h2>
           <TermsOfService
@@ -548,8 +562,9 @@ exports[`AuthenticationPageComponent with Google login matches snapshot 1`] = `
                   "text": <h1
                     className="tab"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="AuthenticationPage.signupLinkText"
+                      values={Object {}}
                     />
                   </h1>,
                 },
@@ -566,8 +581,9 @@ exports[`AuthenticationPageComponent with Google login matches snapshot 1`] = `
                   "text": <h1
                     className="tab"
                   >
-                    <Memo(MemoizedFormattedMessage)
+                    <FormattedMessage
                       id="AuthenticationPage.loginLinkText"
+                      values={Object {}}
                     />
                   </h1>,
                 },
@@ -588,8 +604,9 @@ exports[`AuthenticationPageComponent with Google login matches snapshot 1`] = `
               <span
                 className="socialButtonsOrText"
               >
-                <MemoizedFormattedMessage
+                <FormattedMessage
                   id="AuthenticationPage.or"
+                  values={Object {}}
                 />
               </span>
             </div>
@@ -633,8 +650,9 @@ exports[`AuthenticationPageComponent with Google login matches snapshot 1`] = `
                     </g>
                   </svg>
                 </span>
-                <MemoizedFormattedMessage
+                <FormattedMessage
                   id="AuthenticationPage.loginWithGoogle"
+                  values={Object {}}
                 />
               </SocialLoginButton>
             </div>
@@ -654,8 +672,9 @@ exports[`AuthenticationPageComponent with Google login matches snapshot 1`] = `
           <h2
             className="termsHeading"
           >
-            <MemoizedFormattedMessage
+            <FormattedMessage
               id="AuthenticationPage.termsHeading"
+              values={Object {}}
             />
           </h2>
           <TermsOfService

@@ -5,7 +5,7 @@ import { injectIntl, intlShape } from '../../util/reactIntl';
 import classNames from 'classnames';
 import config from '../../config';
 import { propTypes } from '../../util/types';
-import { formatMoney } from '../../util/currency';
+import { formatMoney } from '../../util/currencymap';
 import { ensureListing } from '../../util/data';
 import { ResponsiveImage } from '../../components';
 
@@ -18,7 +18,7 @@ const ListingCard = props => {
   const { title, price } = listing.attributes;
   const formattedPrice =
     price && price.currency === config.currency ? formatMoney(intl, price) : price.currency;
-  const firstImage = listing.images && listing.images.length > 0 ? listing.images[0] : null;
+  const firstImage = listing.author && listing.author.profileImage && listing.author.profileImage;
 
   // listing card anchor needs sometimes inherited border radius.
   const classes = classNames(
@@ -45,20 +45,20 @@ const ListingCard = props => {
         })}
       >
         <div className={classNames(css.threeToTwoWrapper, css.borderRadiusInheritTop)}>
-          <div className={classNames(css.aspectWrapper, css.borderRadiusInheritTop)}>
+          <div className={classNames(css.aspectWrapper, css.borderRadiusRound)}>
             <ResponsiveImage
-              rootClassName={classNames(css.rootForImage, css.borderRadiusInheritTop)}
+              rootClassName={classNames(css.rootForImage, css.borderRadiusRound)}
               alt={title}
               noImageMessage={intl.formatMessage({ id: 'SearchMapInfoCard.noImage' })}
               image={firstImage}
-              variants={['landscape-crop', 'landscape-crop2x']}
-              sizes="250px"
+              variants={['square-small', 'square-small2x']}
+              sizes="100px"
             />
           </div>
         </div>
-        <div className={classNames(css.info, { [css.borderRadiusInheritBottom]: !isInCarousel })}>
-          <div className={css.price}>{formattedPrice}</div>
-          <div className={css.name}>{title}</div>
+        <div align="center" className={classNames(css.info, { [css.borderRadiusInheritBottom]: !isInCarousel })}>
+        <div className={css.name}>{title}<br/></div>
+        <div className={css.price}>{formattedPrice}</div>
         </div>
       </div>
     </a>

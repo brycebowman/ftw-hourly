@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   position: relative;
@@ -9,12 +9,21 @@
   display: flex;
   width: 24px;
   align-self: stretch;
-  border-bottom: 2px solid var(--marketplaceColor);
+  border: 1px solid var(--matterColorBlue);
+  border-radius: 10px;
   background-color: var(--matterColorLight);
+}
+.locationAutocompleteInputIcon {
+  display: none;
 }
 
 .iconSvg {
   margin: auto;
+}
+
+.iconSvgNone {
+  margin: auto;
+  display: none;
 }
 
 .iconSvgGroup {
@@ -37,7 +46,8 @@
   padding-left: 10px;
   margin: 0;
   line-height: unset;
-  border-bottom-width: 2px;
+  border: 1px solid var(--matterColorBlue);
+  border-radius: 10px;
 
   /* Safari bugfix: without this Safari will print placeholder to a wrong place */
   &::-webkit-input-placeholder {
@@ -46,11 +56,33 @@
 
   &:hover,
   &:focus {
-    border-bottom-color: var(--marketplaceColor);
+    border: 1px solid var(--matterColorBlue);
+    border-radius: 10px;
     outline: none;
   }
 }
 
+.inputnoicon {
+  flex-grow: 1;
+  height: var(--LocationAutocompleteProfileInput_inputHeight);
+  padding-left: 10px;
+  margin: 0;
+  line-height: unset;
+  border: 1px solid var(--matterColorBlue);
+  border-radius: 10px;
+
+  /* Safari bugfix: without this Safari will print placeholder to a wrong place */
+  &::-webkit-input-placeholder {
+    line-height: normal;
+  }
+
+  &:hover,
+  &:focus {
+    border: 1px solid var(--matterColorBlue);
+    border-radius: 10px;
+    outline: none;
+  }
+}
 /*
 Predictions container can be overriden with new container styles for
 size and position, etc.
@@ -61,7 +93,7 @@ size and position, etc.
   padding-bottom: var(--locationAutocompleteBottomPadding);
   top: var(--LocationAutocompleteInput_inputHeight);
   left: 0;
-  background-color: var(--marketplaceColor);
+  background-color: var(--matterColorBlue);
   border-bottom-left-radius: var(--borderRadius);
   border-bottom-right-radius: var(--borderRadius);
   box-shadow: var(--boxShadowPopup);
@@ -89,7 +121,7 @@ bottom of the container.
 
 /* List of predictions, with a responsive padding size */
 .predictions {
-  composes: marketplaceBodyFontStyles from global;
+  @apply --marketplaceBodyFontStyles;
 
   margin: 0;
   padding: 14px 0;
@@ -121,7 +153,7 @@ bottom of the container.
 }
 
 .currentLocation {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
 }
 
 .currentLocationIcon {

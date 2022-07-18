@@ -1,15 +1,17 @@
+@import '../../styles/propertySets.css';
+
 .root {
   /* Adding empty .root class to enforce className overwrite */
 }
 
 /* Title of the modal */
 .modalTitle {
-  composes: marketplaceModalTitleStyles from global;
+  @apply --marketplaceModalTitleStyles;
 }
 
 /* Paragraph for the Modal */
 .modalMessage {
-  composes: marketplaceModalParagraphStyles from global;
+  @apply --marketplaceModalParagraphStyles;
 }
 
 /* Make the email pop */
@@ -18,29 +20,29 @@
 }
 
 .helperLink {
-  composes: a from global;
-  composes: marketplaceModalHelperLink from global;
+  @apply --marketplaceLinkStyles;
+  @apply --marketplaceModalHelperLink;
 }
 
 .helperText {
-  composes: marketplaceModalHelperText from global;
+  @apply --marketplaceModalHelperText;
 }
 
 .error {
-  composes: marketplaceModalPasswordMargins from global;
+  @apply --marketplaceModalErrorStyles;
 }
 
 .bottomWrapper {
-  composes: marketplaceModalBottomWrapper from global;
+  @apply --marketplaceModalBottomWrapper;
 
   /* Align the helper links to the left since there isn't a Primary Button anymore */
   text-align: left;
 }
 
 .modalIcon {
-  composes: marketplaceModalIconStyles from global;
+  @apply --marketplaceModalIconStyles;
 }
 
 .reminderModalLinkButton {
-  composes: button buttonFont buttonText buttonBorders buttonColorsPrimary from global;
+  @apply --marketplaceButtonStylesPrimary;
 }

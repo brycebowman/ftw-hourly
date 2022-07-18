@@ -129,18 +129,9 @@ export const localizeAndFormatDate = (intl, timeZone, date, formattingOptions = 
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
-
-    // With the default `en` locale, times are formatted in the en-US format:
-    // "05:45 PM". If you want to keep the English language, but customize the
-    // time formatting, you can use the `hourCycle` option here.
-    //
-    // Formerly FTW hourly used the `hour12: false` option here, which is the
-    // same as `hourCycle: 'h24'`.
-    //
-    // To see the possible values for `hourCycle` and how they render times, see:
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/hourCycle
     hour: '2-digit',
     minute: '2-digit',
+    hour12: true,
   };
 
   return intl.formatTime(date, { ...format, timeZone });
@@ -164,12 +155,10 @@ export const localizeAndFormatTime = (
   intl,
   timeZone,
   date,
-
-  // Override default formatting options. See the `localizeAndFormatDate`
-  // function above for more info on the options.
   formattingOptions = {
     hour: '2-digit',
     minute: '2-digit',
+    hour12: true,
   }
 ) => {
   return localizeAndFormatDate(intl, timeZone, date, formattingOptions);
@@ -446,15 +435,19 @@ export const isSameDay = (date1, date2, timeZone) => {
 };
 
 /**
- * Count the number of minutes between the given Date objects.
+ * Calculate the number of minutes between the given dates
  *
  * @param {Date} startDate start of the time period
  * @param {Date} endDate end of the time period.
  *
+ * @throws Will throw if the end date is before the start date
  * @returns {Number} number of minutes between the given Date objects
  */
 export const minutesBetween = (startDate, endDate) => {
   const minutes = moment(endDate).diff(startDate, 'minutes');
+  if (minutes < 0) {
+    throw new Error('End Date cannot be before start Date');
+  }
   return minutes;
 };
 

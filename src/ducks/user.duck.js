@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import { denormalisedResponseEntities, ensureOwnListing } from '../util/data';
 import { storableError } from '../util/errors';
 import { transitionsToRequested } from '../util/transaction';
@@ -12,6 +13,8 @@ import { util as sdkUtil } from '../util/sdkLoader';
 export const CURRENT_USER_SHOW_REQUEST = 'app/user/CURRENT_USER_SHOW_REQUEST';
 export const CURRENT_USER_SHOW_SUCCESS = 'app/user/CURRENT_USER_SHOW_SUCCESS';
 export const CURRENT_USER_SHOW_ERROR = 'app/user/CURRENT_USER_SHOW_ERROR';
+
+export const CURRENT_USER_ROLE_SUCCESS = 'app/user/CURRENT_USER_ROLE_SUCCESS';
 
 export const CLEAR_CURRENT_USER = 'app/user/CLEAR_CURRENT_USER';
 
@@ -57,6 +60,7 @@ const mergeCurrentUser = (oldCurrentUser, newCurrentUser) => {
 
 const initialState = {
   currentUser: null,
+  currentUserRole: null,
   currentUserShowError: null,
   currentUserHasListings: false,
   currentUserHasListingsError: null,
@@ -82,10 +86,14 @@ export default function reducer(state = initialState, action = {}) {
       console.error(payload);
       return { ...state, currentUserShowError: payload };
 
+    case CURRENT_USER_ROLE_SUCCESS:
+      return { ...state, currentUserRole: payload.role };
+
     case CLEAR_CURRENT_USER:
       return {
         ...state,
         currentUser: null,
+        currentUserRole: null,
         currentUserShowError: null,
         currentUserHasListings: false,
         currentUserHasListingsError: null,
@@ -177,6 +185,11 @@ export const currentUserShowError = e => ({
   payload: e,
   error: true,
 });
+
+export const setCurrentUserRole = role => ({
+  type: CURRENT_USER_ROLE_SUCCESS,
+  payload: { role },
+})
 
 export const clearCurrentUser = () => ({ type: CLEAR_CURRENT_USER });
 
@@ -359,6 +372,8 @@ export const fetchCurrentUser = (params = null) => (dispatch, getState, sdk) => 
       if (currentUser.stripeAccount) {
         dispatch(stripeAccountCreateSuccess(currentUser.stripeAccount));
       }
+
+      dispatch(setCurrentUserRole(get(currentUser, 'attributes.profile.protectedData.role') || 'buyer'));
 
       // set current user id to the logger
       log.setUserId(currentUser.id.uuid);

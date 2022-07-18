@@ -1,10 +1,10 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
 }
 
 .heading {
-  composes: h1 from global;
+  @apply --marketplaceH1FontStyles;
   margin: 0 0 18px 0;
 
   @media (--viewportMedium) {
@@ -104,7 +104,7 @@
 }
 
 .text {
-  composes: h2 from global;
+  @apply --marketplaceH2FontStyles;
   color: var(--matterColor);
   margin-top: 15px;
   margin-bottom: 0;

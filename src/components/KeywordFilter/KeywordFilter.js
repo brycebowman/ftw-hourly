@@ -3,7 +3,7 @@ import { arrayOf, func, number, shape, string } from 'prop-types';
 import classNames from 'classnames';
 import { injectIntl, intlShape } from '../../util/reactIntl';
 import debounce from 'lodash/debounce';
-import { FieldTextInput } from '../../components';
+import { FieldTextInputOval } from '../../components';
 
 import { FilterPopup, FilterPlain } from '../../components';
 import css from './KeywordFilter.module.css';
@@ -159,7 +159,7 @@ class KeywordFilter extends Component {
         keepDirtyOnReinitialize
         {...rest}
       >
-        <FieldTextInput
+        <FieldTextInputOval
           className={css.field}
           name={name}
           id={`${id}-input`}
@@ -185,7 +185,7 @@ class KeywordFilter extends Component {
       >
         <fieldset className={css.fieldPlain}>
           <label>{filterText}</label>
-          <FieldTextInput
+          <FieldTextInputOval
             name={name}
             id={`${id}-input`}
             isUncontrolled

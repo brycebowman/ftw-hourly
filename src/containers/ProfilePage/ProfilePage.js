@@ -12,6 +12,7 @@ import {
   Page,
   LayoutSideNavigation,
   LayoutWrapperMain,
+  LayoutSingleColumn,
   LayoutWrapperSideNav,
   LayoutWrapperTopbar,
   LayoutWrapperFooter,
@@ -68,10 +69,12 @@ export class ProfilePageComponent extends Component {
     const profileUser = ensureUser(user);
     const isCurrentUser =
       ensuredCurrentUser.id && profileUser.id && ensuredCurrentUser.id.uuid === profileUser.id.uuid;
-    const displayName = profileUser.attributes.profile.displayName;
-    const bio = profileUser.attributes.profile.bio;
+
+    const { displayName, bio, publicData } = profileUser.attributes.profile;
+    const { restaurantName, restaurantAddressString, restaurantDescription } = (publicData || {})
     const hasBio = !!bio;
     const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
+
 
     const editLinkMobile = isCurrentUser ? (
       <NamedLink className={css.editLinkMobile} name="ProfileSettingsPage">
@@ -84,8 +87,8 @@ export class ProfilePageComponent extends Component {
       </NamedLink>
     ) : null;
 
-    const asideContent = (
-      <div className={css.asideContent}>
+    const restaurantImage = (
+      <div className={css.restaurantImage}>
         <AvatarLarge className={css.avatar} user={user} disableProfileLink />
         <h1 className={css.mobileHeading}>
           {displayName ? (
@@ -131,19 +134,7 @@ export class ProfilePageComponent extends Component {
     const desktopReviewTabs = [
       {
         text: (
-          <h3 className={css.desktopReviewsTitle}>
-            <FormattedMessage
-              id="ProfilePage.reviewsOfProviderTitle"
-              values={{ count: reviewsOfProvider.length }}
-            />
-          </h3>
-        ),
-        selected: this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER,
-        onClick: this.showOfProviderReviews,
-      },
-      {
-        text: (
-          <h3 className={css.desktopReviewsTitle}>
+          <h3 className={css.subtitle}>
             <FormattedMessage
               id="ProfilePage.reviewsOfCustomerTitle"
               values={{ count: reviewsOfCustomer.length }}
@@ -171,10 +162,16 @@ export class ProfilePageComponent extends Component {
 
     const mainContent = (
       <div>
-        <h1 className={css.desktopHeading}>
-          <FormattedMessage id="ProfilePage.desktopHeading" values={{ name: displayName }} />
-        </h1>
-        {hasBio ? <p className={css.bio}>{bio}</p> : null}
+            <div>
+            <h3 className={css.subtitle}>
+            From the Restaurant</h3>
+            <p>"{restaurantDescription}"</p>
+          </div>
+          <div>
+          <h3 className={css.subtitle}>
+          Location</h3>
+          <p class={css.location}>{restaurantAddressString}</p>
+        </div>
         {isMobileLayout ? mobileReviews : desktopReviews}
       </div>
     );
@@ -213,16 +210,32 @@ export class ProfilePageComponent extends Component {
           name: schemaTitle,
         }}
       >
-        <LayoutSideNavigation>
+      <LayoutSingleColumn>
           <LayoutWrapperTopbar>
             <TopbarContainer currentPage="ProfilePage" />
           </LayoutWrapperTopbar>
-          <LayoutWrapperSideNav className={css.aside}>{asideContent}</LayoutWrapperSideNav>
-          <LayoutWrapperMain>{content}</LayoutWrapperMain>
+          <LayoutWrapperMain>
+          <div className={css.Top}>
+          <h1 className={css.pageHeading}>
+          Restaurant Profile
+          </h1>
+          </div>
+          <div className={css.Main}>
+          <div className={css.step}>
+          {restaurantImage}
+          <h1 className={css.desktopHeading}>
+          {restaurantName}
+          </h1>
+          </div>
+          <div className={css.step}>
+          {content}
+          </div>
+          </div>
+          </LayoutWrapperMain>
           <LayoutWrapperFooter>
             <Footer />
           </LayoutWrapperFooter>
-        </LayoutSideNavigation>
+        </LayoutSingleColumn>
       </Page>
     );
   }

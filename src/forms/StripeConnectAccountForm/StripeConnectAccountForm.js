@@ -10,12 +10,14 @@ import routeConfiguration from '../../routeConfiguration';
 import { createResourceLocatorString } from '../../util/routes';
 import { isStripeError } from '../../util/errors';
 import * as validators from '../../util/validators';
+import StripeImage from './images/stripe-logo-cropped.png';
 import { propTypes } from '../../util/types';
 import {
   Button,
   ExternalLink,
   InlineTextButton,
   FieldSelect,
+  FieldSelectBanking,
   FieldRadioButton,
   Form,
   StripeBankAccountTokenInputField,
@@ -90,9 +92,15 @@ const CreateStripeAccountFields = props => {
 
   return (
     <div className={css.sectionContainer}>
+    <img className={css.iconImage} src={StripeImage} align="right" alt="Stripe Payments" />
       <h3 className={css.subTitle}>
-        <FormattedMessage id="StripeConnectAccountForm.accountTypeTitle" />
+        <FormattedMessage id="StripeConnectAccountForm.accountTypeTitle" values={{ lineBreak: <br />, pageBreak: <p></p> }} />
       </h3>
+      <h5 className={css.link}>
+      <FormattedMessage id="StripeConnectAccountForm.bankAccountNeed" values={{ lineBreak: <br />, pageBreak: <p></p> }} />
+      <a href="https://lili.co/" target="_blank">
+        <FormattedMessage id="StripeConnectAccountForm.bankAccountNeed2" values={{ lineBreak: <br />, pageBreak: <p></p> }} />
+      </a></h5>
       <div className={css.radioButtonRow}>
         <FieldRadioButton
           id="individual"
@@ -109,8 +117,7 @@ const CreateStripeAccountFields = props => {
           showAsRequired={showAsRequired}
         />
       </div>
-
-      <FieldSelect
+      <FieldSelectBanking
         id="country"
         name="country"
         disabled={disabled}
@@ -127,7 +134,7 @@ const CreateStripeAccountFields = props => {
             {intl.formatMessage({ id: `StripeConnectAccountForm.countryNames.${c}` })}
           </option>
         ))}
-      </FieldSelect>
+      </FieldSelectBanking>
 
       {country ? (
         <StripeBankAccountTokenInputField
@@ -298,14 +305,25 @@ const StripeConnectAccountFormComponent = props => {
             <FormattedMessage id="StripeConnectAccountForm.stripeConnectedAccountTermsLink" />
           </ExternalLink>
         );
+        const stripeSiteLink = (
+          <ExternalLink href="https://www.stripe.com" className={css.termsLink}>
+            <FormattedMessage id="StripeConnectAccountForm.stripeConnectedAccountSiteLink" />
+          </ExternalLink>
+        );
 
         // Don't show the submit button while fetching the Stripe account data
         const submitButtonMaybe =
           !stripeConnected || accountDataLoaded ? (
             <>
               <p className={css.termsText}>
+              <FormattedMessage
+                id="StripeConnectAccountForm.stripeToSText"
+                values={{ stripeSiteLink }}
+              />
+              <br />
+              <br />
                 <FormattedMessage
-                  id="StripeConnectAccountForm.stripeToSText"
+                  id="StripeConnectAccountForm.stripeToSText2"
                   values={{ stripeConnectedAccountTermsLink }}
                 />
               </p>

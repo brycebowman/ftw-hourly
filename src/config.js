@@ -6,13 +6,6 @@ import { currencyConfiguration } from './currency-config';
 const env = process.env.REACT_APP_ENV;
 const dev = process.env.REACT_APP_ENV === 'development';
 
-// CDN assets for the app. Configurable through Flex Console.
-// Currently, only translation.json is available.
-// Note: the path must match the path defined in Asset Delivery API
-const appCdnAssets = {
-  translations: 'content/translations.json',
-};
-
 // If you want to change the language, remember to also change the
 // locale data and the messages in the app.js file.
 const locale = 'en';
@@ -30,7 +23,7 @@ const i18n = {
 // NOTE: If this is set to true add parameter 'origin' to every location in default-location-searches.js
 // Without the 'origin' parameter, search will not work correctly
 // NOTE: Keyword search and ordering search results by distance can't be used at the same time. You can turn keyword
-// search off by removing keyword filter config from filters array in marketplace-custom-config.js
+// search off by changing the keywordFilterConfig parameter active to false in marketplace-custom-config.js
 const sortSearchByDistance = false;
 
 // API supports custom processes to be used in booking process.
@@ -64,7 +57,7 @@ const enableAvailability = process.env.REACT_APP_AVAILABILITY_ENABLED === 'true'
 //
 // See also the API reference for querying time slots:
 // https://www.sharetribe.com/api-reference/marketplace.html#query-time-slots
-const dayCountAvailableForBooking = 90;
+const dayCountAvailableForBooking = 60;
 
 // To pass environment variables to the client app in the build
 // script, react-scripts (and the sharetribe-scripts fork of
@@ -72,7 +65,6 @@ const dayCountAvailableForBooking = 90;
 // exposing server secrets to the client side.
 const sdkClientId = process.env.REACT_APP_SHARETRIBE_SDK_CLIENT_ID;
 const sdkBaseUrl = process.env.REACT_APP_SHARETRIBE_SDK_BASE_URL;
-const sdkAssetCdnBaseUrl = process.env.REACT_APP_SHARETRIBE_SDK_ASSET_CDN_BASE_URL;
 const sdkTransitVerbose = process.env.REACT_APP_SHARETRIBE_SDK_TRANSIT_VERBOSE === 'true';
 
 // Marketplace currency.
@@ -86,7 +78,7 @@ const currencyConfig = currencyConfiguration(currency);
 
 // Listing minimum price in currency sub units, e.g. cents.
 // 0 means no restriction to the price
-const listingMinimumPriceSubUnits = 0;
+const listingMinimumPriceSubUnits = 1500;
 
 // Sentry DSN (Data Source Name), a client key for authenticating calls to Sentry
 const sentryDsn = process.env.REACT_APP_SENTRY_DSN;
@@ -104,16 +96,16 @@ const streetAddress = 'Bulevardi 14';
 const canonicalRootURL = process.env.REACT_APP_CANONICAL_ROOT_URL;
 
 // Site title is needed in meta tags (bots and social media sharing reads those)
-const siteTitle = 'Yogatime';
+const siteTitle = 'Café Temps';
 
 // Twitter handle is needed in meta tags (twitter:site). Start it with '@' character
-const siteTwitterHandle = '@sharetribe';
+const siteTwitterHandle = '@cafe_temps';
 
 // Instagram page is used in SEO schema (http://schema.org/Organization)
 const siteInstagramPage = null;
 
 // Facebook page is used in SEO schema (http://schema.org/Organization)
-const siteFacebookPage = 'https://www.facebook.com/Sharetribe/';
+const siteFacebookPage = 'https://www.facebook.com/CafeTemps/';
 
 // Social logins & SSO
 
@@ -140,7 +132,7 @@ const maps = {
 
     // Distance in meters for calculating the bounding box around the
     // current location.
-    currentLocationBoundsDistance: 1000,
+    currentLocationBoundsDistance: 6000,
 
     // Example location can be edited in the
     // `default-location-searches.js` file.
@@ -150,7 +142,7 @@ const maps = {
     // Limit location autocomplete to a one or more countries
     // using ISO 3166 alpha 2 country codes separated by commas.
     // If you want to limit the autocomplete, uncomment this value:
-    // countryLimit: ['AU'],
+  countryLimit: ['US'],
   },
 
   // When fuzzy locations are enabled, coordinates on maps are
@@ -166,32 +158,33 @@ const maps = {
     // the original coordinates. The actual value is random, but the
     // obfuscated coordinates are withing a circle that has the same
     // radius as the offset.
-    offset: 500,
+    offset: 1000,
 
     // Default zoom level when showing a single circle on a Map. Should
     // be small enough so the whole circle fits in.
-    defaultZoomLevel: 13,
+    defaultZoomLevel: 8,
 
     // Color of the circle on the Map component.
     circleColor: '#c0392b',
+    strokeColor: '#098686',
   },
 
   // Custom marker image to use in the Map component.
   //
   // NOTE: Not used if fuzzy locations are enabled.
   customMarker: {
-    enabled: false,
+    enabled: true,
 
     // Publicly accessible URL for the custom marker image.
     //
     // The easiest place is /public/static/icons/ folder, but then the
     // marker image is not available while developing through
     // localhost.
-    url: encodeURI(`${canonicalRootURL}/static/icons/map-marker-32x32.png`),
+    url: encodeURI(`https://www.cafetemps.com/static/icons/map-marker-chef.png`),
 
     // Dimensions of the marker image.
-    width: 32,
-    height: 32,
+    width: 64,
+    height: 64,
 
     // Position to anchor the image in relation to the coordinates,
     // ignored when using Mapbox.
@@ -205,7 +198,6 @@ const maps = {
 const config = {
   env,
   dev,
-  appCdnAssets,
   locale,
   bookingProcessAlias,
   bookingUnitType,
@@ -215,7 +207,6 @@ const config = {
   sdk: {
     clientId: sdkClientId,
     baseUrl: sdkBaseUrl,
-    assetCdnBaseUrl: sdkAssetCdnBaseUrl,
     transitVerbose: sdkTransitVerbose,
   },
   sortSearchByDistance,

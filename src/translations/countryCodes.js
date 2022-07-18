@@ -1,6 +1,7 @@
 // Add here the translations of the country names using key "<language_code>: 'transalation'" e.g. fi: 'Afganistan'
 // prettier-ignore
 const countryCodes = [
+  { code: 'US', en: 'United States', fr: 'États-Unis', es: 'Estados Unidos de América', de: 'Vereinigte Staaten von Amerika' },
   { code: 'AF', en: 'Afghanistan', fr: 'Afghanistan', es: 'Afganistán', de: 'Afghanistan' },
   { code: 'AX', en: 'Åland Islands', fr: 'Îles Åland', es: 'Islas Áland', de: 'Åland' },
   { code: 'AL', en: 'Albania', fr: 'Albanie', es: 'Albania', de: 'Albanien' },
@@ -236,7 +237,6 @@ const countryCodes = [
   { code: 'UA', en: 'Ukraine', fr: 'Ukraine', es: 'Ucrania', de: 'Ukraine' },
   { code: 'AE', en: 'United Arab Emirates', fr: 'Émirats Arabes Unis', es: 'Emiratos Árabes Unidos', de: 'Vereinigte Arabische Emirate' },
   { code: 'GB', en: 'United Kingdom', fr: 'Royaume-Uni', es: 'Reino Unido', de: 'Vereinigtes Königreich Großbritannien und Nordirland' },
-  { code: 'US', en: 'United States', fr: 'États-Unis', es: 'Estados Unidos de América', de: 'Vereinigte Staaten von Amerika' },
   { code: 'UM', en: 'United States Minor Outlying Islands', fr: 'Îles mineures éloignées des États-Unis', es: 'Islas Ultramarinas Menores de Estados Unidos', de: 'United States Minor Outlying Islands' },
   { code: 'UY', en: 'Uruguay', fr: 'Uruguay', es: 'Uruguay', de: 'Uruguay' },
   { code: 'UZ', en: 'Uzbekistan', fr: 'Ouzbékistan', es: 'Uzbekistán', de: 'Usbekistan' },

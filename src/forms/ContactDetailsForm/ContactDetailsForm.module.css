@@ -1,11 +1,11 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
 }
 
 /* Shared styles for infoText variants */
 .infoText {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
 
   display: inline-block;
   padding-left: 18px;
@@ -20,22 +20,34 @@
     margin-bottom: 1px;
   }
 }
+.firstName {
+  margin-right: 15px;
+}
+.label {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom:-3px;
+@media (--viewportMedium) {
+  margin-bottom: -5px;
+  }
+}
 .contactDetailsSection {
   margin-top: 16px;
-  margin-bottom: 46px;
+  margin-bottom: 0px;
   padding-top: 6px;
 
   @media (--viewportMedium) {
-    margin-bottom: 56px;
+    margin-bottom: 0px;
     padding-top: 0;
+    width: 70%;
   }
 }
 
 .phone {
-  margin-top: 24px;
-
+  margin-top: 0px;
+  width: 70%;
   @media (--viewportMedium) {
-    margin-top: 32px;
+    margin-top: 0px;
   }
 }
 
@@ -43,7 +55,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  margin-bottom: 60px;
+  margin-bottom: 0px;
   padding: 0;
   opacity: 0;
 }
@@ -105,7 +117,7 @@
   color: var(--matterColorAnti);
 
   margin-top: 0;
-  margin-bottom: 13px;
+  margin-bottom: 5px;
 
   @media (--viewportMedium) {
     margin-top: 0;
@@ -117,30 +129,43 @@
 
 .confirmChangesInfo {
   margin-top: 0;
-  margin-bottom: 37px;
+  margin-bottom: 7px;
 
   @media (--viewportMedium) {
-    margin-bottom: 48px;
+    margin-bottom: 8px;
   }
 }
 
 .bottomWrapper {
-  margin-top: 46px;
+  margin-top: 20px;
 
   @media (--viewportMedium) {
-    margin-top: 96px;
+    margin-top: 20px;
+    vertical-align: top;
   }
 }
 
 .error {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   color: var(--failColor);
   text-align: center;
   display: inline-block;
   width: 100%;
-  margin: 24px 0;
+  margin: 10px 0;
 
   @media (--viewportMedium) {
     margin: 24px 0;
+  }
+}
+
+.nameContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  margin-bottom: 24px;
+
+  @media (--viewportMedium) {
+    margin-top: 24px;
+    width: 80%;
   }
 }

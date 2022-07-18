@@ -9,13 +9,13 @@
 .heroContainer {
   display: flex;
   flex-direction: column;
-  min-height: 300px;
-  height: 67.5vh;
-  max-height: 600px;
-  padding: 0;
+  min-height: 500px;
+  height: 15.5vh;
+  max-height: 500px;
+  padding: 0px;
 
   @media (--viewportMedium) {
-    min-height: 500px;
+    min-height: 650px;
     height: 70vh;
     max-height: none;
   }
@@ -27,24 +27,37 @@
   }
 }
 
+.banner {
+}
+
 .hero {
   flex-grow: 1;
   justify-content: flex-end;
-  padding-bottom: 32px;
+  padding-bottom: 35px;
+  justify-content: center;
 
   @media (--viewportMedium) {
-    padding-bottom: 83px;
+    justify-content: center;
+    padding-bottom: 63px;
   }
 
   @media (--viewportLarge) {
     justify-content: center;
-    padding-top: 60px;
+    padding-top: 5px;
   }
+}
+  .LogoCarousel {
+    display: block;
+    @media (--viewportMedium) {
+    display: block;
+    margin-top: 20px;
+    }
 }
 
 .sections {
-  margin: 0;
-  padding-top: 1px;
+  background-color: #fff;
+  margin: 0px;
+  padding-top: 5px;
 }
 
 .section {
@@ -67,11 +80,12 @@
 }
 
 .sectionContent {
-  margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
-
+  margin: var(--LandingPage_sectionMarginTop) 15px 51px 24px;
   @media (--viewportMedium) {
     max-width: 100%;
-    margin: var(--LandingPage_sectionMarginTopMedium) 24px 60px 24px;
+    margin-top: 20px;
+    background-color: #fff;
+    margin: var(--LandingPage_sectionMarginTopMedium) 15px 60px 24px;
   }
 
   @media (--viewportLarge) {
@@ -93,23 +107,39 @@
 
 /* A bar on top of light sections */
 .section:nth-of-type(2n) .sectionContent::before {
-  background: var(--marketplaceColor);
+  background: var(--matterColorLight);
   content: '';
   display: block;
-  width: 109px;
-  height: 6px;
+  width: 0px;
+  height: 0px;
 
   /* Place the bar on top of .sectionContent top margin */
   position: relative;
   top: calc(-1 * var(--LandingPage_sectionMarginTop));
 
   @media (--viewportMedium) {
-    width: 192px;
-    height: 8px;
+    width: 0px;
+    height: 0px;
     top: calc(-1 * var(--LandingPage_sectionMarginTopMedium));
   }
 
   @media (--viewportLarge) {
     top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
+  }
+}
+
+.HowItWorksNew {
+  display: none;
+
+  @media (--viewportMedium) {
+    display: block;
+  }
+}
+
+.HowItWorksMobile {
+  display: block;
+
+  @media (--viewportMedium) {
+    display: none;
   }
 }

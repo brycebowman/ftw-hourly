@@ -402,6 +402,9 @@ export const InboxPageComponent = props => {
         </LayoutWrapperSideNav>
         <LayoutWrapperMain>
           {error}
+          <div className={css.link}>
+          <a href="https://help.cafetemps.com/article/how-do-workers-get-gigs" target="_blank">How Do Bookings Work?</a>
+          </div>
           <ul className={css.itemList}>
             {!fetchInProgress ? (
               transactions.map(toTxItem)

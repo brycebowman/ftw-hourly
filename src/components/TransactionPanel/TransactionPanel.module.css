@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   position: relative;
@@ -8,7 +8,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   @media (--viewportLarge) {
     flex-direction: row;
     max-width: 1128px;
@@ -21,7 +20,21 @@
     padding: 0;
   }
 }
-
+.subTitle {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorBlue);
+  margin-top: 15px;
+  margin-bottom: -5px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+  @media (--viewportMedium) {
+  font-size: 34px;
+  margin-top: 25px;
+    margin-bottom: 0px;
+  }
+}
 .txInfo {
   margin-bottom: 210px;
 
@@ -33,6 +46,111 @@
     margin-bottom: 0;
   }
 }
+
+.steps {
+  display: flex;
+  flex-direction: row;
+  margin-left: 2  0px;
+  @media (--viewportMedium) {
+    margin-left: 10px;
+    flex-direction: row;
+  }
+}
+
+.stepLeft {
+  margin-left: 5px;
+  margin-right: 5px;
+  border-right: dashed 2px var(--matterColorAnti);
+  width: 50%;
+  @media (--viewportMedium) {
+    border-right: none;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+.step {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 50%;
+  @media (--viewportMedium) {
+    width: 50%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+.stepName {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  margin-top: 15px;
+  margin-bottom: 2px;
+
+  @media (--viewportMedium) {
+    }
+  }
+  .instructions {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    margin-bottom: 2px;
+
+    @media (--viewportMedium) {
+      }
+    }
+.stepText {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-right: 30px;
+  @media (--viewportMedium) {
+    margin-left: 0px;
+    }
+  }
+  .listingName {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 17px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    color: var(--matterColorBlue);
+    @media (--viewportMedium) {
+      margin-left: 0px;
+      margin-top: 2px;
+      }
+    }
+    .stepDetails {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 17px;
+      margin-top: 5px;
+      margin-bottom: 0px;
+      margin-right: 10px;
+      color: var(--matterColorBlue);
+      @media (--viewportMedium) {
+        margin-left: 0px;
+        margin-top: 2px;
+        }
+      }
+
+.profilelink {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 3px;
+    text-decoration: underline;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    @media (--viewportMedium) {
+      margin-left: 0px;
+      }
+    }
 
 .genericError {
   color: var(--failColor);
@@ -104,7 +222,6 @@
 /* Passed-in props for DetailCardImage subcomponent */
 .imageWrapperMobile {
   position: relative;
-
   @media (--viewportLarge) {
     display: none;
   }
@@ -112,7 +229,7 @@
 
 .avatarWrapperMobile {
   composes: avatarWrapper;
-
+  margin-top: 50px;
   @media (--viewportLarge) {
     display: none;
   }
@@ -124,20 +241,31 @@
 
   @media (--viewportLarge) {
     display: block;
+    border-radius: 50%;
   }
 }
 
 .avatarWrapperProviderDesktop {
-  display: none;
-
+  display: block;
+  margin: auto;
+  margin-top: -5px;
   @media (--viewportLarge) {
     display: block;
-    margin-top: 119px;
+    margin-top: 5px;
   }
 }
 .avatarDesktop {
+  display: block;
+  margin: auto;
+  height: 130px;
+  width: 130px;
+  border-radius: 10px;
   @media (--viewportLarge) {
     display: flex;
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    margin-bottom: 5px;
   }
 }
 
@@ -159,7 +287,7 @@
 }
 
 .headingSale {
-  margin: 18px 24px 0 24px;
+  margin: 18px 24px 0 5px;
   padding: 5px 0 1px 0;
 
   @media (--viewportMedium) {
@@ -249,7 +377,7 @@
 }
 
 .detailCardSubtitle {
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
 
   margin-top: 0;
   margin-bottom: 0;
@@ -262,15 +390,15 @@
 
 /* AddressLinkMaybe subcomponent */
 .address {
-  composes: h5 from global;
-  color: var(--matterColorAnti);
+  @apply --marketplaceH5FontStyles;
+  color: var(--matterColorBlue);
   margin: 0;
 }
 
 /* Passed-in props for AddressLinkMaybe subcomponent */
 .addressMobile {
-  composes: h5 from global;
-  color: var(--matterColorAnti);
+  @apply --marketplaceH5FontStyles;
+  color: var(--matterColorBlue);
   margin: 0 24px 24px 24px;
 }
 
@@ -428,7 +556,7 @@
 }
 
 .actionError {
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   color: var(--failColor);
   margin: 0 0 11px 0;
 
@@ -476,7 +604,6 @@
 .bookingTitle {
   /* Font */
   color: var(--matterColor);
-
   margin-top: 0;
   margin-bottom: 1px;
 }

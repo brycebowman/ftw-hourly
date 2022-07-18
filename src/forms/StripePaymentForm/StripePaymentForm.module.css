@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   display: flex;
@@ -6,7 +6,7 @@
 }
 
 .card {
-  composes: marketplaceInputStyles from global;
+  @apply --marketplaceInputStyles;
 
   /* Layout */
   padding: 8px 0 6px 0;
@@ -43,7 +43,7 @@
 
 .paymentHeading {
   margin: 0 0 12px 0;
-  color: var(--matterColorAnti);
+  color: var(--matterColorBlue);
 
   padding-top: 4px;
   padding-bottom: 2px;
@@ -54,6 +54,13 @@
     padding-bottom: 4px;
   }
 }
+
+.paymentAddressField {
+  @media (--viewportMedium) {
+    border-radius: 10px;
+  }
+}
+
 
 .paymentMethodSelector {
   margin-bottom: 36px;
@@ -84,8 +91,7 @@
 }
 
 .saveForLaterUseLabel {
-  composes: h5 from global;
-
+  @apply --marketplaceH5FontStyles;
   color: var(--matterColor);
   margin-top: 3px;
   margin-bottom: 0px;
@@ -93,8 +99,7 @@
 }
 
 .saveForLaterUseLegalInfo {
-  composes: h5 from global;
-
+  @apply --marketplaceH5FontStyles;
   color: var(--matterColorAnti);
   display: inline-block;
   padding: 0px 0 0px 26px;
@@ -109,7 +114,7 @@
 
 .billingHeading {
   margin: 0 0 12px 0;
-  color: var(--matterColorAnti);
+  color: var(--matterColorBlue);
 
   padding-top: 4px;
   padding-bottom: 2px;
@@ -119,6 +124,11 @@
     padding-top: 4px;
     padding-bottom: 4px;
   }
+}
+
+.instructionsHeading {
+  margin: 28px 0 12px;
+  color: var(--matterColorBlue);
 }
 
 .paymentLabel {
@@ -131,7 +141,7 @@
 }
 
 .messageHeading {
-  color: var(--matterColorAnti);
+  color: var(--matterColorBlue);
   margin: 36px 0 12px 0;
 
   padding-top: 4px;
@@ -148,7 +158,7 @@
   margin: 0 0 5px 0;
 
   @media (--viewportMedium) {
-    margin: 0 0 6px 0;
+    margin: 5px 0 6px 0;
   }
 }
 
@@ -160,6 +170,16 @@
   border-bottom-color: var(--matterColorAnti);
 }
 
+.specialInstructions {
+  margin-top: 24px;
+  color: var(--matterColor);
+}
+
+.dressCode {
+  margin-top: 24px;
+  color: var(--matterColor);
+}
+
 .submitContainer {
   margin-top: auto;
 
@@ -169,8 +189,7 @@
 }
 
 .paymentInfo {
-  composes: h5 from global;
-
+  @apply --marketplaceH5FontStyles;
   color: var(--matterColorAnti);
   text-align: center;
   padding: 0 42px;

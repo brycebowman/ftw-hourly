@@ -1,0 +1,112 @@
+@import '../../styles/propertySets.css';
+
+.slider {
+  margin-top: 20px;
+  border-radius: 20px;
+  padding-top: 10px;
+  background-color: var(--matterColorBlue);
+  @media (--viewportMedium) {
+  padding-top: 10px;
+}}
+
+.title {
+  @apply --marketplaceH2FontStyles;
+  font-family: 'Architects Daughter';
+  color: var(--matterColorRed);
+  font-style: italic;
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 42px;
+  margin-top: -5px;
+  margin-left: 0px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  @media (--viewportMedium) {
+    font-size: 60px;
+    line-height: 60px;
+  }
+  @media (--viewportLarge) {
+    margin-top: 0px;
+    font-size: 60px;
+  }
+}
+
+.sliderItem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  @media (--viewportMedium) {
+    padding: 20px;
+  }
+}
+
+.slider > :global(.slick-prev) {
+  left: -2px;
+  transform: scalex(0);
+  @media (--viewportLarge) {
+  }
+}
+
+.slider > :global(.slick-next) {
+  right: -2px;
+  transform: scalex(0);
+  top: calc(50% + 0px);
+
+  @media (--viewportLarge) {
+  }
+}
+.sliderItem__img {
+  border-radius: 10%;
+}
+.sliderItem__description {
+  color: var(--matterColorLight);
+  font-family: "Arial";
+  font-size: 17px;
+  line-height: 21px;
+  margin-left: 5px;
+  @media (--viewportMedium) {
+  font-size: 20px;
+  line-height: 22px;
+  margin-left: 10px;
+  }
+}
+
+.sliderItem__name {
+  color: var(--matterColorLight);
+  font-family: "Architects Daughter";
+  letter-spacing: 0.02em;
+  font-size: 34px;
+  margin-left: 5px;
+  line-height: 38px;
+  @media (--viewportMedium) {
+  font-size: 38px;
+  line-height: 38px;
+  margin-left: 20px;
+  }
+}
+
+.sliderItem__experience {
+  color: var(--matterColorLight);
+  font-size: 18px;
+  line-height: 22px;
+  margin-left: 5px;
+  @media (--viewportMedium) {
+  font-size: 20px;
+  line-height: 22px;
+  margin-left: 20px;
+  }
+}
+.sliderItem__rate {
+  color: var(--matterColorLight);
+  font-size: 24px;
+  line-height: 24px;
+  margin-top: 10px;
+  margin-left: 5px;
+  font-weight: 600;
+  @media (--viewportMedium) {
+  font-size: 20px;
+  line-height: 22px;
+  margin-left: 20px;
+  }
+}

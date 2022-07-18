@@ -89,18 +89,19 @@ describe('date utils', () => {
     it('should return localized date for "2019-09-18T00:45:00.000Z"', () => {
       expect(
         localizeAndFormatDate(intl, 'America/Los_Angeles', new Date('2019-09-18T00:45:00.000Z'))
-      ).toEqual('9/17/2019, 05:45 PM');
+      ).toEqual('9/17/2019, 17:45');
     });
 
     it('should return localized time for "2019-09-18T00:45:00.000Z"', () => {
       expect(
         localizeAndFormatTime(intl, 'America/Los_Angeles', new Date('2019-09-18T00:45:00.000Z'))
-      ).toEqual('05:45 PM');
+      ).toEqual('17:45');
     });
     it('should return localized time for "2019-09-18T00:45:00.000Z" with 12h format', () => {
       const formattingOptions = {
         hour: 'numeric',
         minute: '2-digit',
+        hour12: true,
       };
 
       expect(
@@ -132,15 +133,15 @@ describe('date utils', () => {
       const startHour = new Date('2019-09-18T08:00:00.000Z');
       const endHour = new Date('2019-09-18T09:00:00.000Z');
       expect(getSharpHours(intl, 'Europe/Helsinki', startHour, endHour)).toEqual([
-        { timestamp: 1568793600000, timeOfDay: '11:00 AM' },
-        { timestamp: 1568797200000, timeOfDay: '12:00 PM' },
+        { timestamp: 1568793600000, timeOfDay: '11:00' },
+        { timestamp: 1568797200000, timeOfDay: '12:00' },
       ]);
     });
     it('should return sharp hours, when startTime and endTime are half hours', () => {
       const startHour = new Date('2019-09-18T08:30:00.000Z');
       const endHour = new Date('2019-09-18T09:30:00.000Z');
       expect(getSharpHours(intl, 'Europe/Helsinki', startHour, endHour)).toEqual([
-        { timestamp: 1568797200000, timeOfDay: '12:00 PM' },
+        { timestamp: 1568797200000, timeOfDay: '12:00' },
       ]);
     });
   });
@@ -150,14 +151,14 @@ describe('date utils', () => {
       const startHour = new Date('2019-09-18T08:00:00.000Z');
       const endHour = new Date('2019-09-18T09:00:00.000Z');
       expect(getStartHours(intl, 'Europe/Helsinki', startHour, endHour)).toEqual([
-        { timestamp: 1568793600000, timeOfDay: '11:00 AM' },
+        { timestamp: 1568793600000, timeOfDay: '11:00' },
       ]);
     });
     it('should return sharp hours, when startTime and endTime are half hours', () => {
       const startHour = new Date('2019-09-18T08:30:00.000Z');
       const endHour = new Date('2019-09-18T09:30:00.000Z');
       expect(getStartHours(intl, 'Europe/Helsinki', startHour, endHour)).toEqual([
-        { timestamp: 1568797200000, timeOfDay: '12:00 PM' },
+        { timestamp: 1568797200000, timeOfDay: '12:00' },
       ]);
     });
   });
@@ -167,7 +168,7 @@ describe('date utils', () => {
       const startHour = new Date('2019-09-18T08:00:00.000Z');
       const endHour = new Date('2019-09-18T09:00:00.000Z');
       expect(getEndHours(intl, 'Europe/Helsinki', startHour, endHour)).toEqual([
-        { timestamp: 1568797200000, timeOfDay: '12:00 PM' },
+        { timestamp: 1568797200000, timeOfDay: '12:00' },
       ]);
     });
     it('should return sharp hours, when startTime and endTime are half hours', () => {
@@ -222,6 +223,11 @@ describe('date utils', () => {
   });
 
   describe('minutesBetween()', () => {
+    it('should fail if end Date is before start Date', () => {
+      const start = new Date(2017, 0, 2);
+      const end = new Date(2017, 0, 1);
+      expect(() => minutesBetween(start, end)).toThrow('End Date cannot be before start Date');
+    });
     it('should handle equal start and end Dates', () => {
       const d = new Date(2017, 0, 1, 10, 35, 0);
       expect(minutesBetween(d, d)).toEqual(0);
@@ -306,21 +312,21 @@ describe('date utils', () => {
           'Australia/Eucla',
           getMonthStartInTimeZone(date, 'Australia/Eucla')
         )
-      ).toEqual('11/1/2019, 12:00 AM');
+      ).toEqual('11/1/2019, 00:00');
       expect(
         localizeAndFormatDate(
           intl,
           'Europe/Helsinki',
           getMonthStartInTimeZone(date, 'Europe/Helsinki')
         )
-      ).toEqual('11/1/2019, 12:00 AM');
+      ).toEqual('11/1/2019, 00:00');
       expect(
         localizeAndFormatDate(
           intl,
           'America/Los_Angeles',
           getMonthStartInTimeZone(date, 'America/Los_Angeles')
         )
-      ).toEqual('11/1/2019, 12:00 AM');
+      ).toEqual('11/1/2019, 00:00');
     });
   });
 
@@ -330,13 +336,13 @@ describe('date utils', () => {
       const date = new Date(Date.UTC(2019, 10, 23, 14, 34, 22));
       expect(
         localizeAndFormatDate(intl, 'Australia/Eucla', nextMonthFn(date, 'Australia/Eucla'))
-      ).toEqual('12/1/2019, 12:00 AM');
+      ).toEqual('12/1/2019, 00:00');
       expect(
         localizeAndFormatDate(intl, 'Europe/Helsinki', nextMonthFn(date, 'Europe/Helsinki'))
-      ).toEqual('12/1/2019, 12:00 AM');
+      ).toEqual('12/1/2019, 00:00');
       expect(
         localizeAndFormatDate(intl, 'America/Los_Angeles', nextMonthFn(date, 'America/Los_Angeles'))
-      ).toEqual('12/1/2019, 12:00 AM');
+      ).toEqual('12/1/2019, 00:00');
     });
   });
 
@@ -346,13 +352,13 @@ describe('date utils', () => {
       const date = new Date(Date.UTC(2019, 10, 23, 14, 34, 22));
       expect(
         localizeAndFormatDate(intl, 'Australia/Eucla', prevMonthFn(date, 'Australia/Eucla'))
-      ).toEqual('10/1/2019, 12:00 AM');
+      ).toEqual('10/1/2019, 00:00');
       expect(
         localizeAndFormatDate(intl, 'Europe/Helsinki', prevMonthFn(date, 'Europe/Helsinki'))
-      ).toEqual('10/1/2019, 12:00 AM');
+      ).toEqual('10/1/2019, 00:00');
       expect(
         localizeAndFormatDate(intl, 'America/Los_Angeles', prevMonthFn(date, 'America/Los_Angeles'))
-      ).toEqual('10/1/2019, 12:00 AM');
+      ).toEqual('10/1/2019, 00:00');
     });
   });
 
@@ -399,6 +405,7 @@ describe('date utils', () => {
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
+      hour12: false,
     };
     it('should return date in selected timezone America/New_York', () => {
       const date = new Date('Sun Nov 10 2019 00:00:00 GMT-0500 (Eastern Standard Time)');

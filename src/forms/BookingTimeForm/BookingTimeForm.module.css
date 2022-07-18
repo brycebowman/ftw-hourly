@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   display: flex;
@@ -15,7 +15,7 @@
 
 .priceBreakdownContainer {
   padding: 0 24px;
-  margin-bottom: 24px;
+  margin-bottom: 40px;
 
   @media (--viewportMedium) {
     padding: 0;
@@ -26,7 +26,8 @@
 
 .priceBreakdownTitle {
   /* Font */
-  color: var(--matterColorAnti);
+  color: var(--matterColorBlue);
+  font-family: "Arial";
 
   margin-top: 5px;
   margin-bottom: 14px;
@@ -52,7 +53,7 @@
 }
 
 .sideBarError {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   color: var(--failColor);
   margin: 0 24px 12px 24px;
 
@@ -62,8 +63,8 @@
 }
 
 .smallPrint {
-  composes: marketplaceTinyFontStyles from global;
-  color: var(--matterColorAnti);
+  @apply --marketplaceTinyFontStyles;
+  color: var(--matterColorBlue);
   text-align: center;
   margin: auto 24px 20px 24px;
   flex-shrink: 0;

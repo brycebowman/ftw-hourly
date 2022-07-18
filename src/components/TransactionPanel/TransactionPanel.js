@@ -24,10 +24,13 @@ import { isMobileSafari } from '../../util/userAgent';
 import { formatMoney } from '../../util/currency';
 import {
   AvatarLarge,
+  AvatarProviderLarge,
   BookingPanel,
   NamedLink,
   ReviewModal,
   UserDisplayName,
+  ListingCard,
+  FormattedPhoneNumber,
 } from '../../components';
 import { SendMessageForm } from '../../forms';
 import config from '../../config';
@@ -49,20 +52,29 @@ import PanelHeading, {
   HEADING_CANCELED,
   HEADING_DELIVERED,
 } from './PanelHeading';
+import { createSlug } from '../../util/urlHelpers';
 
 import css from './TransactionPanel.module.css';
 
 // Helper function to get display names for different roles
 const displayNames = (currentUser, currentProvider, currentCustomer, intl) => {
-  const authorDisplayName = <UserDisplayName user={currentProvider} intl={intl} />;
-  const customerDisplayName = <UserDisplayName user={currentCustomer} intl={intl} />;
+  const authorDisplayName = (
+    <UserDisplayName user={currentProvider} intl={intl} />
+  );
+  const customerDisplayName = (
+    <UserDisplayName user={currentCustomer} intl={intl} />
+  );
 
   let otherUserDisplayName = '';
   let otherUserDisplayNameString = '';
   const currentUserIsCustomer =
-    currentUser.id && currentCustomer.id && currentUser.id.uuid === currentCustomer.id.uuid;
+    currentUser.id &&
+    currentCustomer.id &&
+    currentUser.id.uuid === currentCustomer.id.uuid;
   const currentUserIsProvider =
-    currentUser.id && currentProvider.id && currentUser.id.uuid === currentProvider.id.uuid;
+    currentUser.id &&
+    currentProvider.id &&
+    currentUser.id.uuid === currentProvider.id.uuid;
 
   if (currentUserIsCustomer) {
     otherUserDisplayName = authorDisplayName;
@@ -113,7 +125,9 @@ export class TransactionPanelComponent extends Component {
     const { reviewRating, reviewContent } = values;
     const rating = Number.parseInt(reviewRating, 10);
     onSendReview(transactionRole, currentTransaction, rating, reviewContent)
-      .then(r => this.setState({ isReviewModalOpen: false, reviewSubmitted: true }))
+      .then(r =>
+        this.setState({ isReviewModalOpen: false, reviewSubmitted: true })
+      )
       .catch(e => {
         // Do nothing.
       });
@@ -123,7 +137,11 @@ export class TransactionPanelComponent extends Component {
     this.setState({ sendMessageFormFocused: true });
     if (this.isMobSaf) {
       // Scroll to bottom
-      window.scroll({ top: document.body.scrollHeight, left: 0, behavior: 'smooth' });
+      window.scroll({
+        top: document.body.scrollHeight,
+        left: 0,
+        behavior: 'smooth',
+      });
     }
   }
 
@@ -201,17 +219,25 @@ export class TransactionPanelComponent extends Component {
     const currentListing = ensureListing(currentTransaction.listing);
     const currentProvider = ensureUser(currentTransaction.provider);
     const currentCustomer = ensureUser(currentTransaction.customer);
+    const { restaurantName, restaurantAddressString } =
+      currentCustomer.attributes.profile.publicData || {};
     const isCustomer = transactionRole === 'customer';
     const isProvider = transactionRole === 'provider';
-
+    const protectedData = currentTransaction.attributes.protectedData || {};
+    const customerPhoneNumber = protectedData.phoneNumber || '';
+    const providerPhoneNumber = protectedData.providerphoneNumber || '';
     const listingLoaded = !!currentListing.id;
     const listingDeleted = listingLoaded && currentListing.attributes.deleted;
     const iscustomerLoaded = !!currentCustomer.id;
-    const isCustomerBanned = iscustomerLoaded && currentCustomer.attributes.banned;
-    const isCustomerDeleted = iscustomerLoaded && currentCustomer.attributes.deleted;
+    const isCustomerBanned =
+      iscustomerLoaded && currentCustomer.attributes.banned;
+    const isCustomerDeleted =
+      iscustomerLoaded && currentCustomer.attributes.deleted;
     const isProviderLoaded = !!currentProvider.id;
-    const isProviderBanned = isProviderLoaded && currentProvider.attributes.banned;
-    const isProviderDeleted = isProviderLoaded && currentProvider.attributes.deleted;
+    const isProviderBanned =
+      isProviderLoaded && currentProvider.attributes.banned;
+    const isProviderDeleted =
+      isProviderLoaded && currentProvider.attributes.deleted;
 
     const stateDataFn = tx => {
       if (txIsEnquired(tx)) {
@@ -221,10 +247,12 @@ export class TransactionPanelComponent extends Component {
             })
           : [];
         const hasCorrectNextTransition =
-          transitions.length > 0 && transitions.includes(TRANSITION_REQUEST_PAYMENT_AFTER_ENQUIRY);
+          transitions.length > 0 &&
+          transitions.includes(TRANSITION_REQUEST_PAYMENT_AFTER_ENQUIRY);
         return {
           headingState: HEADING_ENQUIRED,
-          showBookingPanel: isCustomer && !isProviderBanned && hasCorrectNextTransition,
+          showBookingPanel:
+            isCustomer && !isProviderBanned && hasCorrectNextTransition,
         };
       } else if (txIsPaymentPending(tx)) {
         return {
@@ -282,7 +310,8 @@ export class TransactionPanelComponent extends Component {
     } = displayNames(currentUser, currentProvider, currentCustomer, intl);
 
     const { publicData, geolocation } = currentListing.attributes;
-    const location = publicData && publicData.location ? publicData.location : {};
+    const location =
+      publicData && publicData.location ? publicData.location : {};
     const listingTitle = currentListing.attributes.deleted
       ? deletedListingTitle
       : currentListing.attributes.title;
@@ -299,11 +328,15 @@ export class TransactionPanelComponent extends Component {
 
     const price = currentListing.attributes.price;
     const bookingSubTitle = price
-      ? `${formatMoney(intl, price)} ${intl.formatMessage({ id: unitTranslationKey })}`
+      ? `${formatMoney(intl, price)} ${intl.formatMessage({
+          id: unitTranslationKey,
+        })}`
       : '';
 
     const firstImage =
-      currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
+      currentListing.author &&
+      currentListing.author.profileImage &&
+      currentListing.author.profileImage;
 
     const saleButtons = (
       <SaleActionButtonsMaybe
@@ -318,7 +351,10 @@ export class TransactionPanelComponent extends Component {
     );
 
     const showSendMessageForm =
-      !isCustomerBanned && !isCustomerDeleted && !isProviderBanned && !isProviderDeleted;
+      !isCustomerBanned &&
+      !isCustomerDeleted &&
+      !isProviderBanned &&
+      !isProviderDeleted;
 
     const sendMessagePlaceholder = intl.formatMessage(
       { id: 'TransactionPanel.sendMessagePlaceholder' },
@@ -334,29 +370,15 @@ export class TransactionPanelComponent extends Component {
         <FormattedMessage id="TransactionPanel.paymentMethodsPageLink" />
       </NamedLink>
     );
-
+    const { title = '' } = currentListing.attributes;
+    const slug = createSlug(title);
+    const id = currentListing.id.uuid;
     const classes = classNames(rootClassName || css.root, className);
 
     return (
       <div className={classes}>
         <div className={css.container}>
           <div className={css.txInfo}>
-            <DetailCardImage
-              rootClassName={css.imageWrapperMobile}
-              avatarWrapperClassName={css.avatarWrapperMobile}
-              listingTitle={listingTitle}
-              image={firstImage}
-              provider={currentProvider}
-              isCustomer={isCustomer}
-              listingId={currentListing.id && currentListing.id.uuid}
-              listingDeleted={listingDeleted}
-            />
-            {isProvider ? (
-              <div className={css.avatarWrapperProviderDesktop}>
-                <AvatarLarge user={currentCustomer} className={css.avatarDesktop} />
-              </div>
-            ) : null}
-
             <PanelHeading
               panelHeadingState={stateData.headingState}
               transactionRole={transactionRole}
@@ -367,15 +389,98 @@ export class TransactionPanelComponent extends Component {
               listingTitle={listingTitle}
               listingDeleted={listingDeleted}
             />
+            <div className={css.instructions}>
+            <FormattedMessage id="TransactionPanel.instructions" />
+            </div>
+            <div className={css.steps}>
+              <div className={css.stepLeft}>
+                <h2 className={css.subTitle}>
+                  <div className={css.avatarWrapperProviderDesktop}>
+                    <AvatarLarge
+                      user={currentCustomer}
+                      className={css.avatarDesktop}
+                    />
+                  </div>
+                  <FormattedMessage id="TransactionPanel.restaurantSummary" />
+                </h2>
+                <p className={css.stepName}>
+                <FormattedMessage id="TransactionPanel.restaurantsubtitle" />
+                <br/>
+                <div className={css.listingName}>{restaurantName}</div>
+                </p>
+                <NamedLink
+                  className={classes}
+                  name="ProfilePage"
+                  params={{ id: currentCustomer.id.uuid }}
+                >
+                  <p className={css.profilelink}>View Restaurant Profile</p>
+                </NamedLink>
+                <p className={css.stepName}>
+                <FormattedMessage id="TransactionPanel.managername" />
+                <br/>
+                <div className={css.listingName}>{customerDisplayName}</div>
+                </p>
+                    <p className={css.stepName}>
+                Phone Number:
+                  <br />
+                  <div className={css.stepDetails}>
+                  {<FormattedPhoneNumber number={customerPhoneNumber} />}
+                  </div>
+                </p>
+                <div className={css.stepName}>
+                <FormattedMessage id="TransactionPanel.restaurantaddress" />
+                </div>
+                <div className={css.stepDetails}>{restaurantAddressString}</div>
+              </div>
+              <div className={css.step}>
+                <h2 className={css.subTitle}>
+                  <div className={css.avatarWrapperProviderDesktop}>
+                    <NamedLink
+                      className={classes}
+                      name="ListingPage"
+                      params={{ id, slug }}
+                    >
+                      <AvatarProviderLarge
+                        user={currentProvider}
+                        className={css.avatarDesktop}
+                      />
+                    </NamedLink>
+                  </div>
+                  <FormattedMessage id="TransactionPanel.workerSummary" />
+                </h2>
+                <p className={css.stepName}>
+                <FormattedMessage id="TransactionPanel.workersubtitle" />
+                <br/>
+                <div className={css.listingName}>{listingTitle}</div>
+                  <NamedLink
+                    className={classes}
+                    name="ListingPage"
+                    params={{ id, slug }}
+                  >
+                    <p className={css.profilelink}>View Worker Profile</p>
+                  </NamedLink>
+
+                  <p className={css.stepName}>
+                  <FormattedMessage id="TransactionPanel.workername" />
+                  <br/>
+                  <div className={css.listingName}>{authorDisplayName}</div>
+                  </p>
+                  <p className={css.stepName}>
+                  Phone Number:
+                    <br />
+                    <div className={css.stepDetails}>
+                    {<FormattedPhoneNumber number={providerPhoneNumber} />}
+                    </div>
+                  </p>
+                </p>
+              </div>
+            </div>
 
             <div className={css.bookingDetailsMobile}>
-              <AddressLinkMaybe
-                rootClassName={css.addressMobile}
-                location={location}
-                geolocation={geolocation}
-                showAddress={stateData.showAddress}
+              <BreakdownMaybe
+                transaction={currentTransaction}
+                transactionRole={transactionRole}
               />
-              <BreakdownMaybe transaction={currentTransaction} transactionRole={transactionRole} />
             </div>
 
             {savePaymentMethodFailed ? (
@@ -396,7 +501,9 @@ export class TransactionPanelComponent extends Component {
               messages={messages}
               oldestMessagePageFetched={oldestMessagePageFetched}
               onOpenReviewModal={this.onOpenReviewModal}
-              onShowMoreMessages={() => onShowMoreMessages(currentTransaction.id)}
+              onShowMoreMessages={() =>
+                onShowMoreMessages(currentTransaction.id)
+              }
               totalMessagePages={totalMessagePages}
             />
             {showSendMessageForm ? (
@@ -411,7 +518,9 @@ export class TransactionPanelComponent extends Component {
                 onSubmit={this.onMessageSubmit}
               />
             ) : (
-              <div className={css.sendingMessageNotAllowed}>{sendingMessageNotAllowed}</div>
+              <div className={css.sendingMessageNotAllowed}>
+                {sendingMessageNotAllowed}
+              </div>
             )}
 
             {stateData.showSaleButtons ? (
@@ -421,24 +530,6 @@ export class TransactionPanelComponent extends Component {
 
           <div className={css.asideDesktop}>
             <div className={css.detailCard}>
-              <DetailCardImage
-                avatarWrapperClassName={css.avatarWrapperDesktop}
-                listingTitle={listingTitle}
-                image={firstImage}
-                provider={currentProvider}
-                isCustomer={isCustomer}
-                listingId={currentListing.id && currentListing.id.uuid}
-                listingDeleted={listingDeleted}
-              />
-
-              <DetailCardHeadingsMaybe
-                showDetailCardHeadings={stateData.showDetailCardHeadings}
-                listingTitle={listingTitle}
-                subTitle={bookingSubTitle}
-                location={location}
-                geolocation={geolocation}
-                showAddress={stateData.showAddress}
-              />
               {stateData.showBookingPanel ? (
                 <BookingPanel
                   className={css.bookingPanel}

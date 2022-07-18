@@ -1,3 +1,5 @@
+@import '../../styles/propertySets.css';
+
 .root {
   outline: none;
 }
@@ -12,7 +14,7 @@
 }
 
 .clearButton {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightMedium);
   color: var(--matterColorAnti);
 
@@ -33,7 +35,7 @@
 }
 
 .cancelButton {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightMedium);
   color: var(--matterColorAnti);
 
@@ -59,7 +61,7 @@
 }
 
 .submitButton {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightMedium);
   color: var(--marketplaceColor);
 

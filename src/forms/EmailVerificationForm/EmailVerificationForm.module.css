@@ -1,7 +1,7 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
-  composes: marketplaceModalFormRootStyles from global;
+  @apply --marketplaceModalFormRootStyles;
 
   justify-content: flex-start;
 
@@ -11,29 +11,29 @@
 }
 
 .bottomWrapper {
-  composes: marketplaceModalBottomWrapper from global;
+  @apply --marketplaceModalBottomWrapper;
 }
 
 /* ================ Typography ================ */
 
 /* Title of the modal */
 .modalTitle {
-  composes: marketplaceModalTitleStyles from global;
+  @apply --marketplaceModalTitleStyles;
 }
 
 /* Paragraph for the Modal */
 .modalMessage {
-  composes: marketplaceModalParagraphStyles from global;
+  @apply --marketplaceModalParagraphStyles;
 }
 
 .error {
-  composes: marketplaceModalPasswordMargins from global;
+  @apply --marketplaceModalErrorStyles;
 }
 
 .submitButton {
-  composes: button buttonFont buttonText buttonBorders buttonColorsPrimary from global;
+  @apply --marketplaceButtonStylesPrimary;
 }
 
 .modalIcon {
-  composes: marketplaceModalIconStyles from global;
+  @apply --marketplaceModalIconStyles;
 }

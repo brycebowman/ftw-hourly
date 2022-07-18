@@ -1,5 +1,3 @@
-@import '../../styles/customMediaQueries.css';
-
 .root {
   flex-grow: 1;
   width: 100%;
@@ -14,10 +12,13 @@
 }
 
 .title {
+  color: #860910;
   margin-bottom: 19px;
-
+  font-size: 32px;
   @media (--viewportLarge) {
+    font-size: 42px;
     margin-bottom: 38px;
     padding: 1px 0 7px 0;
+
   }
 }

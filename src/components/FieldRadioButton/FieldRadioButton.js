@@ -1,5 +1,5 @@
 import React from 'react';
-import { node, string } from 'prop-types';
+import PropTypes, { node, string } from 'prop-types';
 import classNames from 'classnames';
 import { Field } from 'react-final-form';
 
@@ -99,7 +99,10 @@ FieldRadioButtonComponent.propTypes = {
   name: string.isRequired,
 
   // RadioButton needs a value that is passed forward when user checks the RadioButton
-  value: string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
 };
 
 export default FieldRadioButtonComponent;

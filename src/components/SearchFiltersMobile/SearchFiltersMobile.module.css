@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   display: flex;
@@ -13,7 +13,7 @@
 }
 
 .searchResultSummary {
-  composes: h3 from global;
+  @apply --marketplaceH3FontStyles;
   margin-top: 6px;
 
   display: flex;
@@ -31,8 +31,8 @@
 }
 
 .filtersButton {
-  composes: button marketplaceTinyFontStyles buttonText buttonBordersSecondary buttonColorsSecondary from global;
-  letter-spacing: 0.2px;
+  @apply --marketplaceButtonStylesSecondary;
+  @apply --marketplaceTinyFontStyles;
   font-weight: var(--fontWeightMedium);
 
   /* Avoid stretching button width. */
@@ -46,8 +46,8 @@
 }
 
 .filtersButtonSelected {
-  composes: button marketplaceTinyFontStyles buttonText buttonBorders buttonColors from global;
-  letter-spacing: 0.2px;
+  @apply --marketplaceButtonStyles;
+  @apply --marketplaceTinyFontStyles;
   font-weight: var(--fontWeightMedium);
 
   /* Avoid stretching button width. */
@@ -62,7 +62,7 @@
 
 .mapIcon {
   /* Font */
-  composes: marketplaceTinyFontStyles from global;
+  @apply --marketplaceTinyFontStyles;
   font-weight: var(--fontWeightMedium);
 
   /* background map image */
@@ -88,12 +88,12 @@
 }
 
 .modalHeading {
-  composes: h1 from global;
+  @apply --marketplaceH1FontStyles;
   margin-top: 0;
 }
 
 .resetAllButton {
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   font-weight: var(--fontWeightMedium);
   color: var(--matterColorAnti);
 

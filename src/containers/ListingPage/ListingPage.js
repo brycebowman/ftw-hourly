@@ -55,6 +55,11 @@ import SectionAvatar from './SectionAvatar';
 import SectionHeading from './SectionHeading';
 import SectionDescriptionMaybe from './SectionDescriptionMaybe';
 import SectionFeaturesMaybe from './SectionFeaturesMaybe';
+import SectionRestaurantExpMaybe from './SectionRestaurantExpMaybe';
+import SectionSkillsMaybe from './SectionSkillsMaybe';
+import SectionLanguagesMaybe from './SectionLanguagesMaybe';
+import SectionDistanceMaybe from './SectionDistanceMaybe';
+import SectionExperienceMaybe from './SectionExperienceMaybe';
 import SectionReviews from './SectionReviews';
 import SectionMapMaybe from './SectionMapMaybe';
 import css from './ListingPage.module.css';
@@ -82,7 +87,6 @@ export class ListingPageComponent extends Component {
     const { enquiryModalOpenForListingId, params } = props;
     this.state = {
       pageClassNames: [],
-      imageCarouselOpen: false,
       enquiryModalOpen: enquiryModalOpenForListingId === params.id,
     };
 
@@ -315,14 +319,6 @@ export class ListingPageComponent extends Component {
       );
     }
 
-    const handleViewPhotosClick = e => {
-      // Stop event from bubbling up to prevent image click handler
-      // trying to open the carousel as well.
-      e.stopPropagation();
-      this.setState({
-        imageCarouselOpen: true,
-      });
-    };
     const authorAvailable = currentListing && currentListing.author;
     const userAndListingAuthorAvailable = !!(currentUser && authorAvailable);
     const isOwnListing =
@@ -349,7 +345,7 @@ export class ListingPageComponent extends Component {
     };
 
     const listingImages = (listing, variantName) =>
-      (listing.images || [])
+      ((listing.author && listing.author.profileImage && [listing.author.profileImage]) || [])
         .map(image => {
           const variants = image.attributes.variants;
           const variant = variants ? variants[variantName] : null;
@@ -384,7 +380,12 @@ export class ListingPageComponent extends Component {
     );
 
     const yogaStylesOptions = findOptionsForSelectFilter('yogaStyles', filterConfig);
+    const skillsOptions = findOptionsForSelectFilter('skills', filterConfig);
+    const languageOptions = findOptionsForSelectFilter('language', filterConfig);
+    const yearsexpOptions = findOptionsForSelectFilter('yearsexp', filterConfig);
+    const willingToTravelOptions = findOptionsForSelectFilter('willingToTravel', filterConfig);
     const certificateOptions = findOptionsForSelectFilter('certificate', filterConfig);
+    const { RestaurantNameExp } = (publicData || {})
 
     return (
       <Page
@@ -417,9 +418,6 @@ export class ListingPageComponent extends Component {
                   type: listingType,
                   tab: listingTab,
                 }}
-                imageCarouselOpen={this.state.imageCarouselOpen}
-                onImageCarouselClose={() => this.setState({ imageCarouselOpen: false })}
-                handleViewPhotosClick={handleViewPhotosClick}
                 onManageDisableScrolling={onManageDisableScrolling}
               />
               <div className={css.contentContainer}>
@@ -436,7 +434,33 @@ export class ListingPageComponent extends Component {
                     onContactUser={this.onContactUser}
                   />
                   <SectionDescriptionMaybe description={description} />
-                  <SectionFeaturesMaybe options={yogaStylesOptions} publicData={publicData} />
+                  <div className={css.steps}>
+                    <div className={css.step}>
+                      <SectionFeaturesMaybe options={yogaStylesOptions} publicData={publicData} />
+                    </div>
+                    <div className={css.step}>
+                    <div className={css.restaurantexp}>
+                    <h2 className={css.featuresTitle}>
+                      <FormattedMessage id="ListingPage.RestaurantExpTitle" />
+                    </h2>
+                    {RestaurantNameExp}
+                    </div>
+                    </div>
+                    </div>
+                    <div className={css.steps}>
+                    <div className={css.step}>
+                      <SectionSkillsMaybe options={skillsOptions} publicData={publicData} />
+                      </div>
+                      <div className={css.step}>
+                    <SectionExperienceMaybe options={yearsexpOptions} publicData={publicData} />
+                    </div>
+                      </div>
+                      <div className={css.steps}>
+                      <div className={css.step}>
+                  <SectionLanguagesMaybe options={languageOptions} publicData={publicData} />
+                  </div>
+                  </div>
+                  <SectionDistanceMaybe options={willingToTravelOptions} publicData={publicData} />
                   <SectionMapMaybe
                     geolocation={geolocation}
                     publicData={publicData}
@@ -621,10 +645,7 @@ const mapDispatchToProps = dispatch => ({
 // See: https://github.com/ReactTraining/react-router/issues/4671
 const ListingPage = compose(
   withRouter,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
   injectIntl
 )(ListingPageComponent);
 

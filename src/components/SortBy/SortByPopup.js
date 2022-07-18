@@ -14,7 +14,7 @@ const SortByIcon = () => {
   return (
     <svg className={css.icon} width="10" height="16" xmlns="http://www.w3.org/2000/svg">
       <g
-        stroke="#4a4a4a"
+        stroke="#ffffff"
         strokeWidth="1.5"
         fill="none"
         fillRule="evenodd"

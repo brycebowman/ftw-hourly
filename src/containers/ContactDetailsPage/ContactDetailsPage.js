@@ -33,6 +33,7 @@ export const ContactDetailsPageComponent = props => {
     savePhoneNumberError,
     saveContactDetailsInProgress,
     currentUser,
+    currentUserRole,
     currentUserListing,
     contactDetailsChanged,
     onChange,
@@ -48,13 +49,14 @@ export const ContactDetailsPageComponent = props => {
   } = props;
 
   const user = ensureCurrentUser(currentUser);
+  const { firstName, lastName } = user.attributes.profile;
   const currentEmail = user.attributes.email || '';
   const protectedData = user.attributes.profile.protectedData || {};
   const currentPhoneNumber = protectedData.phoneNumber || '';
   const contactInfoForm = user.id ? (
     <ContactDetailsForm
       className={css.form}
-      initialValues={{ email: currentEmail, phoneNumber: currentPhoneNumber }}
+      initialValues={{ firstName, lastName, email: currentEmail, phoneNumber: currentPhoneNumber }}
       saveEmailError={saveEmailError}
       savePhoneNumberError={savePhoneNumberError}
       currentUser={currentUser}
@@ -84,7 +86,7 @@ export const ContactDetailsPageComponent = props => {
           />
           <UserNav selectedPageName="ContactDetailsPage" listing={currentUserListing} />
         </LayoutWrapperTopbar>
-        <LayoutWrapperAccountSettingsSideNav currentTab="ContactDetailsPage" />
+        <LayoutWrapperAccountSettingsSideNav currentTab="ContactDetailsPage" currentUserRole={currentUserRole} />
         <LayoutWrapperMain>
           <div className={css.content}>
             <h1 className={css.title}>
@@ -134,6 +136,7 @@ const mapStateToProps = state => {
   // Topbar needs user info.
   const {
     currentUser,
+    currentUserRole,
     currentUserListing,
     sendVerificationEmailInProgress,
     sendVerificationEmailError,
@@ -151,6 +154,7 @@ const mapStateToProps = state => {
     savePhoneNumberError,
     saveContactDetailsInProgress,
     currentUser,
+    currentUserRole,
     currentUserListing,
     contactDetailsChanged,
     scrollingDisabled: isScrollingDisabled(state),

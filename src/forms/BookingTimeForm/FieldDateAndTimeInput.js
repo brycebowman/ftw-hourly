@@ -23,7 +23,7 @@ import {
 } from '../../util/dates';
 import { propTypes } from '../../util/types';
 import { bookingDateRequired } from '../../util/validators';
-import { FieldDateInput, FieldSelect } from '../../components';
+import { FieldDateInputOval, FieldSelect } from '../../components';
 
 import NextMonthIcon from './NextMonthIcon';
 import PreviousMonthIcon from './PreviousMonthIcon';
@@ -461,7 +461,7 @@ class FieldDateAndTimeInput extends Component {
       <div className={classes}>
         <div className={css.formRow}>
           <div className={classNames(css.field, css.startDate)}>
-            <FieldDateInput
+            <FieldDateInputOval
               className={css.fieldDateInput}
               name="bookingStartDate"
               id={formId ? `${formId}.bookingStartDate` : 'bookingStartDate'}
@@ -482,17 +482,12 @@ class FieldDateAndTimeInput extends Component {
               useMobileMargins
               showErrorMessage={false}
               validate={bookingDateRequired('Required')}
-              onClose={event =>
-                this.setState({
-                  currentMonth: getMonthStartInTimeZone(event?.date ?? TODAY, this.props.timeZone),
-                })
-              }
             />
           </div>
         </div>
         <div className={css.formRow}>
           <div className={classNames(css.field, css.endDateHidden)}>
-            <FieldDateInput
+            <FieldDateInputOval
               {...endDateInputProps}
               name="bookingEndDate"
               id={formId ? `${formId}.bookingEndDate` : 'bookingEndDate'}

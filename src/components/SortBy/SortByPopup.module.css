@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
 }
@@ -14,8 +14,8 @@
 }
 
 .menuLabel {
-  composes: button marketplaceSearchFilterLabelFontStyles buttonText buttonBordersSecondary buttonColorsSecondary from global;
-  letter-spacing: 0.2px;
+  @apply --marketplaceButtonStylesSecondary;
+  @apply --marketplaceSearchFilterLabelFontStyles;
 
   padding: var(--marketplaceButtonSmallDesktopPadding);
   width: auto;
@@ -27,7 +27,7 @@
 
   &:focus {
     outline: none;
-    background-color: var(--matterColorLight);
+    background-color: var(--matterColorBlue);
     border-color: transparent;
     text-decoration: none;
     box-shadow: var(--boxShadowFilterButton);
@@ -72,7 +72,7 @@
 }
 
 .menuItem {
-  composes: marketplaceListingAttributeFontStyles from global;
+  @apply --marketplaceListingAttributeFontStyles;
   color: var(--matterColor);
 
   /* Layout */
@@ -107,7 +107,7 @@
 }
 
 .clearMenuItem {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightMedium);
   color: var(--matterColorAnti);
 

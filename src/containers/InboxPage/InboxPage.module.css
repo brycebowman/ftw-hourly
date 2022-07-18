@@ -1,4 +1,5 @@
 @import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .topbar {
   z-index: 1; /* ensure that Topbar shadow overlays content background */
@@ -35,6 +36,18 @@
   }
 }
 
+.link {
+  text-decoration: underline;
+  margin-bottom: 15px;
+  margin-top: -10px;
+  font-size: 18px;
+  @media (--viewportMedium) {
+    margin-bottom: 25px;
+    margin-top: -20px;
+  }
+
+}
+
 .navigation {
   /* Layout */
   display: flex;
@@ -67,6 +80,7 @@
 
 .title {
   /* Font */
+  @apply --marketplaceH1FontStyles;
   color: var(--matterColor);
 
   /* Layout */
@@ -239,8 +253,7 @@
 }
 
 .itemInfo {
-  composes: h5 from global;
-
+  @apply --marketplaceH5FontStyles;
   font-weight: var(--fontWeightSemiBold);
 
   /* Layout */
@@ -261,7 +274,7 @@
 
 .itemUsername {
   /* Font */
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   color: var(--matterColor);
   line-height: 18px;
 
@@ -275,7 +288,7 @@
 }
 
 .bookingInfoWrapper {
-  composes: marketplaceTinyFontStyles from global;
+  @apply --marketplaceTinyFontStyles;
 
   display: flex;
   align-items: center;
@@ -302,7 +315,7 @@
 
 .itemState {
   /* Font */
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
 
   font-weight: var(--fontWeightMedium);
   margin-top: 6px;
@@ -315,7 +328,7 @@
 }
 
 .lastTransitionedAt {
-  composes: marketplaceTinyFontStyles from global;
+  @apply --marketplaceTinyFontStyles;
 
   margin-top: 4px;
   text-align: right;

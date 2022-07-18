@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   /* Fixed on top of everything */
@@ -26,7 +26,7 @@
 }
 
 .message {
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   margin-left: 24px;
 }
 
@@ -41,7 +41,7 @@
 
 .continueBtn {
   /* Font */
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   font-weight: var(--fontWeightSemiBold);
 
   /* Dimensions */

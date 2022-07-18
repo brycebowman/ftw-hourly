@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   padding-top: 24px;
@@ -8,7 +8,7 @@
 
 .filterLabel,
 .filterLabelSelected {
-  composes: h3 from global;
+  @apply --marketplaceH3FontStyles;
 
   /* Baseline adjustment for label text */
   margin-top: 0;
@@ -97,7 +97,7 @@
 }
 
 .option {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightMedium);
   font-size: 16px;
   color: var(--matterColor);
@@ -129,7 +129,7 @@
 }
 
 .clearButton {
-  composes: h5 from global;
+  @apply --marketplaceH5FontStyles;
   font-weight: var(--fontWeightMedium);
   color: var(--matterColorAnti);
 

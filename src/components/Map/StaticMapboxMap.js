@@ -10,11 +10,11 @@ const formatColor = color => {
 };
 
 const fuzzyCircleOverlay = (center, mapsConfig) => {
-  const strokeWeight = 1;
+  const strokeWeight = 3;
   const strokeColor = mapsConfig.fuzzy.circleColor;
-  const strokeOpacity = 0.5;
+  const strokeOpacity = 1.0;
   const fillColor = mapsConfig.fuzzy.circleColor;
-  const fillOpacity = 0.2;
+  const fillOpacity = 0.5;
 
   const path = circlePolyline(center, mapsConfig.fuzzy.offset);
   const styles = `-${strokeWeight}+${formatColor(strokeColor)}-${strokeOpacity}+${formatColor(

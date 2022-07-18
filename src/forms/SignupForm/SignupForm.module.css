@@ -1,8 +1,7 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
-  composes: marketplaceModalFormRootStyles from global;
-
+  @apply --marketplaceModalFormRootStyles;
   justify-content: flex-start;
 
   @media (--viewportMedium) {
@@ -10,45 +9,114 @@
   }
 }
 
-.name {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 24px;
+.background {
+  @apply --marketplaceModalFormRootStyles;
+  background-color: var(--matterColorForm);
 
   @media (--viewportMedium) {
-    margin-top: 32px;
   }
 }
 
+.iconImage {
+  width: 115%;
+  height: 150px;
+  object-fit: contain;
+  align: center;
+  margin-top: -20px;
+  vertical-align: top;
+  @media (--viewportMedium) {
+    margin-top: -15px;
+}
+  }
+.name {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 24px;
+  @media (--viewportMedium) {
+    margin-bottom: 24px;
+    margin-top: 10px;
+  }
+}
+.label {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom:-3px;
+@media (--viewportMedium) {
+  margin-bottom: -5px;
+  }
+}
+.phone {
+  margin-top: 24px;
+  width: 70%;
+  @media (--viewportMedium) {
+    margin-top: 24px;
+  }
+}
 .firstNameRoot {
-  width: calc(34% - 9px);
+  width: calc(40% - 9px);
 }
 
 .lastNameRoot {
-  width: calc(66% - 9px);
+  width: calc(60% - 9px);
 }
 
 .password {
-  composes: marketplaceModalPasswordMargins from global;
+  width: 70%;
+  @apply --marketplaceModalPasswordMargins;
 }
 
 .bottomWrapper {
-  composes: marketplaceModalBottomWrapper from global;
+  @apply --marketplaceModalBottomWrapper;
 }
 
 .bottomWrapperText {
-  composes: marketplaceModalBottomWrapperText from global;
+  @apply --marketplaceModalBottomWrapperText;
 }
 
 .termsText {
-  composes: marketplaceModalHelperText from global;
+  @apply --marketplaceModalHelperText;
 }
 
 .termsLink {
-  composes: marketplaceModalHelperLink from global;
+  @apply --marketplaceModalHelperLink;
 
   &:hover {
     text-decoration: underline;
     cursor: pointer;
+  }
+}
+
+.role {
+  font-size: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+  flex-direction: row;
+  }
+}
+.subtitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  @media (--viewportMedium) {
+  flex-direction: row;
+  }
+}
+
+.left {
+  width: 70%;
+  @media (--viewportMedium) {
+  width: 70%;
+  }
+}
+.right {
+  width: 30%;
+  align: center;
+  @media (--viewportMedium) {
+    width: 30%;
   }
 }

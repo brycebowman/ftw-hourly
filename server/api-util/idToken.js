@@ -1,5 +1,6 @@
 const crypto = require('crypto');
-const jose = require('jose');
+const { default: fromKeyLike } = require('jose/jwk/from_key_like');
+const { default: SignJWT } = require('jose/jwt/sign');
 
 const radix = 10;
 const PORT = parseInt(process.env.REACT_APP_DEV_API_SERVER_PORT, radix);
@@ -49,7 +50,7 @@ exports.createIdToken = (idpClientId, user, options) => {
 
   const { userId, firstName, lastName, email, emailVerified } = user;
 
-  const jwt = new jose.SignJWT({
+  const jwt = new SignJWT({
     given_name: firstName,
     family_name: lastName,
     email: email,
@@ -88,7 +89,7 @@ exports.openIdConfiguration = (req, res) => {
  */
 exports.jwksUri = keys => (req, res) => {
   const jwkKeys = keys.map(key => {
-    return jose.exportJWK(crypto.createPublicKey(key.rsaPublicKey)).then(res => {
+    return fromKeyLike(crypto.createPublicKey(key.rsaPublicKey)).then(res => {
       return { alg: key.alg, kid: key.keyId, ...res };
     });
   });

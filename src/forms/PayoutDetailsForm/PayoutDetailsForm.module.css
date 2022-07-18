@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   margin-top: 48px;
@@ -85,11 +85,11 @@
 }
 
 .error {
-  composes: marketplaceModalPasswordMargins from global;
+  @apply --marketplaceModalErrorStyles;
 }
 
 .termsText {
-  composes: marketplaceModalHelperText from global;
+  @apply --marketplaceModalHelperText;
   margin-bottom: 12px;
   text-align: center;
 
@@ -99,7 +99,7 @@
 }
 
 .termsLink {
-  composes: marketplaceModalHelperLink from global;
+  @apply --marketplaceModalHelperLink;
 
   &:hover {
     text-decoration: underline;
@@ -108,7 +108,7 @@
 }
 
 .bankDetailsStripeField p {
-  composes: h4 from global;
+  @apply --marketplaceH4FontStyles;
 }
 
 .missingStripeKey {
@@ -120,14 +120,14 @@
 }
 
 .fieldArrayAdd {
-  composes: a marketplaceSearchFilterSublabelFontStyles from global;
+  @apply --marketplaceLinkStyles;
+  @apply --marketplaceSearchFilterSublabelFontStyles;
   font-weight: var(--fontWeightMedium);
   margin-bottom: 2px;
 }
 
 .fieldArrayRemove {
-  composes: h5 from global;
-
+  @apply --marketplaceH5FontStyles;
   color: var(--matterColorAnti);
   float: right;
   line-height: 20px;
@@ -138,7 +138,7 @@
 }
 
 .closeIcon {
-  composes: marketplaceModalCloseIcon from global;
+  @apply --marketplaceModalCloseIcon;
   margin-right: 5px;
 }
 
@@ -183,8 +183,7 @@
 }
 
 .accountOpenerInfo {
-  composes: h5 from global;
-
+  @apply --marketplaceH5FontStyles;
   color: var(--matterColorAnti);
   margin-top: 0;
   margin-bottom: 0;
@@ -216,8 +215,7 @@
 }
 
 .additionalPersonInfo {
-  composes: h5 from global;
-
+  @apply --marketplaceH5FontStyles;
   color: var(--matterColorAnti);
   margin-top: 0;
   margin-bottom: 0;

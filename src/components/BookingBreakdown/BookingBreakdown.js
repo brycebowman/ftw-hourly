@@ -133,11 +133,6 @@ export const BookingBreakdownComponent = props => {
 
       <LineItemTotalPrice transaction={transaction} isProvider={isProvider} intl={intl} />
 
-      {hasCommissionLineItem ? (
-        <span className={css.feeInfo}>
-          <FormattedMessage id="BookingBreakdown.commissionFeeNote" />
-        </span>
-      ) : null}
     </div>
   );
 };

@@ -5,7 +5,14 @@ import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import * as validators from '../../util/validators';
-import { Form, PrimaryButton, FieldTextInput } from '../../components';
+import {
+  Form,
+  PrimaryButton,
+  FieldTextInputOval,
+  FieldRadioButton,
+  FieldPhoneNumberInputOval,
+} from '../../components';
+import workerImage from './images/workers.png';
 
 import css from './SignupForm.module.css';
 
@@ -22,9 +29,13 @@ const SignupFormComponent = props => (
         handleSubmit,
         inProgress,
         invalid,
+        pristine,
         intl,
         onOpenTermsOfService,
+        socialLoginButtonsMaybe,
       } = fieldRenderProps;
+
+      const idPrefix = formId ? `${formId}` : 'SignupForm';
 
       // email
       const emailLabel = intl.formatMessage({
@@ -76,7 +87,9 @@ const SignupFormComponent = props => (
         passwordMaxLengthMessage,
         validators.PASSWORD_MAX_LENGTH
       );
-      const passwordRequired = validators.requiredStringNoTrim(passwordRequiredMessage);
+      const passwordRequired = validators.requiredStringNoTrim(
+        passwordRequiredMessage
+      );
       const passwordValidators = validators.composeValidators(
         passwordRequired,
         passwordMinLength,
@@ -107,6 +120,18 @@ const SignupFormComponent = props => (
       });
       const lastNameRequired = validators.required(lastNameRequiredMessage);
 
+      // role
+      const roleRequiredMessage = intl.formatMessage({
+        id: 'SignupForm.roleRequired',
+      });
+      const roleRequired = validators.required(roleRequiredMessage);
+
+      const phonePlaceholder = intl.formatMessage({
+        id: 'ContactDetailsForm.phonePlaceholder',
+      });
+      const phoneLabel = intl.formatMessage({ id: 'ContactDetailsForm.phoneLabel' });
+      const phoneRequired = validators.required(intl.formatMessage({ id: 'SignupForm.phoneRequired' }))
+
       const classes = classNames(rootClassName || css.root, className);
       const submitInProgress = inProgress;
       const submitDisabled = invalid || submitInProgress;
@@ -131,42 +156,85 @@ const SignupFormComponent = props => (
 
       return (
         <Form className={classes} onSubmit={handleSubmit}>
-          <div>
-            <FieldTextInput
-              type="email"
-              id={formId ? `${formId}.email` : 'email'}
-              name="email"
-              autoComplete="email"
-              label={emailLabel}
-              placeholder={emailPlaceholder}
-              validate={validators.composeValidators(emailRequired, emailValid)}
-            />
+          <div className={css.background}>
+            <div className={css.role}>
+              <div className={css.left}>
+                <div className={css.subtitle}>
+                  <FormattedMessage id="SignupForm.ChooseRoleText" />
+                </div>
+                <FieldRadioButton
+                  id={`${idPrefix}.seller`}
+                  name="role"
+                  label={intl.formatMessage({ id: 'SignupForm.roleSeller' })}
+                  value="seller"
+                  validate={roleRequired}
+                  showAsRequired={pristine}
+                />
+                <FieldRadioButton
+                  id={`${idPrefix}.buyer`}
+                  name="role"
+                  label={intl.formatMessage({ id: 'SignupForm.roleBuyer' })}
+                  value="buyer"
+                  showAsRequired={pristine}
+                />
+              </div>
+              <div className={css.right}>
+                <img
+                  className={css.iconImage}
+                  src={workerImage}
+                  alt="Cafe Icon"
+                />
+              </div>
+            </div>
+            {socialLoginButtonsMaybe}
             <div className={css.name}>
-              <FieldTextInput
+              <FieldTextInputOval
                 className={css.firstNameRoot}
                 type="text"
-                id={formId ? `${formId}.fname` : 'fname'}
+                id={`${idPrefix}.fname`}
                 name="fname"
                 autoComplete="given-name"
                 label={firstNameLabel}
                 placeholder={firstNamePlaceholder}
                 validate={firstNameRequired}
               />
-              <FieldTextInput
+              <FieldTextInputOval
                 className={css.lastNameRoot}
                 type="text"
-                id={formId ? `${formId}.lname` : 'lname'}
+                id={`${idPrefix}.lname`}
                 name="lname"
                 autoComplete="family-name"
                 label={lastNameLabel}
                 placeholder={lastNamePlaceholder}
                 validate={lastNameRequired}
               />
-            </div>
-            <FieldTextInput
+              </div>
+              <FieldTextInputOval
+                type="email"
+                id={`${idPrefix}.email`}
+                name="email"
+                autoComplete="email"
+                label={emailLabel}
+                placeholder={emailPlaceholder}
+                validate={validators.composeValidators(emailRequired, emailValid)}
+              />
+              <div className={css.phone}>
+              <div className={css.label}>
+              {phoneLabel}
+              </div>
+              <FieldPhoneNumberInputOval
+                className={css.phone}
+                name="phoneNumber"
+                id={`${idPrefix}.phoneNumber`}
+                label={phoneLabel}
+                placeholder={phonePlaceholder}
+                validate={phoneRequired}
+              />
+              </div>
+            <FieldTextInputOval
               className={css.password}
               type="password"
-              id={formId ? `${formId}.password` : 'password'}
+              id={`${idPrefix}.password`}
               name="password"
               autoComplete="new-password"
               label={passwordLabel}
@@ -184,7 +252,11 @@ const SignupFormComponent = props => (
                 />
               </span>
             </p>
-            <PrimaryButton type="submit" inProgress={submitInProgress} disabled={submitDisabled}>
+            <PrimaryButton
+              type="submit"
+              inProgress={submitInProgress}
+              disabled={submitDisabled}
+            >
               <FormattedMessage id="SignupForm.signUp" />
             </PrimaryButton>
           </div>

@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   display: flex;
@@ -20,15 +20,12 @@
 
 .link {
   display: inline-block;
-  white-space: nowrap;
+  white-space: wrap;
 
   /* Font */
-  font-weight: var(--fontWeightMedium);
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0;
+  @apply --marketplaceTabNavFontStyles;
 
-  color: var(--matterColor);
+  color: var(--matterColorBlue);
   padding-bottom: 10px;
   padding-top: 10px;
 
@@ -49,10 +46,6 @@
   }
 
   @media (--viewportLarge) {
-    font-weight: var(--fontWeightSemiBold);
-    font-size: 20px;
-    line-height: 24px;
-
     width: var(--TabNav_linkWidth);
     border-bottom-width: 0px;
     margin-top: 0;

@@ -1,0 +1,46 @@
+@import '../../styles/propertySets.css';
+
+.slider {
+  border-radius: 0px;
+  padding-top: 0px;
+  background-color: transparent;
+  margin-bottom: -45px;
+  margin-top: 20px;
+  @media (--viewportMedium) {
+  padding-top: 0px;
+  margin-top: -30px;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-bottom: -80px;
+}}
+
+.sliderItem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  @media (--viewportMedium) {
+    padding: 20px;
+
+}
+}
+
+.slider > :global(.slick-prev) {
+  left: -5px;
+
+  @media (--viewportLarge) {
+    left: -25px;
+  }
+}
+
+.slider > :global(.slick-next) {
+  right: -5px;
+  transform: rotate(180deg);
+  top: calc(50% + 20px);
+
+  @media (--viewportLarge) {
+    right: -25px;
+  }
+}
+.sliderItem__img {
+  border-radius: 10%;
+}

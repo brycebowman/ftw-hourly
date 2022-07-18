@@ -29,7 +29,13 @@ const ProfileSettingsPage = loadable(() => import(/* webpackChunkName: "ProfileS
 const SearchPage = loadable(() => import(/* webpackChunkName: "SearchPage" */ /* webpackPrefetch: true */  './containers/SearchPage/SearchPage'));
 const StripePayoutPage = loadable(() => import(/* webpackChunkName: "StripePayoutPage" */ './containers/StripePayoutPage/StripePayoutPage'));
 const TermsOfServicePage = loadable(() => import(/* webpackChunkName: "TermsOfServicePage" */ './containers/TermsOfServicePage/TermsOfServicePage'));
+const GuidelinesPage = loadable(() => import(/* webpackChunkName: "GuidelinesPage" */ './containers/GuidelinesPage/GuidelinesPage'));
+const FeesPage = loadable(() => import(/* webpackChunkName: "FeesPage" */ './containers/FeesPage/FeesPage'));
+const MarketsPage = loadable(() => import(/* webpackChunkName: "MarketsPage" */ './containers/MarketsPage/MarketsPage'));
+const FAQPageTab = loadable(() => import(/* webpackChunkName: "FAQPageTab" */ './containers/FAQPageTab/FAQPageTab'));
+const RefundsPage = loadable(() => import(/* webpackChunkName: "RefundsPage" */ './containers/RefundsPage/RefundsPage'));
 const TransactionPage = loadable(() => import(/* webpackChunkName: "TransactionPage" */ './containers/TransactionPage/TransactionPage'));
+const FAQPage = loadable(() => import(/* webpackChunkName: "FAQPageTab" */ './containers/FAQPageTab/FAQPageTab'));
 
 // Styleguide helps you to review current components and develop new ones
 const StyleguidePage = loadable(() => import(/* webpackChunkName: "StyleguidePage" */ './containers/StyleguidePage/StyleguidePage'));
@@ -281,6 +287,26 @@ const routeConfiguration = () => {
       component: TermsOfServicePage,
     },
     {
+      path: '/community-guidelines',
+      name: 'GuidelinesPage',
+      component: GuidelinesPage,
+    },
+    {
+      path: '/fees',
+      name: 'FeesPage',
+      component: FeesPage,
+    },
+    {
+      path: '/launch',
+      name: 'MarketsPage',
+      component: MarketsPage,
+    },
+    {
+      path: '/refunds',
+      name: 'RefundsPage',
+      component: RefundsPage,
+    },
+    {
       path: '/privacy-policy',
       name: 'PrivacyPolicyPage',
       component: PrivacyPolicyPage,
@@ -315,6 +341,18 @@ const routeConfiguration = () => {
       path: '/notfound',
       name: 'NotFoundPage',
       component: props => <NotFoundPage {...props} />,
+    },
+
+    {
+      path: '/faq-wide',
+      name: 'FAQPage',
+      component: FAQPage,
+    },
+
+    {
+      path: '/faq',
+      name: 'FAQPageTab',
+      component: FAQPageTab,
     },
 
     // Do not change this path!

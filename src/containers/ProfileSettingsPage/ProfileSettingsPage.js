@@ -14,7 +14,7 @@ import {
   LayoutWrapperMain,
   LayoutWrapperFooter,
   Footer,
-  NamedLink,
+  NamedRedirect,
 } from '../../components';
 import { ProfileSettingsForm } from '../../forms';
 import { TopbarContainer } from '../../containers';
@@ -34,6 +34,7 @@ export class ProfileSettingsPageComponent extends Component {
     const {
       currentUser,
       currentUserListing,
+      currentUserRole,
       image,
       onImageUpload,
       onUpdateProfile,
@@ -45,8 +46,10 @@ export class ProfileSettingsPageComponent extends Component {
       intl,
     } = this.props;
 
+    if ( currentUserRole === 'seller' ) { return <NamedRedirect name="LandingPage" />; }
+
     const handleSubmit = values => {
-      const { firstName, lastName, bio: rawBio } = values;
+      const { firstName, lastName, bio: rawBio, restaurantName, restaurantAddress, restaurantDescription } = values;
 
       // Ensure that the optional bio is a string
       const bio = rawBio || '';
@@ -56,6 +59,17 @@ export class ProfileSettingsPageComponent extends Component {
         lastName: lastName.trim(),
         bio,
       };
+
+      if (currentUserRole === 'buyer') {
+        profile.publicData = {
+          restaurantName,
+          restaurantAddress,
+          firstName,
+          lastName,
+          restaurantAddressString: restaurantAddress.search,
+          restaurantDescription
+        }
+      }
       const uploadedImage = this.props.image;
 
       // Update profileImage only if file system has been accessed
@@ -68,7 +82,8 @@ export class ProfileSettingsPageComponent extends Component {
     };
 
     const user = ensureCurrentUser(currentUser);
-    const { firstName, lastName, bio } = user.attributes.profile;
+    const { firstName, lastName, bio, publicData } = user.attributes.profile;
+    const { restaurantName, restaurantAddress, restaurantDescription } = (publicData || {});
     const profileImageId = user.profileImage ? user.profileImage.id : null;
     const profileImage = image || { imageId: profileImageId };
 
@@ -76,7 +91,8 @@ export class ProfileSettingsPageComponent extends Component {
       <ProfileSettingsForm
         className={css.form}
         currentUser={currentUser}
-        initialValues={{ firstName, lastName, bio, profileImage: user.profileImage }}
+        currentUserRole={currentUserRole}
+        initialValues={{ firstName, lastName, bio, restaurantName, restaurantAddress, restaurantDescription, profileImage: user.profileImage }}
         profileImage={profileImage}
         onImageUpload={e => onImageUploadHandler(e, onImageUpload)}
         uploadInProgress={uploadInProgress}
@@ -102,15 +118,6 @@ export class ProfileSettingsPageComponent extends Component {
                 <h1 className={css.heading}>
                   <FormattedMessage id="ProfileSettingsPage.heading" />
                 </h1>
-                {user.id ? (
-                  <NamedLink
-                    className={css.profileLink}
-                    name="ProfilePage"
-                    params={{ id: user.id.uuid }}
-                  >
-                    <FormattedMessage id="ProfileSettingsPage.viewProfileLink" />
-                  </NamedLink>
-                ) : null}
               </div>
               {profileSettingsForm}
             </div>
@@ -154,7 +161,7 @@ ProfileSettingsPageComponent.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { currentUser, currentUserListing } = state.user;
+  const { currentUser, currentUserListing, currentUserRole } = state.user;
   const {
     image,
     uploadImageError,
@@ -165,6 +172,7 @@ const mapStateToProps = state => {
   return {
     currentUser,
     currentUserListing,
+    currentUserRole,
     image,
     scrollingDisabled: isScrollingDisabled(state),
     updateInProgress,

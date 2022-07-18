@@ -1,10 +1,10 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   margin-top: 24px;
 }
 
-@media (--viewportMedium) {
+@media viewportMedium) {
   .root {
     margin-top: 48px;
   }
@@ -13,12 +13,25 @@
 .disabled {
   opacity: 0.5;
 }
+.iconImage {
+  width: 150px;
+  object-fit: contain;
+  vertical-align: bottom;
+  margin: 5px 0 0px;
+}
 
 .sectionContainer {
-  margin-bottom: 35px;
-
+  background-color: var(--matterColorLight);
+  border: 3px;
+  border-style: solid;
+  border-color: #000;
+  margin-bottom: 25px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-right: 35px;
+  padding-bottom: 20px;
   @media (--viewportMedium) {
-    margin-bottom: 56px;
+    margin-bottom: 35px;
   }
 }
 
@@ -44,24 +57,37 @@
 
 .selectCountry {
   margin-bottom: 24px;
+  @media viewportMedium) {
+    }
+}
+
+.formwidth {
+  @media viewportMedium) {
+  width: 50%;
+    }
 }
 
 .error {
-  composes: marketplaceModalPasswordMargins from global;
+  @apply --marketplaceModalErrorStyles;
 }
 
 .termsText {
-  composes: marketplaceModalHelperText from global;
+  @apply --marketplaceModalHelperText;
   margin-bottom: 12px;
-  text-align: center;
+  text-align: left;
 
   @media (--viewportMedium) {
     margin-bottom: 16px;
   }
 }
+.link {
+  @apply --marketplaceModalHelperLink;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
 
 .termsLink {
-  composes: marketplaceModalHelperLink from global;
+  @apply --marketplaceModalHelperLink;
 
   &:hover {
     text-decoration: underline;
@@ -70,20 +96,7 @@
 }
 
 .bankDetailsStripeField p {
-  font-weight: var(--fontWeightMedium);
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 0;
-  /* margin-top + n * line-height + margin-bottom => x * 6px */
-  margin-top: 12px;
-  margin-bottom: 12px;
-
-  @media (--viewportMedium) {
-    font-weight: var(--fontWeightMedium);
-    /* margin-top + n * line-height + margin-bottom => x * 8px */
-    margin-top: 17px;
-    margin-bottom: 15px;
-  }
+  @apply --marketplaceH4FontStyles;
 }
 
 .missingStripeKey {
@@ -91,7 +104,7 @@
 }
 
 .accountInformationTitle {
-  composes: h3 from global;
+  @apply --marketplaceH3FontStyles;
   margin: 0;
   padding-top: 5px;
   padding-bottom: 1px;
@@ -117,6 +130,7 @@
 
 .savedInformation {
   margin-bottom: 24px;
+
 }
 
 .savedBankAccount {

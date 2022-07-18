@@ -1,4 +1,4 @@
-@import '../../styles/customMediaQueries.css';
+@import '../../styles/propertySets.css';
 
 .root {
   /* Layout */
@@ -11,34 +11,50 @@
   }
 }
 
+.iconImage {
+  height: 30px;
+  object-fit: contain;
+  pointer-events: none;
+  margin-top: 0px;
+  margin-left: 10px;
+  @media (--viewportMedium) {
+    margin-top: 0px;
+}}
+.iconImageLeft {
+  height: 30px;
+  object-fit: contain;
+  pointer-events: none;
+  margin-top: 0px;
+  margin-left: 20px;
+  @media (--viewportMedium) {
+    margin-top: 0px;
+}}
 .threeToTwoWrapper {
   /* Layout */
   display: block;
   width: 100%;
   position: relative;
   transition: var(--transitionStyleButton);
-
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: var(--boxShadowListingCard);
-  }
 }
 
 /* Firefox doesn't support image aspect ratio inside flexbox */
 .aspectWrapper {
-  padding-bottom: 66.6667%; /* 3:2 Aspect Ratio */
-  background: var(--matterColorNegative); /* Loading BG color */
+  padding-bottom: 85%; /* 3:2 Aspect Ratio */
 }
 
 .rootForImage {
   /* Layout - image will take space defined by aspect ratio wrapper */
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  border-radius: var(--borderRadius);
+  width: 85%;
+  margin: auto;
+  border-radius: 10%;
+  border: solid 4px var(--matterColorBlue);
+
+&:hover {
+  transform: scale(1.02);
+  border-color: var(--matterColorRed);
+  box-shadow: var(--boxShadowListingCard);
+  border-width: 4px;
+  }
 }
 
 .info {
@@ -59,7 +75,7 @@
 
 .priceValue {
   /* Font */
-  composes: h2 from global;
+  @apply --marketplaceH3FontStyles;
 
   /* Remove default margins from font */
   margin-top: 0;
@@ -73,8 +89,9 @@
 
 .perUnit {
   /* Font */
-  composes: marketplaceTinyFontStyles from global;
-  color: var(--matterColor);
+  @apply --marketplaceTinyFontStyles;
+  color: var(--matterColorRed);
+  font-weight: 500;
 
   /* Remove default margins from font */
   margin-top: 0;
@@ -88,13 +105,26 @@
 
 .mainInfo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.hint {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
 }
 
 .title {
   /* Font */
-  composes: h3 from global;
-  color: var(--matterColor);
+  @apply --marketplaceH3FontStyles;
+  color: var(--matterColorBlue);
+  font-family: "Architects Daughter";
+  font-size: 24px;
+  letter-spacing: 0em;
+  margin-left: -10px;
+  line-height: 25px;
+  font-weight: 400;
+  flex-direction: row;
 
   /* Remove default margins from font */
   margin-top: 0;
@@ -103,12 +133,14 @@
   @media (--viewportMedium) {
     margin-top: 0;
     margin-bottom: 0;
+    font-size: 34px;
+    line-height: 35px;
   }
 }
 
 .certificateInfo {
   /* Font */
-  composes: marketplaceTinyFontStyles from global;
+  @apply --marketplaceTinyFontStyles;
   color: var(--matterColor);
 
   /* Remove default margins from font */

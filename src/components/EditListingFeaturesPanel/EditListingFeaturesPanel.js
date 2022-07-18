@@ -7,11 +7,11 @@ import { LISTING_STATE_DRAFT } from '../../util/types';
 import { ensureListing } from '../../util/data';
 import { EditListingFeaturesForm } from '../../forms';
 import { ListingLink } from '../../components';
+import { ensureOwnListing } from '../../util/data';
 
 import css from './EditListingFeaturesPanel.module.css';
 
 const FEATURES_NAME = 'yogaStyles';
-
 const EditListingFeaturesPanel = props => {
   const {
     rootClassName,
@@ -48,7 +48,8 @@ const EditListingFeaturesPanel = props => {
   );
 
   const yogaStyles = publicData && publicData.yogaStyles;
-  const initialValues = { yogaStyles };
+  const RestaurantNameExp = publicData && publicData.RestaurantNameExp;
+  const initialValues = { RestaurantNameExp, yogaStyles };
 
   return (
     <div className={classes}>
@@ -58,10 +59,10 @@ const EditListingFeaturesPanel = props => {
         name={FEATURES_NAME}
         initialValues={initialValues}
         onSubmit={values => {
-          const { yogaStyles = [] } = values;
+          const { RestaurantNameExp, yogaStyles = [] } = values;
 
           const updatedValues = {
-            publicData: { yogaStyles },
+            publicData: { RestaurantNameExp, yogaStyles },
           };
           onSubmit(updatedValues);
         }}

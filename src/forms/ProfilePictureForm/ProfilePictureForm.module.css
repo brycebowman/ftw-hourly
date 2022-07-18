@@ -1,0 +1,394 @@
+@import '../../styles/propertySets.css';
+
+.root {
+  margin-top: 24px;
+
+  @media (--viewportMedium) {
+    margin-top: 22px;
+  }
+}
+
+.sectionContainer {
+  padding: 0;
+  margin-bottom: 36px;
+
+  @media (--viewportMedium) {
+    padding: 0;
+    margin-bottom: 56px;
+  }
+}
+
+.sectionTitle {
+  /* Font */
+  color: var(--matterColorDark);
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}
+
+.lastSection {
+  margin-bottom: 69px;
+
+  @media (--viewportMedium) {
+    margin-bottom: 111px;
+
+    & .sectionTitle {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.uploadAvatarInput {
+  display: none;
+}
+
+.uploadAvatarWrapper {
+  margin-top: 18px;
+  margin-bottom: 18px;
+
+  @media (--viewportMedium) {
+    margin-top: 44px;
+    margin-bottom: 20px;
+  }
+}
+
+.label {
+  margin-top: -20px;
+  width: var(--ProfileSettingsForm_avatarSize);
+  @media (--viewportMedium) {
+    width: var(--ProfileSettingsForm_avatarSizeDesktop);
+  }
+}
+.steps {
+  display: flex;
+  flex-direction: column;
+  @media (--viewportMedium) {
+    flex-direction: row;
+  }
+}
+
+.stepleft {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 80%;
+    @media (--viewportMedium) {
+    width: 45%;
+    margin-top: -20px;
+    margin-left: 0px;
+    margin-right: 10px;
+  }
+}
+.bluebox {
+  background-color: var(--matterColorBlue);
+  color: var(--matterColorLight);
+  line-height: 18px;
+  padding-bottom:10px;
+  padding-left: 10px;
+  padding-top: 15px;
+  border-radius: 15px;
+    @media (--viewportMedium) {
+    padding-left: 10px;
+    padding-top: 15px;
+    border-radius: 15px;
+  }
+}
+.stepright {
+    margin-left: 10px;
+    margin-right: 0px;
+    @media (--viewportMedium) {
+    width: 80%;
+    margin-left: 10px;
+    margin-top: 30px;
+    margin-right: 0px;
+  }
+}
+.avatarPlaceholder,
+.avatarContainer {
+  /* Dimension */
+  position: relative;
+  width: var(--ProfileSettingsForm_avatarSize);
+  height: var(--ProfileSettingsForm_avatarSize);
+
+  /* Center content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Initial coloring */
+  background-color: var(--matterColorBright);
+  border-radius: calc(var(--ProfileSettingsForm_avatarSize) / 2);
+  cursor: pointer;
+
+  @media (--viewportMedium) {
+    width: var(--ProfileSettingsForm_avatarSizeDesktop);
+    height: var(--ProfileSettingsForm_avatarSizeDesktop);
+    border-radius: calc(var(--ProfileSettingsForm_avatarSizeDesktop) / 2);
+  }
+}
+
+.avatarPlaceholder {
+  /* Placeholder border */
+  border-style: dashed;
+  border-color: var(--matterColorNegative);
+  border-width: 4px;
+
+  transition: var(--transitionStyleButton);
+
+  &:hover {
+    border-color: var(--matterColorAnti);
+  }
+}
+
+.avatarPlaceholderTextMobile {
+  @media (--viewportMedium) {
+    display: none;
+  }
+}
+.avatarPlaceholderText {
+  display: none;
+
+  @media (--viewportMedium) {
+    display: block;
+    max-width: 130px;
+    text-align: center;
+  }
+}
+
+.avatarUploadError {
+  /* Placeholder border */
+  border-style: dashed;
+  border-color: var(--failColor);
+  border-width: 2px;
+}
+
+.error {
+  /* Font */
+  @apply --marketplaceH4FontStyles;
+  color: var(--failColor);
+  margin-top: 18px;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    margin-top: 22px;
+    margin-bottom: 2px;
+  }
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+}
+
+.changeAvatar {
+  /* Font */
+  @apply --marketplaceH5FontStyles;
+
+  font-weight: var(--fontWeightMedium);
+
+  /* Positioning: right */
+  position: absolute;
+  bottom: 27px;
+  right: -129px;
+  /* Dimensions */
+  width: 125px;
+  height: 41px;
+  padding: 11px 10px 7px 10px;
+
+  /* Look and feel (buttonish) */
+  background-color: var(--matterColorForm);
+  background-image: url('data:image/svg+xml;utf8,<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><g stroke="%234A4A4A" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><path d="M5.307 11.155L1 13l1.846-4.308L10.54 1 13 3.46zM11 5L9 3M5 11L3 9"/></g></svg>');
+  background-repeat: no-repeat;
+  background-position: 5px 12px;
+  text-align: center;
+  border: solid 1px var(--matterColorNegative);
+  border-radius: 2px;
+
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (--viewportMedium) {
+    /* Position: under */
+    bottom: -10px;
+    right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    transition: var(--transitionStyleButton);
+    padding: 11px 10px 7px 35px;
+  }
+
+  &:hover {
+    border: solid 1px var(--matterColorBlue);
+  }
+}
+
+.uploadingImage {
+  /* Dimensions */
+  width: var(--ProfileSettingsForm_avatarSize);
+  height: var(--ProfileSettingsForm_avatarSize);
+
+  /* Image fitted to container */
+  object-fit: cover;
+  background-color: var(--matterColorNegative); /* Loading BG color */
+  border-radius: calc(var(--ProfileSettingsForm_avatarSize) / 2);
+  overflow: hidden;
+
+  display: block;
+  position: relative;
+  margin: 0;
+
+  @media (--viewportMedium) {
+    width: var(--ProfileSettingsForm_avatarSizeDesktop);
+    height: var(--ProfileSettingsForm_avatarSizeDesktop);
+    border-radius: calc(var(--ProfileSettingsForm_avatarSizeDesktop) / 2);
+  }
+}
+
+.uploadingImageOverlay {
+  /* Cover everything (overlay) */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* Overlay style */
+  background-color: var(--matterColorLight);
+  opacity: 0.8;
+
+  /* Center content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Avatar has square aspect ratio */
+/* Default is 3:2 */
+.squareAspectRatio {
+  padding-bottom: 100%;
+}
+
+.avatarInvisible {
+  visibility: hidden;
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+}
+
+.tip {
+  @apply --marketplaceDefaultFontStyles;
+  color: var(--matterColorDark);
+  font-size: 16px;
+  line-height: 17px;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  padding-top: 0px;
+  padding-bottom: 1px;
+
+  @media (--viewportMedium) {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: -5px;
+    margin-bottom: 5px;
+    padding-top: 0px;
+    padding-bottom: 4px;
+  }
+}
+.tipBlue {
+  @apply --marketplaceDefaultFontStyles;
+  color: var(--matterColorLight);
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  @media (--viewportMedium) {
+    font-size: 18px;
+    line-height: 20px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 4px;
+  }
+}
+.tipBlueHeading {
+  font-family: "architects daughter";
+  font-size: 30px;
+  line-height: 31px;
+  color: var(--matterColorLight);
+  margin: auto;
+  padding-top: 5px;
+  padding-bottom: 1px;
+
+  @media (--viewportMedium) {
+    font-size: 32px;
+    line-height: 20px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 4px;
+  }
+}
+
+.fileInfo {
+  @apply --marketplaceH5FontStyles;
+  color: var(--matterColorAnti);
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 5px;
+  padding-bottom: 1px;
+
+  @media (--viewportMedium) {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 6px;
+    padding-bottom: 2px;
+  }
+}
+
+.nameContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+
+  @media (--viewportMedium) {
+    margin-top: 24px;
+  }
+}
+
+.firstName {
+  width: calc(34% - 9px);
+}
+
+.lastName {
+  width: calc(66% - 9px);
+}
+
+.bioInfo {
+  color: var(--matterColorAnti);
+  margin-top: 11px;
+
+  @media (--viewportMedium) {
+    margin-top: 16px;
+  }
+}
+
+.submitButton {
+  margin-top: 24px;
+}
+
+.restaurantName,
+.restaurantAddress {
+  margin-bottom: 20px;
+}

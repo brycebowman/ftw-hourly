@@ -78,6 +78,7 @@ const handleGetStripeConnectAccountLinkFn = (getLinkFn, commonParams) => type =>
 export const StripePayoutPageComponent = props => {
   const {
     currentUser,
+    currentUserRole,
     scrollingDisabled,
     getAccountLinkInProgress,
     getAccountLinkError,
@@ -153,7 +154,7 @@ export const StripePayoutPageComponent = props => {
           />
           <UserNav selectedPageName="StripePayoutPage" />
         </LayoutWrapperTopbar>
-        <LayoutWrapperAccountSettingsSideNav currentTab="StripePayoutPage" />
+        <LayoutWrapperAccountSettingsSideNav currentTab="StripePayoutPage" currentUserRole={currentUserRole} />
         <LayoutWrapperMain>
           <div className={css.content}>
             <h1 className={css.title}>
@@ -260,10 +261,11 @@ const mapStateToProps = state => {
     stripeAccount,
     stripeAccountFetched,
   } = state.stripeConnectAccount;
-  const { currentUser } = state.user;
+  const { currentUser, currentUserRole, } = state.user;
   const { payoutDetailsSaveInProgress, payoutDetailsSaved } = state.StripePayoutPage;
   return {
     currentUser,
+    currentUserRole,
     getAccountLinkInProgress,
     getAccountLinkError,
     createStripeAccountError,
